@@ -1,0 +1,60 @@
++ . ./env.sh
+++ export ofs_bench_ex=../cmake-build-relwithdebinfo/src/bench/ofs
+++ ofs_bench_ex=../cmake-build-relwithdebinfo/src/bench/ofs
+++ export append_ofs_bench_ex=../cmake-build-relwithdebinfo/src/bench/append-ofs
+++ append_ofs_bench_ex=../cmake-build-relwithdebinfo/src/bench/append-ofs
+++ export osm_bench_ex=../cmake-build-relwithdebinfo/src/bench/osm
+++ osm_bench_ex=../cmake-build-relwithdebinfo/src/bench/osm
+++ export omap_bench_ex=../cmake-build-relwithdebinfo/src/bench/omap
+++ omap_bench_ex=../cmake-build-relwithdebinfo/src/bench/omap
+++ export hdd_base_path=/mnt/hdd1/tests/cache
+++ hdd_base_path=/mnt/hdd1/tests/cache
+++ export ssd_base_path=/Users/apostolosmavrogiannakis/ssdmount/scratch/datadir/ssd/cache
+++ ssd_base_path=/Users/apostolosmavrogiannakis/ssdmount/scratch/datadir/ssd/cache
+++ export num_runs=3
+++ num_runs=3
+++ export n=18
+++ n=18
+++ vs=(4)
+++ export vs
+++ export v=4
+++ v=4
+++ lvls=(8 9 10)
+++ export lvls
++++ seq 23 2 24
+++ append_ns=23
+++ export append_ns
+++ export append_s=1
+++ append_s=1
+++ export append_lf=1
+++ append_lf=1
++ for v in '${vs[@]}'
++ out=ram-v4-n18-osm2-res.csv
++ test -s ram-v4-n18-osm2-res.csv
++ ../cmake-build-relwithdebinfo/src/bench/osm --print_csv_headers -r 3 -v 4 -N 18
+Starting run  of 
+Constructing OSM
+Initializing with id=0, n=262143, entry_size=272.0B, total store size=67.9MiB, store_type=2, first_build=0, name=oram-n262144-v52; num_stores=1
+Using RAM storage backend.
+Initializing with id=1, n=1, entry_size=8.8KiB, total store size=8.8KiB, store_type=2, first_build=0, name=oram-n262144-v52-stash; num_stores=2
+Using RAM storage backend.
+Setup done, took 11.9265
+Inserted 1 ( total: 1)time: 1.125e-06
+Inserted 2 ( total: 3)time: 1.459e-06
+Inserted 4 ( total: 7)time: 2.625e-06
+Inserted 8 ( total: 15)time: 5.75e-06
+Inserted 16 ( total: 31)time: 1.3708e-05
+Inserted 32 ( total: 63)time: 3.1e-05
+Inserted 64 ( total: 127)time: 6.8875e-05
+Inserted 128 ( total: 255)time: 0.000164875
+Inserted 256 ( total: 511)time: 0.000410542
+Inserted 512 ( total: 1023)time: 0.00102525
+Inserted 1024 ( total: 2047)time: 0.00256892
+Inserted 2048 ( total: 4095)time: 0.00637813
+Inserted 4096 ( total: 8191)time: 0.0152439
+Inserted 8192 ( total: 16383)time: 0.0365215
+Inserted 16384 ( total: 32767)time: 0.0862384
+Inserted 32768 ( total: 65535)time: 0.201048
+Inserted 65536 ( total: 131071)time: 0.465137
+Inserted 131072 ( total: 262143)time: 1.08264
+Evicting..

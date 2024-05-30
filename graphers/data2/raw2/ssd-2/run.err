@@ -1,0 +1,4973 @@
++ exec ./ssd.sh 4 22
++ num_runs=1
++ ss='4 22'
++ lfs=(1 8 16 32)
++ ssd_base_path=/home/ubuntu/data/tests/ssd/
++ mkdir -p /home/ubuntu/data/tests/ssd/
++ ofs_ex=../cmake-build-relwithdebinfo/src/bench/crimes_ofs
++ omap_ex=../cmake-build-relwithdebinfo/src/bench/crimes_omap
++ for s in ${ss[@]}
++ for lf in ${lfs[@]}
++ rm -rf /home/ubuntu/data/tests/ssd/
++ mkdir -p /home/ubuntu/data/tests/ssd/
++ ../cmake-build-relwithdebinfo/src/bench/crimes_ofs --print_csv_headers --data_file ./kv.csv -r 1 -N 23 -s 4 -L 1 -p /home/ubuntu/data/tests/ssd/ -d -a
+Read 0
+Read 100000
+Read 200000
+Read 300000
+Read 400000
+Read 500000
+Read 600000
+Read 700000
+Read 800000
+Read 900000
+Read 1000000
+Read 1100000
+Read 1200000
+Read 1300000
+Read 1400000
+Read 1500000
+Read 1600000
+Read 1700000
+Read 1800000
+Read 1900000
+Read 2000000
+Read 2100000
+Read 2200000
+Read 2300000
+Read 2400000
+Read 2500000
+Read 2600000
+Read 2700000
+Read 2800000
+Read 2900000
+Read 3000000
+Read 3100000
+Read 3200000
+Read 3300000
+Read 3400000
+Read 3500000
+Read 3600000
+Read 3700000
+Read 3800000
+Read 3900000
+Read 4000000
+Read 4100000
+Read 4200000
+Read 4300000
+Read 4400000
+Read 4500000
+Read 4600000
+Read 4700000
+Read 4800000
+Read 4900000
+Read 5000000
+Read 5100000
+Read 5200000
+Read 5300000
+Read 5400000
+Read 5500000
+Read 5600000
+Read 5700000
+Read 5800000
+Read 5900000
+Read 6000000
+Read 6100000
+Read 6200000
+Read 6300000
+Read 6400000
+Read 6500000
+Read 6600000
+Read 6700000
+Read 6800000
+Read 6900000
+Read 7000000
+Read 7100000
+Read 7200000
+Read 7300000
+Read 7400000
+Read 7500000
+Read 7600000
+Read 7700000
+
+Read 7767374 in total.
+Initializing with id=0, n=8388607, entry_size=128.0B, total store size=1023.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=1, n=8388607, entry_size=1.3KiB, total store size=10.6GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=2, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=3, n=32767, entry_size=128.0B, total store size=3.9MiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=4, n=32767, entry_size=616.0KiB, total store size=19.2GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=5, n=32767, entry_size=240.0B, total store size=7.4MiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+Initializing with id=6, n=255, entry_size=128.0B, total store size=31.8KiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=7, n=255, entry_size=77.0MiB, total store size=19.1GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=8, n=255, entry_size=240.0B, total store size=59.7KiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+Initializing with id=9, n=1, entry_size=2.4GiB, total store size=2.4GiB, store_type=2; num_stores=10
+Using MMap File storage backend.
+Initializing with id=10, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=11
+Using MMap File storage backend.
+Initializing with id=11, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=12
+Using MMap File storage backend.
+Inserted 10269
+Inserted 22113
+Inserted 22943
+Inserted 24210
+Inserted 24989
+Inserted 26052
+Inserted 26494
+Inserted 27703
+Inserted 30032
+Inserted 30932
+Inserted 31047
+Inserted 32147
+Inserted 36933
+Inserted 37074
+Inserted 38042
+Inserted 54302
+Inserted 226725
+Inserted 227598
+Inserted 1103659
+Inserted 1105939
+Inserted 1115358
+Inserted 1123786
+Inserted 1125144
+Inserted 1126371
+Inserted 1157489
+Inserted 1157491
+Inserted 1199929
+Inserted 1199954
+Inserted 1208421
+Inserted 1208453
+Inserted 1208535
+Inserted 1209234
+Inserted 1210001
+Inserted 1210459
+Inserted 1213793
+Inserted 1214193
+Inserted 1253057
+Inserted 1253060
+Inserted 1253063
+Inserted 1253108
+Inserted 1253144
+Inserted 1253614
+Inserted 1278637
+Inserted 1278645
+Inserted 1278700
+Inserted 1280052
+Inserted 1336159
+Inserted 1336163
+Inserted 1336171
+Inserted 1336177
+Inserted 1337401
+Inserted 1337403
+Inserted 1352897
+Inserted 1352898
+Inserted 1358020
+Inserted 1358038
+Inserted 1358041
+Inserted 1359166
+Inserted 1359364
+Inserted 1359432
+Inserted 1365220
+Inserted 1366621
+Inserted 1426691
+Inserted 1440594
+Inserted 1463912
+Inserted 1463914
+Inserted 1464475
+Inserted 1464484
+Inserted 1464493
+Inserted 1489542
+Inserted 1497384
+Inserted 1507661
+Inserted 1508131
+Inserted 1547527
+Inserted 1547536
+Inserted 1554149
+Inserted 1554150
+Inserted 1554336
+Inserted 1584823
+Inserted 1596700
+Inserted 1600117
+Inserted 1601079
+Inserted 1699423
+Inserted 1699443
+Inserted 1722144
+Inserted 1757735
+Inserted 1757742
+Inserted 1757744
+Inserted 1757745
+Inserted 1757747
+Inserted 1758159
+Inserted 1765054
+Inserted 1765062
+Inserted 1766011
+Inserted 1767231
+Inserted 1767667
+Inserted 1767668
+Inserted 1767740
+Inserted 1767807
+Inserted 1767818
+Inserted 1854101
+Inserted 1854166
+Inserted 1854168
+Inserted 1855416
+Inserted 1870172
+Inserted 1968701
+Inserted 1968799
+Inserted 1968964
+Inserted 1970049
+Inserted 1970052
+Inserted 1970064
+Inserted 1973852
+Inserted 1996052
+Inserted 1996077
+Inserted 1999753
+Inserted 2029502
+Inserted 2030142
+Inserted 2031352
+Inserted 2031353
+Inserted 2031370
+Inserted 2031371
+Inserted 2031375
+Inserted 2031573
+Inserted 2032754
+Inserted 2032756
+Inserted 2039456
+Inserted 2039468
+Inserted 2039469
+Inserted 2039471
+Inserted 2039472
+Inserted 2040387
+Inserted 2047818
+Inserted 2047825
+Inserted 2047997
+Inserted 2050729
+Inserted 2050972
+Inserted 2053206
+Inserted 2053212
+Inserted 2067870
+Inserted 2067889
+Inserted 2337919
+Inserted 2350735
+Inserted 2354094
+Inserted 2360026
+Inserted 2360370
+Inserted 2418930
+Inserted 2419164
+Inserted 2442156
+Inserted 2645150
+Inserted 2645848
+Inserted 2645849
+Inserted 2648279
+Inserted 2666850
+Inserted 2667835
+Inserted 2667836
+Inserted 2668217
+Inserted 2668219
+Inserted 2668221
+Inserted 2668223
+Inserted 2668238
+Inserted 3971867
+Inserted 3980111
+Inserted 3990381
+Inserted 3999232
+Inserted 4123444
+Inserted 4258987
+Inserted 4334139
+Inserted 4461067
+Inserted 4461163
+Inserted 4461167
+Inserted 4461172
+Inserted 4461174
+Inserted 4461563
+Inserted 4462194
+Inserted 4462877
+Inserted 4466702
+Inserted 4469545
+Inserted 4469561
+Inserted 4483747
+Inserted 4488039
+Inserted 4634426
+Inserted 4664679
+Inserted 4664682
+Inserted 5392781
+Inserted 5539470
+Inserted 5539805
+Inserted 5545095
+Inserted 5545117
+Inserted 7567006
+Inserted 7567042
+Inserted 7568466
+Inserted 7590932
+Inserted 7590938
+Inserted 7598648
+Inserted 7598652
+Inserted 7598661
+Inserted 7598662
+Inserted 7598791
+Inserted 7600786
+Inserted 7625472
+Inserted 7626038
+Inserted 7626051
+Inserted 7626061
+Inserted 7626378
+Inserted 7626709
+Inserted 7627176
+Inserted 7627506
+Inserted 7751259
+Inserted 7756875
+Inserted 7756885
+Inserted 7756895
+Inserted 7756922
+Inserted 7767074
+Inserted 7767081
+Inserted 7767371
+Inserted 7767374
+Searched 10269
+Searched 22113
+Searched 22943
+Searched 24210
+Searched 24989
+Searched 26052
+Searched 26494
+Searched 27703
+Searched 30032
+Searched 30932
+Searched 31047
+Searched 32147
+Searched 36933
+Searched 37074
+Searched 38042
+Searched 54302
+Searched 226725
+Searched 227598
+Searched 1103659
+Searched 1105939
+Searched 1115358
+Searched 1123786
+Searched 1125144
+Searched 1126371
+Searched 1157489
+Searched 1157491
+Searched 1199929
+Searched 1199954
+Searched 1208421
+Searched 1208453
+Searched 1208535
+Searched 1209234
+Searched 1210001
+Searched 1210459
+Searched 1213793
+Searched 1214193
+Searched 1253057
+Searched 1253060
+Searched 1253063
+Searched 1253108
+Searched 1253144
+Searched 1253614
+Searched 1278637
+Searched 1278645
+Searched 1278700
+Searched 1280052
+Searched 1336159
+Searched 1336163
+Searched 1336171
+Searched 1336177
+Searched 1337401
+Searched 1337403
+Searched 1352897
+Searched 1352898
+Searched 1358020
+Searched 1358038
+Searched 1358041
+Searched 1359166
+Searched 1359364
+Searched 1359432
+Searched 1365220
+Searched 1366621
+Searched 1426691
+Searched 1440594
+Searched 1463912
+Searched 1463914
+Searched 1464475
+Searched 1464484
+Searched 1464493
+Searched 1489542
+Searched 1497384
+Searched 1507661
+Searched 1508131
+Searched 1547527
+Searched 1547536
+Searched 1554149
+Searched 1554150
+Searched 1554336
+Searched 1584823
+Searched 1596700
+Searched 1600117
+Searched 1601079
+Searched 1699423
+Searched 1699443
+Searched 1722144
+Searched 1757735
+Searched 1757742
+Searched 1757744
+Searched 1757745
+Searched 1757747
+Searched 1758159
+Searched 1765054
+Searched 1765062
+Searched 1766011
+Searched 1767231
+Searched 1767667
+Searched 1767668
+Searched 1767740
+Searched 1767807
+Searched 1767818
+Searched 1854101
+Searched 1854166
+Searched 1854168
+Searched 1855416
+Searched 1870172
+Searched 1968701
+Searched 1968799
+Searched 1968964
+Searched 1970049
+Searched 1970052
+Searched 1970064
+Searched 1973852
+Searched 1996052
+Searched 1996077
+Searched 1999753
+Searched 2029502
+Searched 2030142
+Searched 2031352
+Searched 2031353
+Searched 2031370
+Searched 2031371
+Searched 2031375
+Searched 2031573
+Searched 2032754
+Searched 2032756
+Searched 2039456
+Searched 2039468
+Searched 2039469
+Searched 2039471
+Searched 2039472
+Searched 2040387
+Searched 2047818
+Searched 2047825
+Searched 2047997
+Searched 2050729
+Searched 2050972
+Searched 2053206
+Searched 2053212
+Searched 2067870
+Searched 2067889
+Searched 2337919
+Searched 2350735
+Searched 2354094
+Searched 2360026
+Searched 2360370
+Searched 2418930
+Searched 2419164
+Searched 2442156
+Searched 2645150
+Searched 2645848
+Searched 2645849
+Searched 2648279
+Searched 2666850
+Searched 2667835
+Searched 2667836
+Searched 2668217
+Searched 2668219
+Searched 2668221
+Searched 2668223
+Searched 2668238
+Searched 3971867
+Searched 3980111
+Searched 3990381
+Searched 3999232
+Searched 4123444
+Searched 4258987
+Searched 4334139
+Searched 4461067
+Searched 4461163
+Searched 4461167
+Searched 4461172
+Searched 4461174
+Searched 4461563
+Searched 4462194
+Searched 4462877
+Searched 4466702
+Searched 4469545
+Searched 4469561
+Searched 4483747
+Searched 4488039
+Searched 4634426
+Searched 4664679
+Searched 4664682
+Searched 5392781
+Searched 5539470
+Searched 5539805
+Searched 5545095
+Searched 5545117
+Searched 7567006
+Searched 7567042
+Searched 7568466
+Searched 7590932
+Searched 7590938
+Searched 7598648
+Searched 7598652
+Searched 7598661
+Searched 7598662
+Searched 7598791
+Searched 7600786
+Searched 7625472
+Searched 7626038
+Searched 7626051
+Searched 7626061
+Searched 7626378
+Searched 7626709
+Searched 7627176
+Searched 7627506
+Searched 7751259
+Searched 7756875
+Searched 7756885
+Searched 7756895
+Searched 7756922
+Searched 7767074
+Searched 7767081
+Searched 7767371
+Searched 7767374
+Store with id=11 destroyed; Remaining stores: 11
+Store with id=10 destroyed; Remaining stores: 10
+Store with id=9 destroyed; Remaining stores: 9
+Store with id=1 destroyed; Remaining stores: 8
+Store with id=4 destroyed; Remaining stores: 7
+Store with id=7 destroyed; Remaining stores: 6
+Store with id=0 destroyed; Remaining stores: 5
+Store with id=3 destroyed; Remaining stores: 4
+Store with id=6 destroyed; Remaining stores: 3
+Store with id=2 destroyed; Remaining stores: 2
+Store with id=5 destroyed; Remaining stores: 1
+Store with id=8 destroyed; Remaining stores: 0
+took=2086.72, config=num_runs_: 1 capacity_: 8388608 num_levels_: 4 locality_factor_: 1 base_block_size_: 300 store_path_: /home/ubuntu/data/tests/ssd/ min_val_len_: 0 max_val_len_: 0 is_data_mem_: 0 is_aux_mem_: 0 is_ssd_: 1 is_cached_: 1 data_file_: ./kv.csv
++ for lf in ${lfs[@]}
++ rm -rf /home/ubuntu/data/tests/ssd/
++ mkdir -p /home/ubuntu/data/tests/ssd/
++ ../cmake-build-relwithdebinfo/src/bench/crimes_ofs --print_csv_headers --data_file ./kv.csv -r 1 -N 23 -s 4 -L 8 -p /home/ubuntu/data/tests/ssd/ -d -a
+Read 0
+Read 100000
+Read 200000
+Read 300000
+Read 400000
+Read 500000
+Read 600000
+Read 700000
+Read 800000
+Read 900000
+Read 1000000
+Read 1100000
+Read 1200000
+Read 1300000
+Read 1400000
+Read 1500000
+Read 1600000
+Read 1700000
+Read 1800000
+Read 1900000
+Read 2000000
+Read 2100000
+Read 2200000
+Read 2300000
+Read 2400000
+Read 2500000
+Read 2600000
+Read 2700000
+Read 2800000
+Read 2900000
+Read 3000000
+Read 3100000
+Read 3200000
+Read 3300000
+Read 3400000
+Read 3500000
+Read 3600000
+Read 3700000
+Read 3800000
+Read 3900000
+Read 4000000
+Read 4100000
+Read 4200000
+Read 4300000
+Read 4400000
+Read 4500000
+Read 4600000
+Read 4700000
+Read 4800000
+Read 4900000
+Read 5000000
+Read 5100000
+Read 5200000
+Read 5300000
+Read 5400000
+Read 5500000
+Read 5600000
+Read 5700000
+Read 5800000
+Read 5900000
+Read 6000000
+Read 6100000
+Read 6200000
+Read 6300000
+Read 6400000
+Read 6500000
+Read 6600000
+Read 6700000
+Read 6800000
+Read 6900000
+Read 7000000
+Read 7100000
+Read 7200000
+Read 7300000
+Read 7400000
+Read 7500000
+Read 7600000
+Read 7700000
+
+Read 7767374 in total.
+Initializing with id=0, n=8388607, entry_size=128.0B, total store size=1023.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=1, n=8388607, entry_size=1.3KiB, total store size=10.6GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=2, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=3, n=65535, entry_size=128.0B, total store size=7.9MiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=4, n=65535, entry_size=308.0KiB, total store size=19.2GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=5, n=65535, entry_size=240.0B, total store size=14.9MiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+Initializing with id=6, n=1023, entry_size=128.0B, total store size=127.8KiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=7, n=1023, entry_size=19.2MiB, total store size=19.2GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=8, n=1023, entry_size=240.0B, total store size=239.7KiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+Initializing with id=9, n=1, entry_size=2.4GiB, total store size=2.4GiB, store_type=2; num_stores=10
+Using MMap File storage backend.
+Initializing with id=10, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=11
+Using MMap File storage backend.
+Initializing with id=11, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=12
+Using MMap File storage backend.
+Inserted 10269
+Inserted 22113
+Inserted 22943
+Inserted 24210
+Inserted 24989
+Inserted 26052
+Inserted 26494
+Inserted 27703
+Inserted 30032
+Inserted 30932
+Inserted 31047
+Inserted 32147
+Inserted 36933
+Inserted 37074
+Inserted 38042
+Inserted 54302
+Inserted 226725
+Inserted 227598
+Inserted 1103659
+Inserted 1105939
+Inserted 1115358
+Inserted 1123786
+Inserted 1125144
+Inserted 1126371
+Inserted 1157489
+Inserted 1157491
+Inserted 1199929
+Inserted 1199954
+Inserted 1208421
+Inserted 1208453
+Inserted 1208535
+Inserted 1209234
+Inserted 1210001
+Inserted 1210459
+Inserted 1213793
+Inserted 1214193
+Inserted 1253057
+Inserted 1253060
+Inserted 1253063
+Inserted 1253108
+Inserted 1253144
+Inserted 1253614
+Inserted 1278637
+Inserted 1278645
+Inserted 1278700
+Inserted 1280052
+Inserted 1336159
+Inserted 1336163
+Inserted 1336171
+Inserted 1336177
+Inserted 1337401
+Inserted 1337403
+Inserted 1352897
+Inserted 1352898
+Inserted 1358020
+Inserted 1358038
+Inserted 1358041
+Inserted 1359166
+Inserted 1359364
+Inserted 1359432
+Inserted 1365220
+Inserted 1366621
+Inserted 1426691
+Inserted 1440594
+Inserted 1463912
+Inserted 1463914
+Inserted 1464475
+Inserted 1464484
+Inserted 1464493
+Inserted 1489542
+Inserted 1497384
+Inserted 1507661
+Inserted 1508131
+Inserted 1547527
+Inserted 1547536
+Inserted 1554149
+Inserted 1554150
+Inserted 1554336
+Inserted 1584823
+Inserted 1596700
+Inserted 1600117
+Inserted 1601079
+Inserted 1699423
+Inserted 1699443
+Inserted 1722144
+Inserted 1757735
+Inserted 1757742
+Inserted 1757744
+Inserted 1757745
+Inserted 1757747
+Inserted 1758159
+Inserted 1765054
+Inserted 1765062
+Inserted 1766011
+Inserted 1767231
+Inserted 1767667
+Inserted 1767668
+Inserted 1767740
+Inserted 1767807
+Inserted 1767818
+Inserted 1854101
+Inserted 1854166
+Inserted 1854168
+Inserted 1855416
+Inserted 1870172
+Inserted 1968701
+Inserted 1968799
+Inserted 1968964
+Inserted 1970049
+Inserted 1970052
+Inserted 1970064
+Inserted 1973852
+Inserted 1996052
+Inserted 1996077
+Inserted 1999753
+Inserted 2029502
+Inserted 2030142
+Inserted 2031352
+Inserted 2031353
+Inserted 2031370
+Inserted 2031371
+Inserted 2031375
+Inserted 2031573
+Inserted 2032754
+Inserted 2032756
+Inserted 2039456
+Inserted 2039468
+Inserted 2039469
+Inserted 2039471
+Inserted 2039472
+Inserted 2040387
+Inserted 2047818
+Inserted 2047825
+Inserted 2047997
+Inserted 2050729
+Inserted 2050972
+Inserted 2053206
+Inserted 2053212
+Inserted 2067870
+Inserted 2067889
+Inserted 2337919
+Inserted 2350735
+Inserted 2354094
+Inserted 2360026
+Inserted 2360370
+Inserted 2418930
+Inserted 2419164
+Inserted 2442156
+Inserted 2645150
+Inserted 2645848
+Inserted 2645849
+Inserted 2648279
+Inserted 2666850
+Inserted 2667835
+Inserted 2667836
+Inserted 2668217
+Inserted 2668219
+Inserted 2668221
+Inserted 2668223
+Inserted 2668238
+Inserted 3971867
+Inserted 3980111
+Inserted 3990381
+Inserted 3999232
+Inserted 4123444
+Inserted 4258987
+Inserted 4334139
+Inserted 4461067
+Inserted 4461163
+Inserted 4461167
+Inserted 4461172
+Inserted 4461174
+Inserted 4461563
+Inserted 4462194
+Inserted 4462877
+Inserted 4466702
+Inserted 4469545
+Inserted 4469561
+Inserted 4483747
+Inserted 4488039
+Inserted 4634426
+Inserted 4664679
+Inserted 4664682
+Inserted 5392781
+Inserted 5539470
+Inserted 5539805
+Inserted 5545095
+Inserted 5545117
+Inserted 7567006
+Inserted 7567042
+Inserted 7568466
+Inserted 7590932
+Inserted 7590938
+Inserted 7598648
+Inserted 7598652
+Inserted 7598661
+Inserted 7598662
+Inserted 7598791
+Inserted 7600786
+Inserted 7625472
+Inserted 7626038
+Inserted 7626051
+Inserted 7626061
+Inserted 7626378
+Inserted 7626709
+Inserted 7627176
+Inserted 7627506
+Inserted 7751259
+Inserted 7756875
+Inserted 7756885
+Inserted 7756895
+Inserted 7756922
+Inserted 7767074
+Inserted 7767081
+Inserted 7767371
+Inserted 7767374
+Searched 10269
+Searched 22113
+Searched 22943
+Searched 24210
+Searched 24989
+Searched 26052
+Searched 26494
+Searched 27703
+Searched 30032
+Searched 30932
+Searched 31047
+Searched 32147
+Searched 36933
+Searched 37074
+Searched 38042
+Searched 54302
+Searched 226725
+Searched 227598
+Searched 1103659
+Searched 1105939
+Searched 1115358
+Searched 1123786
+Searched 1125144
+Searched 1126371
+Searched 1157489
+Searched 1157491
+Searched 1199929
+Searched 1199954
+Searched 1208421
+Searched 1208453
+Searched 1208535
+Searched 1209234
+Searched 1210001
+Searched 1210459
+Searched 1213793
+Searched 1214193
+Searched 1253057
+Searched 1253060
+Searched 1253063
+Searched 1253108
+Searched 1253144
+Searched 1253614
+Searched 1278637
+Searched 1278645
+Searched 1278700
+Searched 1280052
+Searched 1336159
+Searched 1336163
+Searched 1336171
+Searched 1336177
+Searched 1337401
+Searched 1337403
+Searched 1352897
+Searched 1352898
+Searched 1358020
+Searched 1358038
+Searched 1358041
+Searched 1359166
+Searched 1359364
+Searched 1359432
+Searched 1365220
+Searched 1366621
+Searched 1426691
+Searched 1440594
+Searched 1463912
+Searched 1463914
+Searched 1464475
+Searched 1464484
+Searched 1464493
+Searched 1489542
+Searched 1497384
+Searched 1507661
+Searched 1508131
+Searched 1547527
+Searched 1547536
+Searched 1554149
+Searched 1554150
+Searched 1554336
+Searched 1584823
+Searched 1596700
+Searched 1600117
+Searched 1601079
+Searched 1699423
+Searched 1699443
+Searched 1722144
+Searched 1757735
+Searched 1757742
+Searched 1757744
+Searched 1757745
+Searched 1757747
+Searched 1758159
+Searched 1765054
+Searched 1765062
+Searched 1766011
+Searched 1767231
+Searched 1767667
+Searched 1767668
+Searched 1767740
+Searched 1767807
+Searched 1767818
+Searched 1854101
+Searched 1854166
+Searched 1854168
+Searched 1855416
+Searched 1870172
+Searched 1968701
+Searched 1968799
+Searched 1968964
+Searched 1970049
+Searched 1970052
+Searched 1970064
+Searched 1973852
+Searched 1996052
+Searched 1996077
+Searched 1999753
+Searched 2029502
+Searched 2030142
+Searched 2031352
+Searched 2031353
+Searched 2031370
+Searched 2031371
+Searched 2031375
+Searched 2031573
+Searched 2032754
+Searched 2032756
+Searched 2039456
+Searched 2039468
+Searched 2039469
+Searched 2039471
+Searched 2039472
+Searched 2040387
+Searched 2047818
+Searched 2047825
+Searched 2047997
+Searched 2050729
+Searched 2050972
+Searched 2053206
+Searched 2053212
+Searched 2067870
+Searched 2067889
+Searched 2337919
+Searched 2350735
+Searched 2354094
+Searched 2360026
+Searched 2360370
+Searched 2418930
+Searched 2419164
+Searched 2442156
+Searched 2645150
+Searched 2645848
+Searched 2645849
+Searched 2648279
+Searched 2666850
+Searched 2667835
+Searched 2667836
+Searched 2668217
+Searched 2668219
+Searched 2668221
+Searched 2668223
+Searched 2668238
+Searched 3971867
+Searched 3980111
+Searched 3990381
+Searched 3999232
+Searched 4123444
+Searched 4258987
+Searched 4334139
+Searched 4461067
+Searched 4461163
+Searched 4461167
+Searched 4461172
+Searched 4461174
+Searched 4461563
+Searched 4462194
+Searched 4462877
+Searched 4466702
+Searched 4469545
+Searched 4469561
+Searched 4483747
+Searched 4488039
+Searched 4634426
+Searched 4664679
+Searched 4664682
+Searched 5392781
+Searched 5539470
+Searched 5539805
+Searched 5545095
+Searched 5545117
+Searched 7567006
+Searched 7567042
+Searched 7568466
+Searched 7590932
+Searched 7590938
+Searched 7598648
+Searched 7598652
+Searched 7598661
+Searched 7598662
+Searched 7598791
+Searched 7600786
+Searched 7625472
+Searched 7626038
+Searched 7626051
+Searched 7626061
+Searched 7626378
+Searched 7626709
+Searched 7627176
+Searched 7627506
+Searched 7751259
+Searched 7756875
+Searched 7756885
+Searched 7756895
+Searched 7756922
+Searched 7767074
+Searched 7767081
+Searched 7767371
+Searched 7767374
+Store with id=11 destroyed; Remaining stores: 11
+Store with id=10 destroyed; Remaining stores: 10
+Store with id=9 destroyed; Remaining stores: 9
+Store with id=1 destroyed; Remaining stores: 8
+Store with id=4 destroyed; Remaining stores: 7
+took=1558.62, config=num_runs_: 1 capacity_: 8388608 num_levels_: 4 locality_factor_: 8 base_block_size_: 300 store_path_: /home/ubuntu/data/tests/ssd/ min_val_len_: 0 max_val_len_: 0 is_data_mem_: 0 is_aux_mem_: 0 is_ssd_: 1 is_cached_: 1 data_file_: ./kv.csv
+Store with id=7 destroyed; Remaining stores: 6
+Store with id=0 destroyed; Remaining stores: 5
+Store with id=3 destroyed; Remaining stores: 4
+Store with id=6 destroyed; Remaining stores: 3
+Store with id=2 destroyed; Remaining stores: 2
+Store with id=5 destroyed; Remaining stores: 1
+Store with id=8 destroyed; Remaining stores: 0
++ for lf in ${lfs[@]}
++ rm -rf /home/ubuntu/data/tests/ssd/
++ mkdir -p /home/ubuntu/data/tests/ssd/
++ ../cmake-build-relwithdebinfo/src/bench/crimes_ofs --print_csv_headers --data_file ./kv.csv -r 1 -N 23 -s 4 -L 16 -p /home/ubuntu/data/tests/ssd/ -d -a
+Read 0
+Read 100000
+Read 200000
+Read 300000
+Read 400000
+Read 500000
+Read 600000
+Read 700000
+Read 800000
+Read 900000
+Read 1000000
+Read 1100000
+Read 1200000
+Read 1300000
+Read 1400000
+Read 1500000
+Read 1600000
+Read 1700000
+Read 1800000
+Read 1900000
+Read 2000000
+Read 2100000
+Read 2200000
+Read 2300000
+Read 2400000
+Read 2500000
+Read 2600000
+Read 2700000
+Read 2800000
+Read 2900000
+Read 3000000
+Read 3100000
+Read 3200000
+Read 3300000
+Read 3400000
+Read 3500000
+Read 3600000
+Read 3700000
+Read 3800000
+Read 3900000
+Read 4000000
+Read 4100000
+Read 4200000
+Read 4300000
+Read 4400000
+Read 4500000
+Read 4600000
+Read 4700000
+Read 4800000
+Read 4900000
+Read 5000000
+Read 5100000
+Read 5200000
+Read 5300000
+Read 5400000
+Read 5500000
+Read 5600000
+Read 5700000
+Read 5800000
+Read 5900000
+Read 6000000
+Read 6100000
+Read 6200000
+Read 6300000
+Read 6400000
+Read 6500000
+Read 6600000
+Read 6700000
+Read 6800000
+Read 6900000
+Read 7000000
+Read 7100000
+Read 7200000
+Read 7300000
+Read 7400000
+Read 7500000
+Read 7600000
+Read 7700000
+
+Read 7767374 in total.
+Initializing with id=0, n=8388607, entry_size=128.0B, total store size=1023.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=1, n=8388607, entry_size=1.3KiB, total store size=10.6GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=2, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=3, n=131071, entry_size=128.0B, total store size=15.9MiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=4, n=131071, entry_size=154.0KiB, total store size=19.2GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=5, n=131071, entry_size=240.0B, total store size=29.9MiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+Initializing with id=6, n=1023, entry_size=128.0B, total store size=127.8KiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=7, n=1023, entry_size=19.2MiB, total store size=19.2GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=8, n=1023, entry_size=240.0B, total store size=239.7KiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+Initializing with id=9, n=1, entry_size=2.4GiB, total store size=2.4GiB, store_type=2; num_stores=10
+Using MMap File storage backend.
+Initializing with id=10, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=11
+Using MMap File storage backend.
+Initializing with id=11, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=12
+Using MMap File storage backend.
+Inserted 10269
+Inserted 22113
+Inserted 22943
+Inserted 24210
+Inserted 24989
+Inserted 26052
+Inserted 26494
+Inserted 27703
+Inserted 30032
+Inserted 30932
+Inserted 31047
+Inserted 32147
+Inserted 36933
+Inserted 37074
+Inserted 38042
+Inserted 54302
+Inserted 226725
+Inserted 227598
+Inserted 1103659
+Inserted 1105939
+Inserted 1115358
+Inserted 1123786
+Inserted 1125144
+Inserted 1126371
+Inserted 1157489
+Inserted 1157491
+Inserted 1199929
+Inserted 1199954
+Inserted 1208421
+Inserted 1208453
+Inserted 1208535
+Inserted 1209234
+Inserted 1210001
+Inserted 1210459
+Inserted 1213793
+Inserted 1214193
+Inserted 1253057
+Inserted 1253060
+Inserted 1253063
+Inserted 1253108
+Inserted 1253144
+Inserted 1253614
+Inserted 1278637
+Inserted 1278645
+Inserted 1278700
+Inserted 1280052
+Inserted 1336159
+Inserted 1336163
+Inserted 1336171
+Inserted 1336177
+Inserted 1337401
+Inserted 1337403
+Inserted 1352897
+Inserted 1352898
+Inserted 1358020
+Inserted 1358038
+Inserted 1358041
+Inserted 1359166
+Inserted 1359364
+Inserted 1359432
+Inserted 1365220
+Inserted 1366621
+Inserted 1426691
+Inserted 1440594
+Inserted 1463912
+Inserted 1463914
+Inserted 1464475
+Inserted 1464484
+Inserted 1464493
+Inserted 1489542
+Inserted 1497384
+Inserted 1507661
+Inserted 1508131
+Inserted 1547527
+Inserted 1547536
+Inserted 1554149
+Inserted 1554150
+Inserted 1554336
+Inserted 1584823
+Inserted 1596700
+Inserted 1600117
+Inserted 1601079
+Inserted 1699423
+Inserted 1699443
+Inserted 1722144
+Inserted 1757735
+Inserted 1757742
+Inserted 1757744
+Inserted 1757745
+Inserted 1757747
+Inserted 1758159
+Inserted 1765054
+Inserted 1765062
+Inserted 1766011
+Inserted 1767231
+Inserted 1767667
+Inserted 1767668
+Inserted 1767740
+Inserted 1767807
+Inserted 1767818
+Inserted 1854101
+Inserted 1854166
+Inserted 1854168
+Inserted 1855416
+Inserted 1870172
+Inserted 1968701
+Inserted 1968799
+Inserted 1968964
+Inserted 1970049
+Inserted 1970052
+Inserted 1970064
+Inserted 1973852
+Inserted 1996052
+Inserted 1996077
+Inserted 1999753
+Inserted 2029502
+Inserted 2030142
+Inserted 2031352
+Inserted 2031353
+Inserted 2031370
+Inserted 2031371
+Inserted 2031375
+Inserted 2031573
+Inserted 2032754
+Inserted 2032756
+Inserted 2039456
+Inserted 2039468
+Inserted 2039469
+Inserted 2039471
+Inserted 2039472
+Inserted 2040387
+Inserted 2047818
+Inserted 2047825
+Inserted 2047997
+Inserted 2050729
+Inserted 2050972
+Inserted 2053206
+Inserted 2053212
+Inserted 2067870
+Inserted 2067889
+Inserted 2337919
+Inserted 2350735
+Inserted 2354094
+Inserted 2360026
+Inserted 2360370
+Inserted 2418930
+Inserted 2419164
+Inserted 2442156
+Inserted 2645150
+Inserted 2645848
+Inserted 2645849
+Inserted 2648279
+Inserted 2666850
+Inserted 2667835
+Inserted 2667836
+Inserted 2668217
+Inserted 2668219
+Inserted 2668221
+Inserted 2668223
+Inserted 2668238
+Inserted 3971867
+Inserted 3980111
+Inserted 3990381
+Inserted 3999232
+Inserted 4123444
+Inserted 4258987
+Inserted 4334139
+Inserted 4461067
+Inserted 4461163
+Inserted 4461167
+Inserted 4461172
+Inserted 4461174
+Inserted 4461563
+Inserted 4462194
+Inserted 4462877
+Inserted 4466702
+Inserted 4469545
+Inserted 4469561
+Inserted 4483747
+Inserted 4488039
+Inserted 4634426
+Inserted 4664679
+Inserted 4664682
+Inserted 5392781
+Inserted 5539470
+Inserted 5539805
+Inserted 5545095
+Inserted 5545117
+Inserted 7567006
+Inserted 7567042
+Inserted 7568466
+Inserted 7590932
+Inserted 7590938
+Inserted 7598648
+Inserted 7598652
+Inserted 7598661
+Inserted 7598662
+Inserted 7598791
+Inserted 7600786
+Inserted 7625472
+Inserted 7626038
+Inserted 7626051
+Inserted 7626061
+Inserted 7626378
+Inserted 7626709
+Inserted 7627176
+Inserted 7627506
+Inserted 7751259
+Inserted 7756875
+Inserted 7756885
+Inserted 7756895
+Inserted 7756922
+Inserted 7767074
+Inserted 7767081
+Inserted 7767371
+Inserted 7767374
+Searched 10269
+Searched 22113
+Searched 22943
+Searched 24210
+Searched 24989
+Searched 26052
+Searched 26494
+Searched 27703
+Searched 30032
+Searched 30932
+Searched 31047
+Searched 32147
+Searched 36933
+Searched 37074
+Searched 38042
+Searched 54302
+Searched 226725
+Searched 227598
+Searched 1103659
+Searched 1105939
+Searched 1115358
+Searched 1123786
+Searched 1125144
+Searched 1126371
+Searched 1157489
+Searched 1157491
+Searched 1199929
+Searched 1199954
+Searched 1208421
+Searched 1208453
+Searched 1208535
+Searched 1209234
+Searched 1210001
+Searched 1210459
+Searched 1213793
+Searched 1214193
+Searched 1253057
+Searched 1253060
+Searched 1253063
+Searched 1253108
+Searched 1253144
+Searched 1253614
+Searched 1278637
+Searched 1278645
+Searched 1278700
+Searched 1280052
+Searched 1336159
+Searched 1336163
+Searched 1336171
+Searched 1336177
+Searched 1337401
+Searched 1337403
+Searched 1352897
+Searched 1352898
+Searched 1358020
+Searched 1358038
+Searched 1358041
+Searched 1359166
+Searched 1359364
+Searched 1359432
+Searched 1365220
+Searched 1366621
+Searched 1426691
+Searched 1440594
+Searched 1463912
+Searched 1463914
+Searched 1464475
+Searched 1464484
+Searched 1464493
+Searched 1489542
+Searched 1497384
+Searched 1507661
+Searched 1508131
+Searched 1547527
+Searched 1547536
+Searched 1554149
+Searched 1554150
+Searched 1554336
+Searched 1584823
+Searched 1596700
+Searched 1600117
+Searched 1601079
+Searched 1699423
+Searched 1699443
+Searched 1722144
+Searched 1757735
+Searched 1757742
+Searched 1757744
+Searched 1757745
+Searched 1757747
+Searched 1758159
+Searched 1765054
+Searched 1765062
+Searched 1766011
+Searched 1767231
+Searched 1767667
+Searched 1767668
+Searched 1767740
+Searched 1767807
+Searched 1767818
+Searched 1854101
+Searched 1854166
+Searched 1854168
+Searched 1855416
+Searched 1870172
+Searched 1968701
+Searched 1968799
+Searched 1968964
+Searched 1970049
+Searched 1970052
+Searched 1970064
+Searched 1973852
+Searched 1996052
+Searched 1996077
+Searched 1999753
+Searched 2029502
+Searched 2030142
+Searched 2031352
+Searched 2031353
+Searched 2031370
+Searched 2031371
+Searched 2031375
+Searched 2031573
+Searched 2032754
+Searched 2032756
+Searched 2039456
+Searched 2039468
+Searched 2039469
+Searched 2039471
+Searched 2039472
+Searched 2040387
+Searched 2047818
+Searched 2047825
+Searched 2047997
+Searched 2050729
+Searched 2050972
+Searched 2053206
+Searched 2053212
+Searched 2067870
+Searched 2067889
+Searched 2337919
+Searched 2350735
+Searched 2354094
+Searched 2360026
+Searched 2360370
+Searched 2418930
+Searched 2419164
+Searched 2442156
+Searched 2645150
+Searched 2645848
+Searched 2645849
+Searched 2648279
+Searched 2666850
+Searched 2667835
+Searched 2667836
+Searched 2668217
+Searched 2668219
+Searched 2668221
+Searched 2668223
+Searched 2668238
+Searched 3971867
+Searched 3980111
+Searched 3990381
+Searched 3999232
+Searched 4123444
+Searched 4258987
+Searched 4334139
+Searched 4461067
+Searched 4461163
+Searched 4461167
+Searched 4461172
+Searched 4461174
+Searched 4461563
+Searched 4462194
+Searched 4462877
+Searched 4466702
+Searched 4469545
+Searched 4469561
+Searched 4483747
+Searched 4488039
+Searched 4634426
+Searched 4664679
+Searched 4664682
+Searched 5392781
+Searched 5539470
+Searched 5539805
+Searched 5545095
+Searched 5545117
+Searched 7567006
+Searched 7567042
+Searched 7568466
+Searched 7590932
+Searched 7590938
+Searched 7598648
+Searched 7598652
+Searched 7598661
+Searched 7598662
+Searched 7598791
+Searched 7600786
+Searched 7625472
+Searched 7626038
+Searched 7626051
+Searched 7626061
+Searched 7626378
+Searched 7626709
+Searched 7627176
+Searched 7627506
+Searched 7751259
+Searched 7756875
+Searched 7756885
+Searched 7756895
+Searched 7756922
+Searched 7767074
+Searched 7767081
+Searched 7767371
+Searched 7767374
+Store with id=11 destroyed; Remaining stores: 11
+took=1847.54, config=num_runs_: 1 capacity_: 8388608 num_levels_: 4 locality_factor_: 16 base_block_size_: 300 store_path_: /home/ubuntu/data/tests/ssd/ min_val_len_: 0 max_val_len_: 0 is_data_mem_: 0 is_aux_mem_: 0 is_ssd_: 1 is_cached_: 1 data_file_: ./kv.csv
+Store with id=10 destroyed; Remaining stores: 10
+Store with id=9 destroyed; Remaining stores: 9
+Store with id=1 destroyed; Remaining stores: 8
+Store with id=4 destroyed; Remaining stores: 7
+Store with id=7 destroyed; Remaining stores: 6
+Store with id=0 destroyed; Remaining stores: 5
+Store with id=3 destroyed; Remaining stores: 4
+Store with id=6 destroyed; Remaining stores: 3
+Store with id=2 destroyed; Remaining stores: 2
+Store with id=5 destroyed; Remaining stores: 1
+Store with id=8 destroyed; Remaining stores: 0
++ for lf in ${lfs[@]}
++ rm -rf /home/ubuntu/data/tests/ssd/
++ mkdir -p /home/ubuntu/data/tests/ssd/
++ ../cmake-build-relwithdebinfo/src/bench/crimes_ofs --print_csv_headers --data_file ./kv.csv -r 1 -N 23 -s 4 -L 32 -p /home/ubuntu/data/tests/ssd/ -d -a
+Read 0
+Read 100000
+Read 200000
+Read 300000
+Read 400000
+Read 500000
+Read 600000
+Read 700000
+Read 800000
+Read 900000
+Read 1000000
+Read 1100000
+Read 1200000
+Read 1300000
+Read 1400000
+Read 1500000
+Read 1600000
+Read 1700000
+Read 1800000
+Read 1900000
+Read 2000000
+Read 2100000
+Read 2200000
+Read 2300000
+Read 2400000
+Read 2500000
+Read 2600000
+Read 2700000
+Read 2800000
+Read 2900000
+Read 3000000
+Read 3100000
+Read 3200000
+Read 3300000
+Read 3400000
+Read 3500000
+Read 3600000
+Read 3700000
+Read 3800000
+Read 3900000
+Read 4000000
+Read 4100000
+Read 4200000
+Read 4300000
+Read 4400000
+Read 4500000
+Read 4600000
+Read 4700000
+Read 4800000
+Read 4900000
+Read 5000000
+Read 5100000
+Read 5200000
+Read 5300000
+Read 5400000
+Read 5500000
+Read 5600000
+Read 5700000
+Read 5800000
+Read 5900000
+Read 6000000
+Read 6100000
+Read 6200000
+Read 6300000
+Read 6400000
+Read 6500000
+Read 6600000
+Read 6700000
+Read 6800000
+Read 6900000
+Read 7000000
+Read 7100000
+Read 7200000
+Read 7300000
+Read 7400000
+Read 7500000
+Read 7600000
+Read 7700000
+
+Read 7767374 in total.
+Initializing with id=0, n=8388607, entry_size=128.0B, total store size=1023.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=1, n=8388607, entry_size=1.3KiB, total store size=10.6GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=2, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=3, n=131071, entry_size=128.0B, total store size=15.9MiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=4, n=131071, entry_size=154.0KiB, total store size=19.2GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=5, n=131071, entry_size=240.0B, total store size=29.9MiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+Initializing with id=6, n=2047, entry_size=128.0B, total store size=255.8KiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=7, n=2047, entry_size=9.6MiB, total store size=19.2GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=8, n=2047, entry_size=240.0B, total store size=479.7KiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+Initializing with id=9, n=1, entry_size=2.4GiB, total store size=2.4GiB, store_type=2; num_stores=10
+Using MMap File storage backend.
+Initializing with id=10, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=11
+Using MMap File storage backend.
+Initializing with id=11, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=12
+Using MMap File storage backend.
+Inserted 10269
+Inserted 22113
+Inserted 22943
+Inserted 24210
+Inserted 24989
+Inserted 26052
+Inserted 26494
+Inserted 27703
+Inserted 30032
+Inserted 30932
+Inserted 31047
+Inserted 32147
+Inserted 36933
+Inserted 37074
+Inserted 38042
+Inserted 54302
+Inserted 226725
+Inserted 227598
+Inserted 1103659
+Inserted 1105939
+Inserted 1115358
+Inserted 1123786
+Inserted 1125144
+Inserted 1126371
+Inserted 1157489
+Inserted 1157491
+Inserted 1199929
+Inserted 1199954
+Inserted 1208421
+Inserted 1208453
+Inserted 1208535
+Inserted 1209234
+Inserted 1210001
+Inserted 1210459
+Inserted 1213793
+Inserted 1214193
+Inserted 1253057
+Inserted 1253060
+Inserted 1253063
+Inserted 1253108
+Inserted 1253144
+Inserted 1253614
+Inserted 1278637
+Inserted 1278645
+Inserted 1278700
+Inserted 1280052
+Inserted 1336159
+Inserted 1336163
+Inserted 1336171
+Inserted 1336177
+Inserted 1337401
+Inserted 1337403
+Inserted 1352897
+Inserted 1352898
+Inserted 1358020
+Inserted 1358038
+Inserted 1358041
+Inserted 1359166
+Inserted 1359364
+Inserted 1359432
+Inserted 1365220
+Inserted 1366621
+Inserted 1426691
+Inserted 1440594
+Inserted 1463912
+Inserted 1463914
+Inserted 1464475
+Inserted 1464484
+Inserted 1464493
+Inserted 1489542
+Inserted 1497384
+Inserted 1507661
+Inserted 1508131
+Inserted 1547527
+Inserted 1547536
+Inserted 1554149
+Inserted 1554150
+Inserted 1554336
+Inserted 1584823
+Inserted 1596700
+Inserted 1600117
+Inserted 1601079
+Inserted 1699423
+Inserted 1699443
+Inserted 1722144
+Inserted 1757735
+Inserted 1757742
+Inserted 1757744
+Inserted 1757745
+Inserted 1757747
+Inserted 1758159
+Inserted 1765054
+Inserted 1765062
+Inserted 1766011
+Inserted 1767231
+Inserted 1767667
+Inserted 1767668
+Inserted 1767740
+Inserted 1767807
+Inserted 1767818
+Inserted 1854101
+Inserted 1854166
+Inserted 1854168
+Inserted 1855416
+Inserted 1870172
+Inserted 1968701
+Inserted 1968799
+Inserted 1968964
+Inserted 1970049
+Inserted 1970052
+Inserted 1970064
+Inserted 1973852
+Inserted 1996052
+Inserted 1996077
+Inserted 1999753
+Inserted 2029502
+Inserted 2030142
+Inserted 2031352
+Inserted 2031353
+Inserted 2031370
+Inserted 2031371
+Inserted 2031375
+Inserted 2031573
+Inserted 2032754
+Inserted 2032756
+Inserted 2039456
+Inserted 2039468
+Inserted 2039469
+Inserted 2039471
+Inserted 2039472
+Inserted 2040387
+Inserted 2047818
+Inserted 2047825
+Inserted 2047997
+Inserted 2050729
+Inserted 2050972
+Inserted 2053206
+Inserted 2053212
+Inserted 2067870
+Inserted 2067889
+Inserted 2337919
+Inserted 2350735
+Inserted 2354094
+Inserted 2360026
+Inserted 2360370
+Inserted 2418930
+Inserted 2419164
+Inserted 2442156
+Inserted 2645150
+Inserted 2645848
+Inserted 2645849
+Inserted 2648279
+Inserted 2666850
+Inserted 2667835
+Inserted 2667836
+Inserted 2668217
+Inserted 2668219
+Inserted 2668221
+Inserted 2668223
+Inserted 2668238
+Inserted 3971867
+Inserted 3980111
+Inserted 3990381
+Inserted 3999232
+Inserted 4123444
+Inserted 4258987
+Inserted 4334139
+Inserted 4461067
+Inserted 4461163
+Inserted 4461167
+Inserted 4461172
+Inserted 4461174
+Inserted 4461563
+Inserted 4462194
+Inserted 4462877
+Inserted 4466702
+Inserted 4469545
+Inserted 4469561
+Inserted 4483747
+Inserted 4488039
+Inserted 4634426
+Inserted 4664679
+Inserted 4664682
+Inserted 5392781
+Inserted 5539470
+Inserted 5539805
+Inserted 5545095
+Inserted 5545117
+Inserted 7567006
+Inserted 7567042
+Inserted 7568466
+Inserted 7590932
+Inserted 7590938
+Inserted 7598648
+Inserted 7598652
+Inserted 7598661
+Inserted 7598662
+Inserted 7598791
+Inserted 7600786
+Inserted 7625472
+Inserted 7626038
+Inserted 7626051
+Inserted 7626061
+Inserted 7626378
+Inserted 7626709
+Inserted 7627176
+Inserted 7627506
+Inserted 7751259
+Inserted 7756875
+Inserted 7756885
+Inserted 7756895
+Inserted 7756922
+Inserted 7767074
+Inserted 7767081
+Inserted 7767371
+Inserted 7767374
+Searched 10269
+Searched 22113
+Searched 22943
+Searched 24210
+Searched 24989
+Searched 26052
+Searched 26494
+Searched 27703
+Searched 30032
+Searched 30932
+Searched 31047
+Searched 32147
+Searched 36933
+Searched 37074
+Searched 38042
+Searched 54302
+Searched 226725
+Searched 227598
+Searched 1103659
+Searched 1105939
+Searched 1115358
+Searched 1123786
+Searched 1125144
+Searched 1126371
+Searched 1157489
+Searched 1157491
+Searched 1199929
+Searched 1199954
+Searched 1208421
+Searched 1208453
+Searched 1208535
+Searched 1209234
+Searched 1210001
+Searched 1210459
+Searched 1213793
+Searched 1214193
+Searched 1253057
+Searched 1253060
+Searched 1253063
+Searched 1253108
+Searched 1253144
+Searched 1253614
+Searched 1278637
+Searched 1278645
+Searched 1278700
+Searched 1280052
+Searched 1336159
+Searched 1336163
+Searched 1336171
+Searched 1336177
+Searched 1337401
+Searched 1337403
+Searched 1352897
+Searched 1352898
+Searched 1358020
+Searched 1358038
+Searched 1358041
+Searched 1359166
+Searched 1359364
+Searched 1359432
+Searched 1365220
+Searched 1366621
+Searched 1426691
+Searched 1440594
+Searched 1463912
+Searched 1463914
+Searched 1464475
+Searched 1464484
+Searched 1464493
+Searched 1489542
+Searched 1497384
+Searched 1507661
+Searched 1508131
+Searched 1547527
+Searched 1547536
+Searched 1554149
+Searched 1554150
+Searched 1554336
+Searched 1584823
+Searched 1596700
+Searched 1600117
+Searched 1601079
+Searched 1699423
+Searched 1699443
+Searched 1722144
+Searched 1757735
+Searched 1757742
+Searched 1757744
+Searched 1757745
+Searched 1757747
+Searched 1758159
+Searched 1765054
+Searched 1765062
+Searched 1766011
+Searched 1767231
+Searched 1767667
+Searched 1767668
+Searched 1767740
+Searched 1767807
+Searched 1767818
+Searched 1854101
+Searched 1854166
+Searched 1854168
+Searched 1855416
+Searched 1870172
+Searched 1968701
+Searched 1968799
+Searched 1968964
+Searched 1970049
+Searched 1970052
+Searched 1970064
+Searched 1973852
+Searched 1996052
+Searched 1996077
+Searched 1999753
+Searched 2029502
+Searched 2030142
+Searched 2031352
+Searched 2031353
+Searched 2031370
+Searched 2031371
+Searched 2031375
+Searched 2031573
+Searched 2032754
+Searched 2032756
+Searched 2039456
+Searched 2039468
+Searched 2039469
+Searched 2039471
+Searched 2039472
+Searched 2040387
+Searched 2047818
+Searched 2047825
+Searched 2047997
+Searched 2050729
+Searched 2050972
+Searched 2053206
+Searched 2053212
+Searched 2067870
+Searched 2067889
+Searched 2337919
+Searched 2350735
+Searched 2354094
+Searched 2360026
+Searched 2360370
+Searched 2418930
+Searched 2419164
+Searched 2442156
+Searched 2645150
+Searched 2645848
+Searched 2645849
+Searched 2648279
+Searched 2666850
+Searched 2667835
+Searched 2667836
+Searched 2668217
+Searched 2668219
+Searched 2668221
+Searched 2668223
+Searched 2668238
+Searched 3971867
+Searched 3980111
+Searched 3990381
+Searched 3999232
+Searched 4123444
+Searched 4258987
+Searched 4334139
+Searched 4461067
+Searched 4461163
+Searched 4461167
+Searched 4461172
+Searched 4461174
+Searched 4461563
+Searched 4462194
+Searched 4462877
+Searched 4466702
+Searched 4469545
+Searched 4469561
+Searched 4483747
+Searched 4488039
+Searched 4634426
+Searched 4664679
+Searched 4664682
+Searched 5392781
+Searched 5539470
+Searched 5539805
+Searched 5545095
+Searched 5545117
+Searched 7567006
+Searched 7567042
+Searched 7568466
+Searched 7590932
+Searched 7590938
+Searched 7598648
+Searched 7598652
+Searched 7598661
+Searched 7598662
+Searched 7598791
+Searched 7600786
+Searched 7625472
+Searched 7626038
+Searched 7626051
+Searched 7626061
+Searched 7626378
+Searched 7626709
+Searched 7627176
+Searched 7627506
+Searched 7751259
+Searched 7756875
+Searched 7756885
+Searched 7756895
+Searched 7756922
+Searched 7767074
+Searched 7767081
+Searched 7767371
+Searched 7767374
+took=2257.23, config=num_runs_: 1 capacity_: 8388608 num_levels_: 4 locality_factor_: 32 base_block_size_: 300 store_path_: /home/ubuntu/data/tests/ssd/ min_val_len_: 0 max_val_len_: 0 is_data_mem_: 0 is_aux_mem_: 0 is_ssd_: 1 is_cached_: 1 data_file_: ./kv.csv
+Store with id=11 destroyed; Remaining stores: 11
+Store with id=10 destroyed; Remaining stores: 10
+Store with id=9 destroyed; Remaining stores: 9
+Store with id=1 destroyed; Remaining stores: 8
+Store with id=4 destroyed; Remaining stores: 7
+Store with id=7 destroyed; Remaining stores: 6
+Store with id=0 destroyed; Remaining stores: 5
+Store with id=3 destroyed; Remaining stores: 4
+Store with id=6 destroyed; Remaining stores: 3
+Store with id=2 destroyed; Remaining stores: 2
+Store with id=5 destroyed; Remaining stores: 1
+Store with id=8 destroyed; Remaining stores: 0
++ for s in ${ss[@]}
++ for lf in ${lfs[@]}
++ rm -rf /home/ubuntu/data/tests/ssd/
++ mkdir -p /home/ubuntu/data/tests/ssd/
++ ../cmake-build-relwithdebinfo/src/bench/crimes_ofs --print_csv_headers --data_file ./kv.csv -r 1 -N 23 -s 22 -L 1 -p /home/ubuntu/data/tests/ssd/ -d -a
+Read 0
+Read 100000
+Read 200000
+Read 300000
+Read 400000
+Read 500000
+Read 600000
+Read 700000
+Read 800000
+Read 900000
+Read 1000000
+Read 1100000
+Read 1200000
+Read 1300000
+Read 1400000
+Read 1500000
+Read 1600000
+Read 1700000
+Read 1800000
+Read 1900000
+Read 2000000
+Read 2100000
+Read 2200000
+Read 2300000
+Read 2400000
+Read 2500000
+Read 2600000
+Read 2700000
+Read 2800000
+Read 2900000
+Read 3000000
+Read 3100000
+Read 3200000
+Read 3300000
+Read 3400000
+Read 3500000
+Read 3600000
+Read 3700000
+Read 3800000
+Read 3900000
+Read 4000000
+Read 4100000
+Read 4200000
+Read 4300000
+Read 4400000
+Read 4500000
+Read 4600000
+Read 4700000
+Read 4800000
+Read 4900000
+Read 5000000
+Read 5100000
+Read 5200000
+Read 5300000
+Read 5400000
+Read 5500000
+Read 5600000
+Read 5700000
+Read 5800000
+Read 5900000
+Read 6000000
+Read 6100000
+Read 6200000
+Read 6300000
+Read 6400000
+Read 6500000
+Read 6600000
+Read 6700000
+Read 6800000
+Read 6900000
+Read 7000000
+Read 7100000
+Read 7200000
+Read 7300000
+Read 7400000
+Read 7500000
+Read 7600000
+Read 7700000
+
+Read 7767374 in total.
+Initializing with id=0, n=8388607, entry_size=128.0B, total store size=1023.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=1, n=8388607, entry_size=1.3KiB, total store size=10.6GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=2, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=3, n=4194303, entry_size=128.0B, total store size=511.9MiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=4, n=4194303, entry_size=4.9KiB, total store size=19.6GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=5, n=4194303, entry_size=240.0B, total store size=959.9MiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+Initializing with id=6, n=2097151, entry_size=128.0B, total store size=255.9MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=7, n=2097151, entry_size=9.7KiB, total store size=19.4GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=8, n=2097151, entry_size=240.0B, total store size=479.9MiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+Initializing with id=9, n=1048575, entry_size=128.0B, total store size=127.9MiB, store_type=2; num_stores=10
+Using MMap File storage backend.
+Initializing with id=10, n=1048575, entry_size=19.3KiB, total store size=19.3GiB, store_type=2; num_stores=11
+Using MMap File storage backend.
+Initializing with id=11, n=1048575, entry_size=240.0B, total store size=239.9MiB, store_type=2; num_stores=12
+Using MMap File storage backend.
+Initializing with id=12, n=524287, entry_size=128.0B, total store size=63.9MiB, store_type=2; num_stores=13
+Using MMap File storage backend.
+Initializing with id=13, n=524287, entry_size=38.5KiB, total store size=19.2GiB, store_type=2; num_stores=14
+Using MMap File storage backend.
+Initializing with id=14, n=524287, entry_size=240.0B, total store size=119.9MiB, store_type=2; num_stores=15
+Using MMap File storage backend.
+Initializing with id=15, n=262143, entry_size=128.0B, total store size=31.9MiB, store_type=2; num_stores=16
+Using MMap File storage backend.
+Initializing with id=16, n=262143, entry_size=77.0KiB, total store size=19.2GiB, store_type=2; num_stores=17
+Using MMap File storage backend.
+Initializing with id=17, n=262143, entry_size=240.0B, total store size=59.9MiB, store_type=2; num_stores=18
+Using MMap File storage backend.
+Initializing with id=18, n=65535, entry_size=128.0B, total store size=7.9MiB, store_type=2; num_stores=19
+Using MMap File storage backend.
+Initializing with id=19, n=65535, entry_size=308.0KiB, total store size=19.2GiB, store_type=2; num_stores=20
+Using MMap File storage backend.
+Initializing with id=20, n=65535, entry_size=240.0B, total store size=14.9MiB, store_type=2; num_stores=21
+Using MMap File storage backend.
+Initializing with id=21, n=32767, entry_size=128.0B, total store size=3.9MiB, store_type=2; num_stores=22
+Using MMap File storage backend.
+Initializing with id=22, n=32767, entry_size=616.0KiB, total store size=19.2GiB, store_type=2; num_stores=23
+Using MMap File storage backend.
+Initializing with id=23, n=32767, entry_size=240.0B, total store size=7.4MiB, store_type=2; num_stores=24
+Using MMap File storage backend.
+Initializing with id=24, n=16383, entry_size=128.0B, total store size=1.9MiB, store_type=2; num_stores=25
+Using MMap File storage backend.
+Initializing with id=25, n=16383, entry_size=1.2MiB, total store size=19.2GiB, store_type=2; num_stores=26
+Using MMap File storage backend.
+Initializing with id=26, n=16383, entry_size=240.0B, total store size=3.7MiB, store_type=2; num_stores=27
+Using MMap File storage backend.
+Initializing with id=27, n=8191, entry_size=128.0B, total store size=1023.8KiB, store_type=2; num_stores=28
+Using MMap File storage backend.
+Initializing with id=28, n=8191, entry_size=2.4MiB, total store size=19.2GiB, store_type=2; num_stores=29
+Using MMap File storage backend.
+Initializing with id=29, n=8191, entry_size=240.0B, total store size=1.8MiB, store_type=2; num_stores=30
+Using MMap File storage backend.
+Initializing with id=30, n=4095, entry_size=128.0B, total store size=511.8KiB, store_type=2; num_stores=31
+Using MMap File storage backend.
+Initializing with id=31, n=4095, entry_size=4.8MiB, total store size=19.2GiB, store_type=2; num_stores=32
+Using MMap File storage backend.
+Initializing with id=32, n=4095, entry_size=240.0B, total store size=959.7KiB, store_type=2; num_stores=33
+Using MMap File storage backend.
+Initializing with id=33, n=2047, entry_size=128.0B, total store size=255.8KiB, store_type=2; num_stores=34
+Using MMap File storage backend.
+Initializing with id=34, n=2047, entry_size=9.6MiB, total store size=19.2GiB, store_type=2; num_stores=35
+Using MMap File storage backend.
+Initializing with id=35, n=2047, entry_size=240.0B, total store size=479.7KiB, store_type=2; num_stores=36
+Using MMap File storage backend.
+Initializing with id=36, n=1023, entry_size=128.0B, total store size=127.8KiB, store_type=2; num_stores=37
+Using MMap File storage backend.
+Initializing with id=37, n=1023, entry_size=19.2MiB, total store size=19.2GiB, store_type=2; num_stores=38
+Using MMap File storage backend.
+Initializing with id=38, n=1023, entry_size=240.0B, total store size=239.7KiB, store_type=2; num_stores=39
+Using MMap File storage backend.
+Initializing with id=39, n=511, entry_size=128.0B, total store size=63.8KiB, store_type=2; num_stores=40
+Using MMap File storage backend.
+Initializing with id=40, n=511, entry_size=38.5MiB, total store size=19.2GiB, store_type=2; num_stores=41
+Using MMap File storage backend.
+Initializing with id=41, n=511, entry_size=240.0B, total store size=119.7KiB, store_type=2; num_stores=42
+Using MMap File storage backend.
+Initializing with id=42, n=255, entry_size=128.0B, total store size=31.8KiB, store_type=2; num_stores=43
+Using MMap File storage backend.
+Initializing with id=43, n=255, entry_size=77.0MiB, total store size=19.1GiB, store_type=2; num_stores=44
+Using MMap File storage backend.
+Initializing with id=44, n=255, entry_size=240.0B, total store size=59.7KiB, store_type=2; num_stores=45
+Using MMap File storage backend.
+Initializing with id=45, n=127, entry_size=128.0B, total store size=15.8KiB, store_type=2; num_stores=46
+Using MMap File storage backend.
+Initializing with id=46, n=127, entry_size=154.0MiB, total store size=19.0GiB, store_type=2; num_stores=47
+Using MMap File storage backend.
+Initializing with id=47, n=127, entry_size=240.0B, total store size=29.7KiB, store_type=2; num_stores=48
+Using MMap File storage backend.
+Initializing with id=48, n=1, entry_size=2.4GiB, total store size=2.4GiB, store_type=2; num_stores=49
+Using MMap File storage backend.
+Initializing with id=49, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=50
+Using MMap File storage backend.
+Initializing with id=50, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=51
+Using MMap File storage backend.
+Inserted 10269
+Inserted 22113
+Inserted 22943
+Inserted 24210
+Inserted 24989
+Inserted 26052
+Inserted 26494
+Inserted 27703
+Inserted 30032
+Inserted 30932
+Inserted 31047
+Inserted 32147
+Inserted 36933
+Inserted 37074
+Inserted 38042
+Inserted 54302
+Inserted 226725
+Inserted 227598
+Inserted 1103659
+Inserted 1105939
+Inserted 1115358
+Inserted 1123786
+Inserted 1125144
+Inserted 1126371
+Inserted 1157489
+Inserted 1157491
+Inserted 1199929
+Inserted 1199954
+Inserted 1208421
+Inserted 1208453
+Inserted 1208535
+Inserted 1209234
+Inserted 1210001
+Inserted 1210459
+Inserted 1213793
+Inserted 1214193
+Inserted 1253057
+Inserted 1253060
+Inserted 1253063
+Inserted 1253108
+Inserted 1253144
+Inserted 1253614
+Inserted 1278637
+Inserted 1278645
+Inserted 1278700
+Inserted 1280052
+Inserted 1336159
+Inserted 1336163
+Inserted 1336171
+Inserted 1336177
+Inserted 1337401
+Inserted 1337403
+Inserted 1352897
+Inserted 1352898
+Inserted 1358020
+Inserted 1358038
+Inserted 1358041
+Inserted 1359166
+Inserted 1359364
+Inserted 1359432
+Inserted 1365220
+Inserted 1366621
+Inserted 1426691
+Inserted 1440594
+Inserted 1463912
+Inserted 1463914
+Inserted 1464475
+Inserted 1464484
+Inserted 1464493
+Inserted 1489542
+Inserted 1497384
+Inserted 1507661
+Inserted 1508131
+Inserted 1547527
+Inserted 1547536
+Inserted 1554149
+Inserted 1554150
+Inserted 1554336
+Inserted 1584823
+Inserted 1596700
+Inserted 1600117
+Inserted 1601079
+Inserted 1699423
+Inserted 1699443
+Inserted 1722144
+Inserted 1757735
+Inserted 1757742
+Inserted 1757744
+Inserted 1757745
+Inserted 1757747
+Inserted 1758159
+Inserted 1765054
+Inserted 1765062
+Inserted 1766011
+Inserted 1767231
+Inserted 1767667
+Inserted 1767668
+Inserted 1767740
+Inserted 1767807
+Inserted 1767818
+Inserted 1854101
+Inserted 1854166
+Inserted 1854168
+Inserted 1855416
+Inserted 1870172
+Inserted 1968701
+Inserted 1968799
+Inserted 1968964
+Inserted 1970049
+Inserted 1970052
+Inserted 1970064
+Inserted 1973852
+Inserted 1996052
+Inserted 1996077
+Inserted 1999753
+Inserted 2029502
+Inserted 2030142
+Inserted 2031352
+Inserted 2031353
+Inserted 2031370
+Inserted 2031371
+Inserted 2031375
+Inserted 2031573
+Inserted 2032754
+Inserted 2032756
+Inserted 2039456
+Inserted 2039468
+Inserted 2039469
+Inserted 2039471
+Inserted 2039472
+Inserted 2040387
+Inserted 2047818
+Inserted 2047825
+Inserted 2047997
+Inserted 2050729
+Inserted 2050972
+Inserted 2053206
+Inserted 2053212
+Inserted 2067870
+Inserted 2067889
+Inserted 2337919
+Inserted 2350735
+Inserted 2354094
+Inserted 2360026
+Inserted 2360370
+Inserted 2418930
+Inserted 2419164
+Inserted 2442156
+Inserted 2645150
+Inserted 2645848
+Inserted 2645849
+Inserted 2648279
+Inserted 2666850
+Inserted 2667835
+Inserted 2667836
+Inserted 2668217
+Inserted 2668219
+Inserted 2668221
+Inserted 2668223
+Inserted 2668238
+Inserted 3971867
+Inserted 3980111
+Inserted 3990381
+Inserted 3999232
+Inserted 4123444
+Inserted 4258987
+Inserted 4334139
+Inserted 4461067
+Inserted 4461163
+Inserted 4461167
+Inserted 4461172
+Inserted 4461174
+Inserted 4461563
+Inserted 4462194
+Inserted 4462877
+Inserted 4466702
+Inserted 4469545
+Inserted 4469561
+Inserted 4483747
+Inserted 4488039
+Inserted 4634426
+Inserted 4664679
+Inserted 4664682
+Inserted 5392781
+Inserted 5539470
+Inserted 5539805
+Inserted 5545095
+Inserted 5545117
+Inserted 7567006
+Inserted 7567042
+Inserted 7568466
+Inserted 7590932
+Inserted 7590938
+Inserted 7598648
+Inserted 7598652
+Inserted 7598661
+Inserted 7598662
+Inserted 7598791
+Inserted 7600786
+Inserted 7625472
+Inserted 7626038
+Inserted 7626051
+Inserted 7626061
+Inserted 7626378
+Inserted 7626709
+Inserted 7627176
+Inserted 7627506
+Inserted 7751259
+Inserted 7756875
+Inserted 7756885
+Inserted 7756895
+Inserted 7756922
+Inserted 7767074
+Inserted 7767081
+Inserted 7767371
+Inserted 7767374
+Searched 10269
+Searched 22113
+Searched 22943
+Searched 24210
+Searched 24989
+Searched 26052
+Searched 26494
+Searched 27703
+Searched 30032
+Searched 30932
+Searched 31047
+Searched 32147
+Searched 36933
+Searched 37074
+Searched 38042
+Searched 54302
+Searched 226725
+Searched 227598
+Searched 1103659
+Searched 1105939
+Searched 1115358
+Searched 1123786
+Searched 1125144
+Searched 1126371
+Searched 1157489
+Searched 1157491
+Searched 1199929
+Searched 1199954
+Searched 1208421
+Searched 1208453
+Searched 1208535
+Searched 1209234
+Searched 1210001
+Searched 1210459
+Searched 1213793
+Searched 1214193
+Searched 1253057
+Searched 1253060
+Searched 1253063
+Searched 1253108
+Searched 1253144
+Searched 1253614
+Searched 1278637
+Searched 1278645
+Searched 1278700
+Searched 1280052
+Searched 1336159
+Searched 1336163
+Searched 1336171
+Searched 1336177
+Searched 1337401
+Searched 1337403
+Searched 1352897
+Searched 1352898
+Searched 1358020
+Searched 1358038
+Searched 1358041
+Searched 1359166
+Searched 1359364
+Searched 1359432
+Searched 1365220
+Searched 1366621
+Searched 1426691
+Searched 1440594
+Searched 1463912
+Searched 1463914
+Searched 1464475
+Searched 1464484
+Searched 1464493
+Searched 1489542
+Searched 1497384
+Searched 1507661
+Searched 1508131
+Searched 1547527
+Searched 1547536
+Searched 1554149
+Searched 1554150
+Searched 1554336
+Searched 1584823
+Searched 1596700
+Searched 1600117
+Searched 1601079
+Searched 1699423
+Searched 1699443
+Searched 1722144
+Searched 1757735
+Searched 1757742
+Searched 1757744
+Searched 1757745
+Searched 1757747
+Searched 1758159
+Searched 1765054
+Searched 1765062
+Searched 1766011
+Searched 1767231
+Searched 1767667
+Searched 1767668
+Searched 1767740
+Searched 1767807
+Searched 1767818
+Searched 1854101
+Searched 1854166
+Searched 1854168
+Searched 1855416
+Searched 1870172
+Searched 1968701
+Searched 1968799
+Searched 1968964
+Searched 1970049
+Searched 1970052
+Searched 1970064
+Searched 1973852
+Searched 1996052
+Searched 1996077
+Searched 1999753
+Searched 2029502
+Searched 2030142
+Searched 2031352
+Searched 2031353
+Searched 2031370
+Searched 2031371
+Searched 2031375
+Searched 2031573
+Searched 2032754
+Searched 2032756
+Searched 2039456
+Searched 2039468
+Searched 2039469
+Searched 2039471
+Searched 2039472
+Searched 2040387
+Searched 2047818
+Searched 2047825
+Searched 2047997
+Searched 2050729
+Searched 2050972
+Searched 2053206
+Searched 2053212
+Searched 2067870
+Searched 2067889
+Searched 2337919
+Searched 2350735
+Searched 2354094
+Searched 2360026
+Searched 2360370
+Searched 2418930
+Searched 2419164
+Searched 2442156
+Searched 2645150
+Searched 2645848
+Searched 2645849
+Searched 2648279
+Searched 2666850
+Searched 2667835
+Searched 2667836
+Searched 2668217
+Searched 2668219
+Searched 2668221
+Searched 2668223
+Searched 2668238
+Searched 3971867
+Searched 3980111
+Searched 3990381
+Searched 3999232
+Searched 4123444
+Searched 4258987
+Searched 4334139
+Searched 4461067
+Searched 4461163
+Searched 4461167
+Searched 4461172
+Searched 4461174
+Searched 4461563
+Searched 4462194
+Searched 4462877
+Searched 4466702
+Searched 4469545
+Searched 4469561
+Searched 4483747
+Searched 4488039
+Searched 4634426
+Searched 4664679
+Searched 4664682
+Searched 5392781
+Searched 5539470
+Searched 5539805
+Searched 5545095
+Searched 5545117
+Searched 7567006
+Searched 7567042
+Searched 7568466
+Searched 7590932
+Searched 7590938
+Searched 7598648
+Searched 7598652
+Searched 7598661
+Searched 7598662
+Searched 7598791
+Searched 7600786
+Searched 7625472
+Searched 7626038
+Searched 7626051
+Searched 7626061
+Searched 7626378
+Searched 7626709
+Searched 7627176
+Searched 7627506
+Searched 7751259
+Searched 7756875
+Searched 7756885
+Searched 7756895
+Searched 7756922
+Searched 7767074
+Searched 7767081
+Searched 7767371
+Searched 7767374
+Store with id=50 destroyed; Remaining stores: 50
+Store with id=49 destroyed; Remaining stores: 49
+Store with id=48 destroyed; Remaining stores: 48
+Store with id=1 destroyed; Remaining stores: 47
+Store with id=4 destroyed; Remaining stores: 46
+Store with id=7 destroyed; Remaining stores: 45
+Store with id=10 destroyed; Remaining stores: 44
+Store with id=13 destroyed; Remaining stores: 43
+Store with id=16 destroyed; Remaining stores: 42
+Store with id=19 destroyed; Remaining stores: 41
+Store with id=22 destroyed; Remaining stores: 40
+Store with id=25 destroyed; Remaining stores: 39
+Store with id=28 destroyed; Remaining stores: 38
+Store with id=31 destroyed; Remaining stores: 37
+Store with id=34 destroyed; Remaining stores: 36
+Store with id=37 destroyed; Remaining stores: 35
+Store with id=40 destroyed; Remaining stores: 34
+Store with id=43 destroyed; Remaining stores: 33
+Store with id=46 destroyed; Remaining stores: 32
+Store with id=0 destroyed; Remaining stores: 31
+Store with id=3 destroyed; Remaining stores: 30
+Store with id=6 destroyed; Remaining stores: 29
+Store with id=9 destroyed; Remaining stores: 28
+Store with id=12 destroyed; Remaining stores: 27
+Store with id=15 destroyed; Remaining stores: 26
+Store with id=18 destroyed; Remaining stores: 25
+Store with id=21 destroyed; Remaining stores: 24
+Store with id=24 destroyed; Remaining stores: 23
+Store with id=27 destroyed; Remaining stores: 22
+Store with id=30 destroyed; Remaining stores: 21
+Store with id=33 destroyed; Remaining stores: 20
+Store with id=36 destroyed; Remaining stores: 19
+Store with id=39 destroyed; Remaining stores: 18
+Store with id=42 destroyed; Remaining stores: 17
+Store with id=45 destroyed; Remaining stores: 16
+Store with id=2 destroyed; Remaining stores: 15
+Store with id=5 destroyed; Remaining stores: 14
+Store with id=8 destroyed; Remaining stores: 13
+Store with id=11 destroyed; Remaining stores: 12
+Store with id=14 destroyed; Remaining stores: 11
+Store with id=17 destroyed; Remaining stores: 10
+Store with id=20 destroyed; Remaining stores: 9
+Store with id=23 destroyed; Remaining stores: 8
+Store with id=26 destroyed; Remaining stores: 7
+Store with id=29 destroyed; Remaining stores: 6
+Store with id=32 destroyed; Remaining stores: 5
+Store with id=35 destroyed; Remaining stores: 4
+Store with id=38 destroyed; Remaining stores: 3
+Store with id=41 destroyed; Remaining stores: 2
+Store with id=44 destroyed; Remaining stores: 1
+Store with id=47 destroyed; Remaining stores: 0
+took=1466.51, config=num_runs_: 1 capacity_: 8388608 num_levels_: 22 locality_factor_: 1 base_block_size_: 300 store_path_: /home/ubuntu/data/tests/ssd/ min_val_len_: 0 max_val_len_: 0 is_data_mem_: 0 is_aux_mem_: 0 is_ssd_: 1 is_cached_: 1 data_file_: ./kv.csv
++ for lf in ${lfs[@]}
++ rm -rf /home/ubuntu/data/tests/ssd/
++ mkdir -p /home/ubuntu/data/tests/ssd/
++ ../cmake-build-relwithdebinfo/src/bench/crimes_ofs --print_csv_headers --data_file ./kv.csv -r 1 -N 23 -s 22 -L 8 -p /home/ubuntu/data/tests/ssd/ -d -a
+Read 0
+Read 100000
+Read 200000
+Read 300000
+Read 400000
+Read 500000
+Read 600000
+Read 700000
+Read 800000
+Read 900000
+Read 1000000
+Read 1100000
+Read 1200000
+Read 1300000
+Read 1400000
+Read 1500000
+Read 1600000
+Read 1700000
+Read 1800000
+Read 1900000
+Read 2000000
+Read 2100000
+Read 2200000
+Read 2300000
+Read 2400000
+Read 2500000
+Read 2600000
+Read 2700000
+Read 2800000
+Read 2900000
+Read 3000000
+Read 3100000
+Read 3200000
+Read 3300000
+Read 3400000
+Read 3500000
+Read 3600000
+Read 3700000
+Read 3800000
+Read 3900000
+Read 4000000
+Read 4100000
+Read 4200000
+Read 4300000
+Read 4400000
+Read 4500000
+Read 4600000
+Read 4700000
+Read 4800000
+Read 4900000
+Read 5000000
+Read 5100000
+Read 5200000
+Read 5300000
+Read 5400000
+Read 5500000
+Read 5600000
+Read 5700000
+Read 5800000
+Read 5900000
+Read 6000000
+Read 6100000
+Read 6200000
+Read 6300000
+Read 6400000
+Read 6500000
+Read 6600000
+Read 6700000
+Read 6800000
+Read 6900000
+Read 7000000
+Read 7100000
+Read 7200000
+Read 7300000
+Read 7400000
+Read 7500000
+Read 7600000
+Read 7700000
+
+Read 7767374 in total.
+Initializing with id=0, n=8388607, entry_size=128.0B, total store size=1023.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=1, n=8388607, entry_size=1.3KiB, total store size=10.6GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=2, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=3, n=4194303, entry_size=128.0B, total store size=511.9MiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=4, n=4194303, entry_size=4.9KiB, total store size=19.6GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=5, n=4194303, entry_size=240.0B, total store size=959.9MiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+Initializing with id=6, n=2097151, entry_size=128.0B, total store size=255.9MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=7, n=2097151, entry_size=9.7KiB, total store size=19.4GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=8, n=2097151, entry_size=240.0B, total store size=479.9MiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+Initializing with id=9, n=1048575, entry_size=128.0B, total store size=127.9MiB, store_type=2; num_stores=10
+Using MMap File storage backend.
+Initializing with id=10, n=1048575, entry_size=19.3KiB, total store size=19.3GiB, store_type=2; num_stores=11
+Using MMap File storage backend.
+Initializing with id=11, n=1048575, entry_size=240.0B, total store size=239.9MiB, store_type=2; num_stores=12
+Using MMap File storage backend.
+Initializing with id=12, n=524287, entry_size=128.0B, total store size=63.9MiB, store_type=2; num_stores=13
+Using MMap File storage backend.
+Initializing with id=13, n=524287, entry_size=38.5KiB, total store size=19.2GiB, store_type=2; num_stores=14
+Using MMap File storage backend.
+Initializing with id=14, n=524287, entry_size=240.0B, total store size=119.9MiB, store_type=2; num_stores=15
+Using MMap File storage backend.
+Initializing with id=15, n=262143, entry_size=128.0B, total store size=31.9MiB, store_type=2; num_stores=16
+Using MMap File storage backend.
+Initializing with id=16, n=262143, entry_size=77.0KiB, total store size=19.2GiB, store_type=2; num_stores=17
+Using MMap File storage backend.
+Initializing with id=17, n=262143, entry_size=240.0B, total store size=59.9MiB, store_type=2; num_stores=18
+Using MMap File storage backend.
+Initializing with id=18, n=131071, entry_size=128.0B, total store size=15.9MiB, store_type=2; num_stores=19
+Using MMap File storage backend.
+Initializing with id=19, n=131071, entry_size=154.0KiB, total store size=19.2GiB, store_type=2; num_stores=20
+Using MMap File storage backend.
+Initializing with id=20, n=131071, entry_size=240.0B, total store size=29.9MiB, store_type=2; num_stores=21
+Using MMap File storage backend.
+Initializing with id=21, n=65535, entry_size=128.0B, total store size=7.9MiB, store_type=2; num_stores=22
+Using MMap File storage backend.
+Initializing with id=22, n=65535, entry_size=308.0KiB, total store size=19.2GiB, store_type=2; num_stores=23
+Using MMap File storage backend.
+Initializing with id=23, n=65535, entry_size=240.0B, total store size=14.9MiB, store_type=2; num_stores=24
+Using MMap File storage backend.
+Initializing with id=24, n=32767, entry_size=128.0B, total store size=3.9MiB, store_type=2; num_stores=25
+Using MMap File storage backend.
+Initializing with id=25, n=32767, entry_size=616.0KiB, total store size=19.2GiB, store_type=2; num_stores=26
+Using MMap File storage backend.
+Initializing with id=26, n=32767, entry_size=240.0B, total store size=7.4MiB, store_type=2; num_stores=27
+Using MMap File storage backend.
+Initializing with id=27, n=16383, entry_size=128.0B, total store size=1.9MiB, store_type=2; num_stores=28
+Using MMap File storage backend.
+Initializing with id=28, n=16383, entry_size=1.2MiB, total store size=19.2GiB, store_type=2; num_stores=29
+Using MMap File storage backend.
+Initializing with id=29, n=16383, entry_size=240.0B, total store size=3.7MiB, store_type=2; num_stores=30
+Using MMap File storage backend.
+Initializing with id=30, n=8191, entry_size=128.0B, total store size=1023.8KiB, store_type=2; num_stores=31
+Using MMap File storage backend.
+Initializing with id=31, n=8191, entry_size=2.4MiB, total store size=19.2GiB, store_type=2; num_stores=32
+Using MMap File storage backend.
+Initializing with id=32, n=8191, entry_size=240.0B, total store size=1.8MiB, store_type=2; num_stores=33
+Using MMap File storage backend.
+Initializing with id=33, n=4095, entry_size=128.0B, total store size=511.8KiB, store_type=2; num_stores=34
+Using MMap File storage backend.
+Initializing with id=34, n=4095, entry_size=4.8MiB, total store size=19.2GiB, store_type=2; num_stores=35
+Using MMap File storage backend.
+Initializing with id=35, n=4095, entry_size=240.0B, total store size=959.7KiB, store_type=2; num_stores=36
+Using MMap File storage backend.
+Initializing with id=36, n=2047, entry_size=128.0B, total store size=255.8KiB, store_type=2; num_stores=37
+Using MMap File storage backend.
+Initializing with id=37, n=2047, entry_size=9.6MiB, total store size=19.2GiB, store_type=2; num_stores=38
+Using MMap File storage backend.
+Initializing with id=38, n=2047, entry_size=240.0B, total store size=479.7KiB, store_type=2; num_stores=39
+Using MMap File storage backend.
+Initializing with id=39, n=1023, entry_size=128.0B, total store size=127.8KiB, store_type=2; num_stores=40
+Using MMap File storage backend.
+Initializing with id=40, n=1023, entry_size=19.2MiB, total store size=19.2GiB, store_type=2; num_stores=41
+Using MMap File storage backend.
+Initializing with id=41, n=1023, entry_size=240.0B, total store size=239.7KiB, store_type=2; num_stores=42
+Using MMap File storage backend.
+Initializing with id=42, n=511, entry_size=128.0B, total store size=63.8KiB, store_type=2; num_stores=43
+Using MMap File storage backend.
+Initializing with id=43, n=511, entry_size=38.5MiB, total store size=19.2GiB, store_type=2; num_stores=44
+Using MMap File storage backend.
+Initializing with id=44, n=511, entry_size=240.0B, total store size=119.7KiB, store_type=2; num_stores=45
+Using MMap File storage backend.
+Initializing with id=45, n=255, entry_size=128.0B, total store size=31.8KiB, store_type=2; num_stores=46
+Using MMap File storage backend.
+Initializing with id=46, n=255, entry_size=77.0MiB, total store size=19.1GiB, store_type=2; num_stores=47
+Using MMap File storage backend.
+Initializing with id=47, n=255, entry_size=240.0B, total store size=59.7KiB, store_type=2; num_stores=48
+Using MMap File storage backend.
+Initializing with id=48, n=127, entry_size=128.0B, total store size=15.8KiB, store_type=2; num_stores=49
+Using MMap File storage backend.
+Initializing with id=49, n=127, entry_size=154.0MiB, total store size=19.0GiB, store_type=2; num_stores=50
+Using MMap File storage backend.
+Initializing with id=50, n=127, entry_size=240.0B, total store size=29.7KiB, store_type=2; num_stores=51
+Using MMap File storage backend.
+Initializing with id=51, n=63, entry_size=128.0B, total store size=7.8KiB, store_type=2; num_stores=52
+Using MMap File storage backend.
+Initializing with id=52, n=63, entry_size=308.0MiB, total store size=18.9GiB, store_type=2; num_stores=53
+Using MMap File storage backend.
+Initializing with id=53, n=63, entry_size=240.0B, total store size=14.7KiB, store_type=2; num_stores=54
+Using MMap File storage backend.
+Initializing with id=54, n=1, entry_size=2.4GiB, total store size=2.4GiB, store_type=2; num_stores=55
+Using MMap File storage backend.
+Initializing with id=55, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=56
+Using MMap File storage backend.
+Initializing with id=56, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=57
+Using MMap File storage backend.
+Inserted 10269
+Inserted 22113
+Inserted 22943
+Inserted 24210
+Inserted 24989
+Inserted 26052
+Inserted 26494
+Inserted 27703
+Inserted 30032
+Inserted 30932
+Inserted 31047
+Inserted 32147
+Inserted 36933
+Inserted 37074
+Inserted 38042
+Inserted 54302
+Inserted 226725
+Inserted 227598
+Inserted 1103659
+Inserted 1105939
+Inserted 1115358
+Inserted 1123786
+Inserted 1125144
+Inserted 1126371
+Inserted 1157489
+Inserted 1157491
+Inserted 1199929
+Inserted 1199954
+Inserted 1208421
+Inserted 1208453
+Inserted 1208535
+Inserted 1209234
+Inserted 1210001
+Inserted 1210459
+Inserted 1213793
+Inserted 1214193
+Inserted 1253057
+Inserted 1253060
+Inserted 1253063
+Inserted 1253108
+Inserted 1253144
+Inserted 1253614
+Inserted 1278637
+Inserted 1278645
+Inserted 1278700
+Inserted 1280052
+Inserted 1336159
+Inserted 1336163
+Inserted 1336171
+Inserted 1336177
+Inserted 1337401
+Inserted 1337403
+Inserted 1352897
+Inserted 1352898
+Inserted 1358020
+Inserted 1358038
+Inserted 1358041
+Inserted 1359166
+Inserted 1359364
+Inserted 1359432
+Inserted 1365220
+Inserted 1366621
+Inserted 1426691
+Inserted 1440594
+Inserted 1463912
+Inserted 1463914
+Inserted 1464475
+Inserted 1464484
+Inserted 1464493
+Inserted 1489542
+Inserted 1497384
+Inserted 1507661
+Inserted 1508131
+Inserted 1547527
+Inserted 1547536
+Inserted 1554149
+Inserted 1554150
+Inserted 1554336
+Inserted 1584823
+Inserted 1596700
+Inserted 1600117
+Inserted 1601079
+Inserted 1699423
+Inserted 1699443
+Inserted 1722144
+Inserted 1757735
+Inserted 1757742
+Inserted 1757744
+Inserted 1757745
+Inserted 1757747
+Inserted 1758159
+Inserted 1765054
+Inserted 1765062
+Inserted 1766011
+Inserted 1767231
+Inserted 1767667
+Inserted 1767668
+Inserted 1767740
+Inserted 1767807
+Inserted 1767818
+Inserted 1854101
+Inserted 1854166
+Inserted 1854168
+Inserted 1855416
+Inserted 1870172
+Inserted 1968701
+Inserted 1968799
+Inserted 1968964
+Inserted 1970049
+Inserted 1970052
+Inserted 1970064
+Inserted 1973852
+Inserted 1996052
+Inserted 1996077
+Inserted 1999753
+Inserted 2029502
+Inserted 2030142
+Inserted 2031352
+Inserted 2031353
+Inserted 2031370
+Inserted 2031371
+Inserted 2031375
+Inserted 2031573
+Inserted 2032754
+Inserted 2032756
+Inserted 2039456
+Inserted 2039468
+Inserted 2039469
+Inserted 2039471
+Inserted 2039472
+Inserted 2040387
+Inserted 2047818
+Inserted 2047825
+Inserted 2047997
+Inserted 2050729
+Inserted 2050972
+Inserted 2053206
+Inserted 2053212
+Inserted 2067870
+Inserted 2067889
+Inserted 2337919
+Inserted 2350735
+Inserted 2354094
+Inserted 2360026
+Inserted 2360370
+Inserted 2418930
+Inserted 2419164
+Inserted 2442156
+Inserted 2645150
+Inserted 2645848
+Inserted 2645849
+Inserted 2648279
+Inserted 2666850
+Inserted 2667835
+Inserted 2667836
+Inserted 2668217
+Inserted 2668219
+Inserted 2668221
+Inserted 2668223
+Inserted 2668238
+Inserted 3971867
+Inserted 3980111
+Inserted 3990381
+Inserted 3999232
+Inserted 4123444
+Inserted 4258987
+Inserted 4334139
+Inserted 4461067
+Inserted 4461163
+Inserted 4461167
+Inserted 4461172
+Inserted 4461174
+Inserted 4461563
+Inserted 4462194
+Inserted 4462877
+Inserted 4466702
+Inserted 4469545
+Inserted 4469561
+Inserted 4483747
+Inserted 4488039
+Inserted 4634426
+Inserted 4664679
+Inserted 4664682
+Inserted 5392781
+Inserted 5539470
+Inserted 5539805
+Inserted 5545095
+Inserted 5545117
+Inserted 7567006
+Inserted 7567042
+Inserted 7568466
+Inserted 7590932
+Inserted 7590938
+Inserted 7598648
+Inserted 7598652
+Inserted 7598661
+Inserted 7598662
+Inserted 7598791
+Inserted 7600786
+Inserted 7625472
+Inserted 7626038
+Inserted 7626051
+Inserted 7626061
+Inserted 7626378
+Inserted 7626709
+Inserted 7627176
+Inserted 7627506
+Inserted 7751259
+Inserted 7756875
+Inserted 7756885
+Inserted 7756895
+Inserted 7756922
+Inserted 7767074
+Inserted 7767081
+Inserted 7767371
+Inserted 7767374
+Searched 10269
+Searched 22113
+Searched 22943
+Searched 24210
+Searched 24989
+Searched 26052
+Searched 26494
+Searched 27703
+Searched 30032
+Searched 30932
+Searched 31047
+Searched 32147
+Searched 36933
+Searched 37074
+Searched 38042
+Searched 54302
+Searched 226725
+Searched 227598
+Searched 1103659
+Searched 1105939
+Searched 1115358
+Searched 1123786
+Searched 1125144
+Searched 1126371
+Searched 1157489
+Searched 1157491
+Searched 1199929
+Searched 1199954
+Searched 1208421
+Searched 1208453
+Searched 1208535
+Searched 1209234
+Searched 1210001
+Searched 1210459
+Searched 1213793
+Searched 1214193
+Searched 1253057
+Searched 1253060
+Searched 1253063
+Searched 1253108
+Searched 1253144
+Searched 1253614
+Searched 1278637
+Searched 1278645
+Searched 1278700
+Searched 1280052
+Searched 1336159
+Searched 1336163
+Searched 1336171
+Searched 1336177
+Searched 1337401
+Searched 1337403
+Searched 1352897
+Searched 1352898
+Searched 1358020
+Searched 1358038
+Searched 1358041
+Searched 1359166
+Searched 1359364
+Searched 1359432
+Searched 1365220
+Searched 1366621
+Searched 1426691
+Searched 1440594
+Searched 1463912
+Searched 1463914
+Searched 1464475
+Searched 1464484
+Searched 1464493
+Searched 1489542
+Searched 1497384
+Searched 1507661
+Searched 1508131
+Searched 1547527
+Searched 1547536
+Searched 1554149
+Searched 1554150
+Searched 1554336
+Searched 1584823
+Searched 1596700
+Searched 1600117
+Searched 1601079
+Searched 1699423
+Searched 1699443
+Searched 1722144
+Searched 1757735
+Searched 1757742
+Searched 1757744
+Searched 1757745
+Searched 1757747
+Searched 1758159
+Searched 1765054
+Searched 1765062
+Searched 1766011
+Searched 1767231
+Searched 1767667
+Searched 1767668
+Searched 1767740
+Searched 1767807
+Searched 1767818
+Searched 1854101
+Searched 1854166
+Searched 1854168
+Searched 1855416
+Searched 1870172
+Searched 1968701
+Searched 1968799
+Searched 1968964
+Searched 1970049
+Searched 1970052
+Searched 1970064
+Searched 1973852
+Searched 1996052
+Searched 1996077
+Searched 1999753
+Searched 2029502
+Searched 2030142
+Searched 2031352
+Searched 2031353
+Searched 2031370
+Searched 2031371
+Searched 2031375
+Searched 2031573
+Searched 2032754
+Searched 2032756
+Searched 2039456
+Searched 2039468
+Searched 2039469
+Searched 2039471
+Searched 2039472
+Searched 2040387
+Searched 2047818
+Searched 2047825
+Searched 2047997
+Searched 2050729
+Searched 2050972
+Searched 2053206
+Searched 2053212
+Searched 2067870
+Searched 2067889
+Searched 2337919
+Searched 2350735
+Searched 2354094
+Searched 2360026
+Searched 2360370
+Searched 2418930
+Searched 2419164
+Searched 2442156
+Searched 2645150
+Searched 2645848
+Searched 2645849
+Searched 2648279
+Searched 2666850
+Searched 2667835
+Searched 2667836
+Searched 2668217
+Searched 2668219
+Searched 2668221
+Searched 2668223
+Searched 2668238
+Searched 3971867
+Searched 3980111
+Searched 3990381
+Searched 3999232
+Searched 4123444
+Searched 4258987
+Searched 4334139
+Searched 4461067
+Searched 4461163
+Searched 4461167
+Searched 4461172
+Searched 4461174
+Searched 4461563
+Searched 4462194
+Searched 4462877
+Searched 4466702
+Searched 4469545
+Searched 4469561
+Searched 4483747
+Searched 4488039
+Searched 4634426
+Searched 4664679
+Searched 4664682
+Searched 5392781
+Searched 5539470
+Searched 5539805
+Searched 5545095
+Searched 5545117
+Searched 7567006
+Searched 7567042
+Searched 7568466
+Searched 7590932
+Searched 7590938
+Searched 7598648
+Searched 7598652
+Searched 7598661
+Searched 7598662
+Searched 7598791
+Searched 7600786
+Searched 7625472
+Searched 7626038
+Searched 7626051
+Searched 7626061
+Searched 7626378
+Searched 7626709
+Searched 7627176
+Searched 7627506
+Searched 7751259
+Searched 7756875
+Searched 7756885
+Searched 7756895
+Searched 7756922
+Searched 7767074
+Searched 7767081
+Searched 7767371
+Searched 7767374
+Store with id=56 destroyed; Remaining stores: 56
+Store with id=55 destroyed; Remaining stores: 55
+Store with id=54 destroyed; Remaining stores: 54
+Store with id=1 destroyed; Remaining stores: 53
+Store with id=4 destroyed; Remaining stores: 52
+Store with id=7 destroyed; Remaining stores: 51
+Store with id=10 destroyed; Remaining stores: 50
+Store with id=13 destroyed; Remaining stores: 49
+Store with id=16 destroyed; Remaining stores: 48
+Store with id=19 destroyed; Remaining stores: 47
+Store with id=22 destroyed; Remaining stores: 46
+Store with id=25 destroyed; Remaining stores: 45
+Store with id=28 destroyed; Remaining stores: 44
+Store with id=31 destroyed; Remaining stores: 43
+Store with id=34 destroyed; Remaining stores: 42
+Store with id=37 destroyed; Remaining stores: 41
+Store with id=40 destroyed; Remaining stores: 40
+Store with id=43 destroyed; Remaining stores: 39
+Store with id=46 destroyed; Remaining stores: 38
+Store with id=49 destroyed; Remaining stores: 37
+Store with id=52 destroyed; Remaining stores: 36
+Store with id=0 destroyed; Remaining stores: 35
+Store with id=3 destroyed; Remaining stores: 34
+Store with id=6 destroyed; Remaining stores: 33
+Store with id=9 destroyed; Remaining stores: 32
+Store with id=12 destroyed; Remaining stores: 31
+Store with id=15 destroyed; Remaining stores: 30
+Store with id=18 destroyed; Remaining stores: 29
+Store with id=21 destroyed; Remaining stores: 28
+Store with id=24 destroyed; Remaining stores: 27
+Store with id=27 destroyed; Remaining stores: 26
+Store with id=30 destroyed; Remaining stores: 25
+Store with id=33 destroyed; Remaining stores: 24
+Store with id=36 destroyed; Remaining stores: 23
+Store with id=39 destroyed; Remaining stores: 22
+Store with id=42 destroyed; Remaining stores: 21
+Store with id=45 destroyed; Remaining stores: 20
+Store with id=48 destroyed; Remaining stores: 19
+Store with id=51 destroyed; Remaining stores: 18
+Store with id=2 destroyed; Remaining stores: 17
+took=4205.2, config=num_runs_: 1 capacity_: 8388608 num_levels_: 22 locality_factor_: 8 base_block_size_: 300 store_path_: /home/ubuntu/data/tests/ssd/ min_val_len_: 0 max_val_len_: 0 is_data_mem_: 0 is_aux_mem_: 0 is_ssd_: 1 is_cached_: 1 data_file_: ./kv.csv
+Store with id=5 destroyed; Remaining stores: 16
+Store with id=8 destroyed; Remaining stores: 15
+Store with id=11 destroyed; Remaining stores: 14
+Store with id=14 destroyed; Remaining stores: 13
+Store with id=17 destroyed; Remaining stores: 12
+Store with id=20 destroyed; Remaining stores: 11
+Store with id=23 destroyed; Remaining stores: 10
+Store with id=26 destroyed; Remaining stores: 9
+Store with id=29 destroyed; Remaining stores: 8
+Store with id=32 destroyed; Remaining stores: 7
+Store with id=35 destroyed; Remaining stores: 6
+Store with id=38 destroyed; Remaining stores: 5
+Store with id=41 destroyed; Remaining stores: 4
+Store with id=44 destroyed; Remaining stores: 3
+Store with id=47 destroyed; Remaining stores: 2
+Store with id=50 destroyed; Remaining stores: 1
+Store with id=53 destroyed; Remaining stores: 0
++ for lf in ${lfs[@]}
++ rm -rf /home/ubuntu/data/tests/ssd/
++ mkdir -p /home/ubuntu/data/tests/ssd/
++ ../cmake-build-relwithdebinfo/src/bench/crimes_ofs --print_csv_headers --data_file ./kv.csv -r 1 -N 23 -s 22 -L 16 -p /home/ubuntu/data/tests/ssd/ -d -a
+Read 0
+Read 100000
+Read 200000
+Read 300000
+Read 400000
+Read 500000
+Read 600000
+Read 700000
+Read 800000
+Read 900000
+Read 1000000
+Read 1100000
+Read 1200000
+Read 1300000
+Read 1400000
+Read 1500000
+Read 1600000
+Read 1700000
+Read 1800000
+Read 1900000
+Read 2000000
+Read 2100000
+Read 2200000
+Read 2300000
+Read 2400000
+Read 2500000
+Read 2600000
+Read 2700000
+Read 2800000
+Read 2900000
+Read 3000000
+Read 3100000
+Read 3200000
+Read 3300000
+Read 3400000
+Read 3500000
+Read 3600000
+Read 3700000
+Read 3800000
+Read 3900000
+Read 4000000
+Read 4100000
+Read 4200000
+Read 4300000
+Read 4400000
+Read 4500000
+Read 4600000
+Read 4700000
+Read 4800000
+Read 4900000
+Read 5000000
+Read 5100000
+Read 5200000
+Read 5300000
+Read 5400000
+Read 5500000
+Read 5600000
+Read 5700000
+Read 5800000
+Read 5900000
+Read 6000000
+Read 6100000
+Read 6200000
+Read 6300000
+Read 6400000
+Read 6500000
+Read 6600000
+Read 6700000
+Read 6800000
+Read 6900000
+Read 7000000
+Read 7100000
+Read 7200000
+Read 7300000
+Read 7400000
+Read 7500000
+Read 7600000
+Read 7700000
+
+Read 7767374 in total.
+Initializing with id=0, n=8388607, entry_size=128.0B, total store size=1023.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=1, n=8388607, entry_size=1.3KiB, total store size=10.6GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=2, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=3, n=4194303, entry_size=128.0B, total store size=511.9MiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=4, n=4194303, entry_size=4.9KiB, total store size=19.6GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=5, n=4194303, entry_size=240.0B, total store size=959.9MiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+Initializing with id=6, n=2097151, entry_size=128.0B, total store size=255.9MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=7, n=2097151, entry_size=9.7KiB, total store size=19.4GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=8, n=2097151, entry_size=240.0B, total store size=479.9MiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+Initializing with id=9, n=1048575, entry_size=128.0B, total store size=127.9MiB, store_type=2; num_stores=10
+Using MMap File storage backend.
+Initializing with id=10, n=1048575, entry_size=19.3KiB, total store size=19.3GiB, store_type=2; num_stores=11
+Using MMap File storage backend.
+Initializing with id=11, n=1048575, entry_size=240.0B, total store size=239.9MiB, store_type=2; num_stores=12
+Using MMap File storage backend.
+Initializing with id=12, n=524287, entry_size=128.0B, total store size=63.9MiB, store_type=2; num_stores=13
+Using MMap File storage backend.
+Initializing with id=13, n=524287, entry_size=38.5KiB, total store size=19.2GiB, store_type=2; num_stores=14
+Using MMap File storage backend.
+Initializing with id=14, n=524287, entry_size=240.0B, total store size=119.9MiB, store_type=2; num_stores=15
+Using MMap File storage backend.
+Initializing with id=15, n=262143, entry_size=128.0B, total store size=31.9MiB, store_type=2; num_stores=16
+Using MMap File storage backend.
+Initializing with id=16, n=262143, entry_size=77.0KiB, total store size=19.2GiB, store_type=2; num_stores=17
+Using MMap File storage backend.
+Initializing with id=17, n=262143, entry_size=240.0B, total store size=59.9MiB, store_type=2; num_stores=18
+Using MMap File storage backend.
+Initializing with id=18, n=131071, entry_size=128.0B, total store size=15.9MiB, store_type=2; num_stores=19
+Using MMap File storage backend.
+Initializing with id=19, n=131071, entry_size=154.0KiB, total store size=19.2GiB, store_type=2; num_stores=20
+Using MMap File storage backend.
+Initializing with id=20, n=131071, entry_size=240.0B, total store size=29.9MiB, store_type=2; num_stores=21
+Using MMap File storage backend.
+Initializing with id=21, n=65535, entry_size=128.0B, total store size=7.9MiB, store_type=2; num_stores=22
+Using MMap File storage backend.
+Initializing with id=22, n=65535, entry_size=308.0KiB, total store size=19.2GiB, store_type=2; num_stores=23
+Using MMap File storage backend.
+Initializing with id=23, n=65535, entry_size=240.0B, total store size=14.9MiB, store_type=2; num_stores=24
+Using MMap File storage backend.
+Initializing with id=24, n=32767, entry_size=128.0B, total store size=3.9MiB, store_type=2; num_stores=25
+Using MMap File storage backend.
+Initializing with id=25, n=32767, entry_size=616.0KiB, total store size=19.2GiB, store_type=2; num_stores=26
+Using MMap File storage backend.
+Initializing with id=26, n=32767, entry_size=240.0B, total store size=7.4MiB, store_type=2; num_stores=27
+Using MMap File storage backend.
+Initializing with id=27, n=16383, entry_size=128.0B, total store size=1.9MiB, store_type=2; num_stores=28
+Using MMap File storage backend.
+Initializing with id=28, n=16383, entry_size=1.2MiB, total store size=19.2GiB, store_type=2; num_stores=29
+Using MMap File storage backend.
+Initializing with id=29, n=16383, entry_size=240.0B, total store size=3.7MiB, store_type=2; num_stores=30
+Using MMap File storage backend.
+Initializing with id=30, n=8191, entry_size=128.0B, total store size=1023.8KiB, store_type=2; num_stores=31
+Using MMap File storage backend.
+Initializing with id=31, n=8191, entry_size=2.4MiB, total store size=19.2GiB, store_type=2; num_stores=32
+Using MMap File storage backend.
+Initializing with id=32, n=8191, entry_size=240.0B, total store size=1.8MiB, store_type=2; num_stores=33
+Using MMap File storage backend.
+Initializing with id=33, n=4095, entry_size=128.0B, total store size=511.8KiB, store_type=2; num_stores=34
+Using MMap File storage backend.
+Initializing with id=34, n=4095, entry_size=4.8MiB, total store size=19.2GiB, store_type=2; num_stores=35
+Using MMap File storage backend.
+Initializing with id=35, n=4095, entry_size=240.0B, total store size=959.7KiB, store_type=2; num_stores=36
+Using MMap File storage backend.
+Initializing with id=36, n=2047, entry_size=128.0B, total store size=255.8KiB, store_type=2; num_stores=37
+Using MMap File storage backend.
+Initializing with id=37, n=2047, entry_size=9.6MiB, total store size=19.2GiB, store_type=2; num_stores=38
+Using MMap File storage backend.
+Initializing with id=38, n=2047, entry_size=240.0B, total store size=479.7KiB, store_type=2; num_stores=39
+Using MMap File storage backend.
+Initializing with id=39, n=1023, entry_size=128.0B, total store size=127.8KiB, store_type=2; num_stores=40
+Using MMap File storage backend.
+Initializing with id=40, n=1023, entry_size=19.2MiB, total store size=19.2GiB, store_type=2; num_stores=41
+Using MMap File storage backend.
+Initializing with id=41, n=1023, entry_size=240.0B, total store size=239.7KiB, store_type=2; num_stores=42
+Using MMap File storage backend.
+Initializing with id=42, n=511, entry_size=128.0B, total store size=63.8KiB, store_type=2; num_stores=43
+Using MMap File storage backend.
+Initializing with id=43, n=511, entry_size=38.5MiB, total store size=19.2GiB, store_type=2; num_stores=44
+Using MMap File storage backend.
+Initializing with id=44, n=511, entry_size=240.0B, total store size=119.7KiB, store_type=2; num_stores=45
+Using MMap File storage backend.
+Initializing with id=45, n=255, entry_size=128.0B, total store size=31.8KiB, store_type=2; num_stores=46
+Using MMap File storage backend.
+Initializing with id=46, n=255, entry_size=77.0MiB, total store size=19.1GiB, store_type=2; num_stores=47
+Using MMap File storage backend.
+Initializing with id=47, n=255, entry_size=240.0B, total store size=59.7KiB, store_type=2; num_stores=48
+Using MMap File storage backend.
+Initializing with id=48, n=127, entry_size=128.0B, total store size=15.8KiB, store_type=2; num_stores=49
+Using MMap File storage backend.
+Initializing with id=49, n=127, entry_size=154.0MiB, total store size=19.0GiB, store_type=2; num_stores=50
+Using MMap File storage backend.
+Initializing with id=50, n=127, entry_size=240.0B, total store size=29.7KiB, store_type=2; num_stores=51
+Using MMap File storage backend.
+Initializing with id=51, n=63, entry_size=128.0B, total store size=7.8KiB, store_type=2; num_stores=52
+Using MMap File storage backend.
+Initializing with id=52, n=63, entry_size=308.0MiB, total store size=18.9GiB, store_type=2; num_stores=53
+Using MMap File storage backend.
+Initializing with id=53, n=63, entry_size=240.0B, total store size=14.7KiB, store_type=2; num_stores=54
+Using MMap File storage backend.
+Initializing with id=54, n=1, entry_size=2.4GiB, total store size=2.4GiB, store_type=2; num_stores=55
+Using MMap File storage backend.
+Initializing with id=55, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=56
+Using MMap File storage backend.
+Initializing with id=56, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=57
+Using MMap File storage backend.
+Inserted 10269
+Inserted 22113
+Inserted 22943
+Inserted 24210
+Inserted 24989
+Inserted 26052
+Inserted 26494
+Inserted 27703
+Inserted 30032
+Inserted 30932
+Inserted 31047
+Inserted 32147
+Inserted 36933
+Inserted 37074
+Inserted 38042
+Inserted 54302
+Inserted 226725
+Inserted 227598
+Inserted 1103659
+Inserted 1105939
+Inserted 1115358
+Inserted 1123786
+Inserted 1125144
+Inserted 1126371
+Inserted 1157489
+Inserted 1157491
+Inserted 1199929
+Inserted 1199954
+Inserted 1208421
+Inserted 1208453
+Inserted 1208535
+Inserted 1209234
+Inserted 1210001
+Inserted 1210459
+Inserted 1213793
+Inserted 1214193
+Inserted 1253057
+Inserted 1253060
+Inserted 1253063
+Inserted 1253108
+Inserted 1253144
+Inserted 1253614
+Inserted 1278637
+Inserted 1278645
+Inserted 1278700
+Inserted 1280052
+Inserted 1336159
+Inserted 1336163
+Inserted 1336171
+Inserted 1336177
+Inserted 1337401
+Inserted 1337403
+Inserted 1352897
+Inserted 1352898
+Inserted 1358020
+Inserted 1358038
+Inserted 1358041
+Inserted 1359166
+Inserted 1359364
+Inserted 1359432
+Inserted 1365220
+Inserted 1366621
+Inserted 1426691
+Inserted 1440594
+Inserted 1463912
+Inserted 1463914
+Inserted 1464475
+Inserted 1464484
+Inserted 1464493
+Inserted 1489542
+Inserted 1497384
+Inserted 1507661
+Inserted 1508131
+Inserted 1547527
+Inserted 1547536
+Inserted 1554149
+Inserted 1554150
+Inserted 1554336
+Inserted 1584823
+Inserted 1596700
+Inserted 1600117
+Inserted 1601079
+Inserted 1699423
+Inserted 1699443
+Inserted 1722144
+Inserted 1757735
+Inserted 1757742
+Inserted 1757744
+Inserted 1757745
+Inserted 1757747
+Inserted 1758159
+Inserted 1765054
+Inserted 1765062
+Inserted 1766011
+Inserted 1767231
+Inserted 1767667
+Inserted 1767668
+Inserted 1767740
+Inserted 1767807
+Inserted 1767818
+Inserted 1854101
+Inserted 1854166
+Inserted 1854168
+Inserted 1855416
+Inserted 1870172
+Inserted 1968701
+Inserted 1968799
+Inserted 1968964
+Inserted 1970049
+Inserted 1970052
+Inserted 1970064
+Inserted 1973852
+Inserted 1996052
+Inserted 1996077
+Inserted 1999753
+Inserted 2029502
+Inserted 2030142
+Inserted 2031352
+Inserted 2031353
+Inserted 2031370
+Inserted 2031371
+Inserted 2031375
+Inserted 2031573
+Inserted 2032754
+Inserted 2032756
+Inserted 2039456
+Inserted 2039468
+Inserted 2039469
+Inserted 2039471
+Inserted 2039472
+Inserted 2040387
+Inserted 2047818
+Inserted 2047825
+Inserted 2047997
+Inserted 2050729
+Inserted 2050972
+Inserted 2053206
+Inserted 2053212
+Inserted 2067870
+Inserted 2067889
+Inserted 2337919
+Inserted 2350735
+Inserted 2354094
+Inserted 2360026
+Inserted 2360370
+Inserted 2418930
+Inserted 2419164
+Inserted 2442156
+Inserted 2645150
+Inserted 2645848
+Inserted 2645849
+Inserted 2648279
+Inserted 2666850
+Inserted 2667835
+Inserted 2667836
+Inserted 2668217
+Inserted 2668219
+Inserted 2668221
+Inserted 2668223
+Inserted 2668238
+Inserted 3971867
+Inserted 3980111
+Inserted 3990381
+Inserted 3999232
+Inserted 4123444
+Inserted 4258987
+Inserted 4334139
+Inserted 4461067
+Inserted 4461163
+Inserted 4461167
+Inserted 4461172
+Inserted 4461174
+Inserted 4461563
+Inserted 4462194
+Inserted 4462877
+Inserted 4466702
+Inserted 4469545
+Inserted 4469561
+Inserted 4483747
+Inserted 4488039
+Inserted 4634426
+Inserted 4664679
+Inserted 4664682
+Inserted 5392781
+Inserted 5539470
+Inserted 5539805
+Inserted 5545095
+Inserted 5545117
+Inserted 7567006
+Inserted 7567042
+Inserted 7568466
+Inserted 7590932
+Inserted 7590938
+Inserted 7598648
+Inserted 7598652
+Inserted 7598661
+Inserted 7598662
+Inserted 7598791
+Inserted 7600786
+Inserted 7625472
+Inserted 7626038
+Inserted 7626051
+Inserted 7626061
+Inserted 7626378
+Inserted 7626709
+Inserted 7627176
+Inserted 7627506
+Inserted 7751259
+Inserted 7756875
+Inserted 7756885
+Inserted 7756895
+Inserted 7756922
+Inserted 7767074
+Inserted 7767081
+Inserted 7767371
+Inserted 7767374
+Searched 10269
+Searched 22113
+Searched 22943
+Searched 24210
+Searched 24989
+Searched 26052
+Searched 26494
+Searched 27703
+Searched 30032
+Searched 30932
+Searched 31047
+Searched 32147
+Searched 36933
+Searched 37074
+Searched 38042
+Searched 54302
+Searched 226725
+Searched 227598
+Searched 1103659
+Searched 1105939
+Searched 1115358
+Searched 1123786
+Searched 1125144
+Searched 1126371
+Searched 1157489
+Searched 1157491
+Searched 1199929
+Searched 1199954
+Searched 1208421
+Searched 1208453
+Searched 1208535
+Searched 1209234
+Searched 1210001
+Searched 1210459
+Searched 1213793
+Searched 1214193
+Searched 1253057
+Searched 1253060
+Searched 1253063
+Searched 1253108
+Searched 1253144
+Searched 1253614
+Searched 1278637
+Searched 1278645
+Searched 1278700
+Searched 1280052
+Searched 1336159
+Searched 1336163
+Searched 1336171
+Searched 1336177
+Searched 1337401
+Searched 1337403
+Searched 1352897
+Searched 1352898
+Searched 1358020
+Searched 1358038
+Searched 1358041
+Searched 1359166
+Searched 1359364
+Searched 1359432
+Searched 1365220
+Searched 1366621
+Searched 1426691
+Searched 1440594
+Searched 1463912
+Searched 1463914
+Searched 1464475
+Searched 1464484
+Searched 1464493
+Searched 1489542
+Searched 1497384
+Searched 1507661
+Searched 1508131
+Searched 1547527
+Searched 1547536
+Searched 1554149
+Searched 1554150
+Searched 1554336
+Searched 1584823
+Searched 1596700
+Searched 1600117
+Searched 1601079
+Searched 1699423
+Searched 1699443
+Searched 1722144
+Searched 1757735
+Searched 1757742
+Searched 1757744
+Searched 1757745
+Searched 1757747
+Searched 1758159
+Searched 1765054
+Searched 1765062
+Searched 1766011
+Searched 1767231
+Searched 1767667
+Searched 1767668
+Searched 1767740
+Searched 1767807
+Searched 1767818
+Searched 1854101
+Searched 1854166
+Searched 1854168
+Searched 1855416
+Searched 1870172
+Searched 1968701
+Searched 1968799
+Searched 1968964
+Searched 1970049
+Searched 1970052
+Searched 1970064
+Searched 1973852
+Searched 1996052
+Searched 1996077
+Searched 1999753
+Searched 2029502
+Searched 2030142
+Searched 2031352
+Searched 2031353
+Searched 2031370
+Searched 2031371
+Searched 2031375
+Searched 2031573
+Searched 2032754
+Searched 2032756
+Searched 2039456
+Searched 2039468
+Searched 2039469
+Searched 2039471
+Searched 2039472
+Searched 2040387
+Searched 2047818
+Searched 2047825
+Searched 2047997
+Searched 2050729
+Searched 2050972
+Searched 2053206
+Searched 2053212
+Searched 2067870
+Searched 2067889
+Searched 2337919
+Searched 2350735
+Searched 2354094
+Searched 2360026
+Searched 2360370
+Searched 2418930
+Searched 2419164
+Searched 2442156
+Searched 2645150
+Searched 2645848
+Searched 2645849
+Searched 2648279
+Searched 2666850
+Searched 2667835
+Searched 2667836
+Searched 2668217
+Searched 2668219
+Searched 2668221
+Searched 2668223
+Searched 2668238
+Searched 3971867
+Searched 3980111
+Searched 3990381
+Searched 3999232
+Searched 4123444
+Searched 4258987
+Searched 4334139
+Searched 4461067
+Searched 4461163
+Searched 4461167
+Searched 4461172
+Searched 4461174
+Searched 4461563
+Searched 4462194
+Searched 4462877
+Searched 4466702
+Searched 4469545
+Searched 4469561
+Searched 4483747
+Searched 4488039
+Searched 4634426
+Searched 4664679
+Searched 4664682
+Searched 5392781
+Searched 5539470
+Searched 5539805
+Searched 5545095
+Searched 5545117
+Searched 7567006
+Searched 7567042
+Searched 7568466
+Searched 7590932
+Searched 7590938
+Searched 7598648
+Searched 7598652
+Searched 7598661
+Searched 7598662
+Searched 7598791
+Searched 7600786
+Searched 7625472
+Searched 7626038
+Searched 7626051
+Searched 7626061
+Searched 7626378
+Searched 7626709
+Searched 7627176
+Searched 7627506
+Searched 7751259
+Searched 7756875
+Searched 7756885
+Searched 7756895
+Searched 7756922
+Searched 7767074
+Searched 7767081
+Searched 7767371
+Searched 7767374
+Store with id=56 destroyed; Remaining stores: 56
+Store with id=55 destroyed; Remaining stores: 55
+Store with id=54 destroyed; Remaining stores: 54
+Store with id=1 destroyed; Remaining stores: 53
+Store with id=4 destroyed; Remaining stores: 52
+Store with id=7 destroyed; Remaining stores: 51
+Store with id=10 destroyed; Remaining stores: 50
+Store with id=13 destroyed; Remaining stores: 49
+Store with id=16 destroyed; Remaining stores: 48
+Store with id=19 destroyed; Remaining stores: 47
+Store with id=22 destroyed; Remaining stores: 46
+Store with id=25 destroyed; Remaining stores: 45
+Store with id=28 destroyed; Remaining stores: 44
+Store with id=31 destroyed; Remaining stores: 43
+Store with id=34 destroyed; Remaining stores: 42
+Store with id=37 destroyed; Remaining stores: 41
+Store with id=40 destroyed; Remaining stores: 40
+Store with id=43 destroyed; Remaining stores: 39
+Store with id=46 destroyed; Remaining stores: 38
+Store with id=49 destroyed; Remaining stores: 37
+Store with id=52 destroyed; Remaining stores: 36
+Store with id=0 destroyed; Remaining stores: 35
+Store with id=3 destroyed; Remaining stores: 34
+Store with id=6 destroyed; Remaining stores: 33
+Store with id=9 destroyed; Remaining stores: 32
+Store with id=12 destroyed; Remaining stores: 31
+Store with id=15 destroyed; Remaining stores: 30
+Store with id=18 destroyed; Remaining stores: 29
+Store with id=21 destroyed; Remaining stores: 28
+Store with id=24 destroyed; Remaining stores: 27
+Store with id=27 destroyed; Remaining stores: 26
+Store with id=30 destroyed; Remaining stores: 25
+Store with id=33 destroyed; Remaining stores: 24
+Store with id=36 destroyed; Remaining stores: 23
+Store with id=39 destroyed; Remaining stores: 22
+Store with id=42 destroyed; Remaining stores: 21
+Store with id=45 destroyed; Remaining stores: 20
+Store with id=48 destroyed; Remaining stores: 19
+Store with id=51 destroyed; Remaining stores: 18
+took=6377.92, config=num_runs_: 1 capacity_: 8388608 num_levels_: 22 locality_factor_: 16 base_block_size_: 300 store_path_: /home/ubuntu/data/tests/ssd/ min_val_len_: 0 max_val_len_: 0 is_data_mem_: 0 is_aux_mem_: 0 is_ssd_: 1 is_cached_: 1 data_file_: ./kv.csv
+Store with id=2 destroyed; Remaining stores: 17
+Store with id=5 destroyed; Remaining stores: 16
+Store with id=8 destroyed; Remaining stores: 15
+Store with id=11 destroyed; Remaining stores: 14
+Store with id=14 destroyed; Remaining stores: 13
+Store with id=17 destroyed; Remaining stores: 12
+Store with id=20 destroyed; Remaining stores: 11
+Store with id=23 destroyed; Remaining stores: 10
+Store with id=26 destroyed; Remaining stores: 9
+Store with id=29 destroyed; Remaining stores: 8
+Store with id=32 destroyed; Remaining stores: 7
+Store with id=35 destroyed; Remaining stores: 6
+Store with id=38 destroyed; Remaining stores: 5
+Store with id=41 destroyed; Remaining stores: 4
+Store with id=44 destroyed; Remaining stores: 3
+Store with id=47 destroyed; Remaining stores: 2
+Store with id=50 destroyed; Remaining stores: 1
+Store with id=53 destroyed; Remaining stores: 0
++ for lf in ${lfs[@]}
++ rm -rf /home/ubuntu/data/tests/ssd/
++ mkdir -p /home/ubuntu/data/tests/ssd/
++ ../cmake-build-relwithdebinfo/src/bench/crimes_ofs --print_csv_headers --data_file ./kv.csv -r 1 -N 23 -s 22 -L 32 -p /home/ubuntu/data/tests/ssd/ -d -a
+Read 0
+Read 100000
+Read 200000
+Read 300000
+Read 400000
+Read 500000
+Read 600000
+Read 700000
+Read 800000
+Read 900000
+Read 1000000
+Read 1100000
+Read 1200000
+Read 1300000
+Read 1400000
+Read 1500000
+Read 1600000
+Read 1700000
+Read 1800000
+Read 1900000
+Read 2000000
+Read 2100000
+Read 2200000
+Read 2300000
+Read 2400000
+Read 2500000
+Read 2600000
+Read 2700000
+Read 2800000
+Read 2900000
+Read 3000000
+Read 3100000
+Read 3200000
+Read 3300000
+Read 3400000
+Read 3500000
+Read 3600000
+Read 3700000
+Read 3800000
+Read 3900000
+Read 4000000
+Read 4100000
+Read 4200000
+Read 4300000
+Read 4400000
+Read 4500000
+Read 4600000
+Read 4700000
+Read 4800000
+Read 4900000
+Read 5000000
+Read 5100000
+Read 5200000
+Read 5300000
+Read 5400000
+Read 5500000
+Read 5600000
+Read 5700000
+Read 5800000
+Read 5900000
+Read 6000000
+Read 6100000
+Read 6200000
+Read 6300000
+Read 6400000
+Read 6500000
+Read 6600000
+Read 6700000
+Read 6800000
+Read 6900000
+Read 7000000
+Read 7100000
+Read 7200000
+Read 7300000
+Read 7400000
+Read 7500000
+Read 7600000
+Read 7700000
+
+Read 7767374 in total.
+Initializing with id=0, n=8388607, entry_size=128.0B, total store size=1023.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=1, n=8388607, entry_size=1.3KiB, total store size=10.6GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=2, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=3, n=4194303, entry_size=128.0B, total store size=511.9MiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=4, n=4194303, entry_size=4.9KiB, total store size=19.6GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=5, n=4194303, entry_size=240.0B, total store size=959.9MiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+Initializing with id=6, n=2097151, entry_size=128.0B, total store size=255.9MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=7, n=2097151, entry_size=9.7KiB, total store size=19.4GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=8, n=2097151, entry_size=240.0B, total store size=479.9MiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+Initializing with id=9, n=1048575, entry_size=128.0B, total store size=127.9MiB, store_type=2; num_stores=10
+Using MMap File storage backend.
+Initializing with id=10, n=1048575, entry_size=19.3KiB, total store size=19.3GiB, store_type=2; num_stores=11
+Using MMap File storage backend.
+Initializing with id=11, n=1048575, entry_size=240.0B, total store size=239.9MiB, store_type=2; num_stores=12
+Using MMap File storage backend.
+Initializing with id=12, n=524287, entry_size=128.0B, total store size=63.9MiB, store_type=2; num_stores=13
+Using MMap File storage backend.
+Initializing with id=13, n=524287, entry_size=38.5KiB, total store size=19.2GiB, store_type=2; num_stores=14
+Using MMap File storage backend.
+Initializing with id=14, n=524287, entry_size=240.0B, total store size=119.9MiB, store_type=2; num_stores=15
+Using MMap File storage backend.
+Initializing with id=15, n=262143, entry_size=128.0B, total store size=31.9MiB, store_type=2; num_stores=16
+Using MMap File storage backend.
+Initializing with id=16, n=262143, entry_size=77.0KiB, total store size=19.2GiB, store_type=2; num_stores=17
+Using MMap File storage backend.
+Initializing with id=17, n=262143, entry_size=240.0B, total store size=59.9MiB, store_type=2; num_stores=18
+Using MMap File storage backend.
+Initializing with id=18, n=131071, entry_size=128.0B, total store size=15.9MiB, store_type=2; num_stores=19
+Using MMap File storage backend.
+Initializing with id=19, n=131071, entry_size=154.0KiB, total store size=19.2GiB, store_type=2; num_stores=20
+Using MMap File storage backend.
+Initializing with id=20, n=131071, entry_size=240.0B, total store size=29.9MiB, store_type=2; num_stores=21
+Using MMap File storage backend.
+Initializing with id=21, n=65535, entry_size=128.0B, total store size=7.9MiB, store_type=2; num_stores=22
+Using MMap File storage backend.
+Initializing with id=22, n=65535, entry_size=308.0KiB, total store size=19.2GiB, store_type=2; num_stores=23
+Using MMap File storage backend.
+Initializing with id=23, n=65535, entry_size=240.0B, total store size=14.9MiB, store_type=2; num_stores=24
+Using MMap File storage backend.
+Initializing with id=24, n=32767, entry_size=128.0B, total store size=3.9MiB, store_type=2; num_stores=25
+Using MMap File storage backend.
+Initializing with id=25, n=32767, entry_size=616.0KiB, total store size=19.2GiB, store_type=2; num_stores=26
+Using MMap File storage backend.
+Initializing with id=26, n=32767, entry_size=240.0B, total store size=7.4MiB, store_type=2; num_stores=27
+Using MMap File storage backend.
+Initializing with id=27, n=16383, entry_size=128.0B, total store size=1.9MiB, store_type=2; num_stores=28
+Using MMap File storage backend.
+Initializing with id=28, n=16383, entry_size=1.2MiB, total store size=19.2GiB, store_type=2; num_stores=29
+Using MMap File storage backend.
+Initializing with id=29, n=16383, entry_size=240.0B, total store size=3.7MiB, store_type=2; num_stores=30
+Using MMap File storage backend.
+Initializing with id=30, n=8191, entry_size=128.0B, total store size=1023.8KiB, store_type=2; num_stores=31
+Using MMap File storage backend.
+Initializing with id=31, n=8191, entry_size=2.4MiB, total store size=19.2GiB, store_type=2; num_stores=32
+Using MMap File storage backend.
+Initializing with id=32, n=8191, entry_size=240.0B, total store size=1.8MiB, store_type=2; num_stores=33
+Using MMap File storage backend.
+Initializing with id=33, n=4095, entry_size=128.0B, total store size=511.8KiB, store_type=2; num_stores=34
+Using MMap File storage backend.
+Initializing with id=34, n=4095, entry_size=4.8MiB, total store size=19.2GiB, store_type=2; num_stores=35
+Using MMap File storage backend.
+Initializing with id=35, n=4095, entry_size=240.0B, total store size=959.7KiB, store_type=2; num_stores=36
+Using MMap File storage backend.
+Initializing with id=36, n=2047, entry_size=128.0B, total store size=255.8KiB, store_type=2; num_stores=37
+Using MMap File storage backend.
+Initializing with id=37, n=2047, entry_size=9.6MiB, total store size=19.2GiB, store_type=2; num_stores=38
+Using MMap File storage backend.
+Initializing with id=38, n=2047, entry_size=240.0B, total store size=479.7KiB, store_type=2; num_stores=39
+Using MMap File storage backend.
+Initializing with id=39, n=1023, entry_size=128.0B, total store size=127.8KiB, store_type=2; num_stores=40
+Using MMap File storage backend.
+Initializing with id=40, n=1023, entry_size=19.2MiB, total store size=19.2GiB, store_type=2; num_stores=41
+Using MMap File storage backend.
+Initializing with id=41, n=1023, entry_size=240.0B, total store size=239.7KiB, store_type=2; num_stores=42
+Using MMap File storage backend.
+Initializing with id=42, n=511, entry_size=128.0B, total store size=63.8KiB, store_type=2; num_stores=43
+Using MMap File storage backend.
+Initializing with id=43, n=511, entry_size=38.5MiB, total store size=19.2GiB, store_type=2; num_stores=44
+Using MMap File storage backend.
+Initializing with id=44, n=511, entry_size=240.0B, total store size=119.7KiB, store_type=2; num_stores=45
+Using MMap File storage backend.
+Initializing with id=45, n=255, entry_size=128.0B, total store size=31.8KiB, store_type=2; num_stores=46
+Using MMap File storage backend.
+Initializing with id=46, n=255, entry_size=77.0MiB, total store size=19.1GiB, store_type=2; num_stores=47
+Using MMap File storage backend.
+Initializing with id=47, n=255, entry_size=240.0B, total store size=59.7KiB, store_type=2; num_stores=48
+Using MMap File storage backend.
+Initializing with id=48, n=127, entry_size=128.0B, total store size=15.8KiB, store_type=2; num_stores=49
+Using MMap File storage backend.
+Initializing with id=49, n=127, entry_size=154.0MiB, total store size=19.0GiB, store_type=2; num_stores=50
+Using MMap File storage backend.
+Initializing with id=50, n=127, entry_size=240.0B, total store size=29.7KiB, store_type=2; num_stores=51
+Using MMap File storage backend.
+Initializing with id=51, n=63, entry_size=128.0B, total store size=7.8KiB, store_type=2; num_stores=52
+Using MMap File storage backend.
+Initializing with id=52, n=63, entry_size=308.0MiB, total store size=18.9GiB, store_type=2; num_stores=53
+Using MMap File storage backend.
+Initializing with id=53, n=63, entry_size=240.0B, total store size=14.7KiB, store_type=2; num_stores=54
+Using MMap File storage backend.
+Initializing with id=54, n=1, entry_size=2.4GiB, total store size=2.4GiB, store_type=2; num_stores=55
+Using MMap File storage backend.
+Initializing with id=55, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=56
+Using MMap File storage backend.
+Initializing with id=56, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=57
+Using MMap File storage backend.
+Inserted 10269
+Inserted 22113
+Inserted 22943
+Inserted 24210
+Inserted 24989
+Inserted 26052
+Inserted 26494
+Inserted 27703
+Inserted 30032
+Inserted 30932
+Inserted 31047
+Inserted 32147
+Inserted 36933
+Inserted 37074
+Inserted 38042
+Inserted 54302
+Inserted 226725
+Inserted 227598
+Inserted 1103659
+Inserted 1105939
+Inserted 1115358
+Inserted 1123786
+Inserted 1125144
+Inserted 1126371
+Inserted 1157489
+Inserted 1157491
+Inserted 1199929
+Inserted 1199954
+Inserted 1208421
+Inserted 1208453
+Inserted 1208535
+Inserted 1209234
+Inserted 1210001
+Inserted 1210459
+Inserted 1213793
+Inserted 1214193
+Inserted 1253057
+Inserted 1253060
+Inserted 1253063
+Inserted 1253108
+Inserted 1253144
+Inserted 1253614
+Inserted 1278637
+Inserted 1278645
+Inserted 1278700
+Inserted 1280052
+Inserted 1336159
+Inserted 1336163
+Inserted 1336171
+Inserted 1336177
+Inserted 1337401
+Inserted 1337403
+Inserted 1352897
+Inserted 1352898
+Inserted 1358020
+Inserted 1358038
+Inserted 1358041
+Inserted 1359166
+Inserted 1359364
+Inserted 1359432
+Inserted 1365220
+Inserted 1366621
+Inserted 1426691
+Inserted 1440594
+Inserted 1463912
+Inserted 1463914
+Inserted 1464475
+Inserted 1464484
+Inserted 1464493
+Inserted 1489542
+Inserted 1497384
+Inserted 1507661
+Inserted 1508131
+Inserted 1547527
+Inserted 1547536
+Inserted 1554149
+Inserted 1554150
+Inserted 1554336
+Inserted 1584823
+Inserted 1596700
+Inserted 1600117
+Inserted 1601079
+Inserted 1699423
+Inserted 1699443
+Inserted 1722144
+Inserted 1757735
+Inserted 1757742
+Inserted 1757744
+Inserted 1757745
+Inserted 1757747
+Inserted 1758159
+Inserted 1765054
+Inserted 1765062
+Inserted 1766011
+Inserted 1767231
+Inserted 1767667
+Inserted 1767668
+Inserted 1767740
+Inserted 1767807
+Inserted 1767818
+Inserted 1854101
+Inserted 1854166
+Inserted 1854168
+Inserted 1855416
+Inserted 1870172
+Inserted 1968701
+Inserted 1968799
+Inserted 1968964
+Inserted 1970049
+Inserted 1970052
+Inserted 1970064
+Inserted 1973852
+Inserted 1996052
+Inserted 1996077
+Inserted 1999753
+Inserted 2029502
+Inserted 2030142
+Inserted 2031352
+Inserted 2031353
+Inserted 2031370
+Inserted 2031371
+Inserted 2031375
+Inserted 2031573
+Inserted 2032754
+Inserted 2032756
+Inserted 2039456
+Inserted 2039468
+Inserted 2039469
+Inserted 2039471
+Inserted 2039472
+Inserted 2040387
+Inserted 2047818
+Inserted 2047825
+Inserted 2047997
+Inserted 2050729
+Inserted 2050972
+Inserted 2053206
+Inserted 2053212
+Inserted 2067870
+Inserted 2067889
+Inserted 2337919
+Inserted 2350735
+Inserted 2354094
+Inserted 2360026
+Inserted 2360370
+Inserted 2418930
+Inserted 2419164
+Inserted 2442156
+Inserted 2645150
+Inserted 2645848
+Inserted 2645849
+Inserted 2648279
+Inserted 2666850
+Inserted 2667835
+Inserted 2667836
+Inserted 2668217
+Inserted 2668219
+Inserted 2668221
+Inserted 2668223
+Inserted 2668238
+Inserted 3971867
+Inserted 3980111
+Inserted 3990381
+Inserted 3999232
+Inserted 4123444
+Inserted 4258987
+Inserted 4334139
+Inserted 4461067
+Inserted 4461163
+Inserted 4461167
+Inserted 4461172
+Inserted 4461174
+Inserted 4461563
+Inserted 4462194
+Inserted 4462877
+Inserted 4466702
+Inserted 4469545
+Inserted 4469561
+Inserted 4483747
+Inserted 4488039
+Inserted 4634426
+Inserted 4664679
+Inserted 4664682
+Inserted 5392781
+Inserted 5539470
+Inserted 5539805
+Inserted 5545095
+Inserted 5545117
+Inserted 7567006
+Inserted 7567042
+Inserted 7568466
+Inserted 7590932
+Inserted 7590938
+Inserted 7598648
+Inserted 7598652
+Inserted 7598661
+Inserted 7598662
+Inserted 7598791
+Inserted 7600786
+Inserted 7625472
+Inserted 7626038
+Inserted 7626051
+Inserted 7626061
+Inserted 7626378
+Inserted 7626709
+Inserted 7627176
+Inserted 7627506
+Inserted 7751259
+Inserted 7756875
+Inserted 7756885
+Inserted 7756895
+Inserted 7756922
+Inserted 7767074
+Inserted 7767081
+Inserted 7767371
+Inserted 7767374
+Searched 10269
+Searched 22113
+Searched 22943
+Searched 24210
+Searched 24989
+Searched 26052
+Searched 26494
+Searched 27703
+Searched 30032
+Searched 30932
+Searched 31047
+Searched 32147
+Searched 36933
+Searched 37074
+Searched 38042
+Searched 54302
+Searched 226725
+Searched 227598
+Searched 1103659
+Searched 1105939
+Searched 1115358
+Searched 1123786
+Searched 1125144
+Searched 1126371
+Searched 1157489
+Searched 1157491
+Searched 1199929
+Searched 1199954
+Searched 1208421
+Searched 1208453
+Searched 1208535
+Searched 1209234
+Searched 1210001
+Searched 1210459
+Searched 1213793
+Searched 1214193
+Searched 1253057
+Searched 1253060
+Searched 1253063
+Searched 1253108
+Searched 1253144
+Searched 1253614
+Searched 1278637
+Searched 1278645
+Searched 1278700
+Searched 1280052
+Searched 1336159
+Searched 1336163
+Searched 1336171
+Searched 1336177
+Searched 1337401
+Searched 1337403
+Searched 1352897
+Searched 1352898
+Searched 1358020
+Searched 1358038
+Searched 1358041
+Searched 1359166
+Searched 1359364
+Searched 1359432
+Searched 1365220
+Searched 1366621
+Searched 1426691
+Searched 1440594
+Searched 1463912
+Searched 1463914
+Searched 1464475
+Searched 1464484
+Searched 1464493
+Searched 1489542
+Searched 1497384
+Searched 1507661
+Searched 1508131
+Searched 1547527
+Searched 1547536
+Searched 1554149
+Searched 1554150
+Searched 1554336
+Searched 1584823
+Searched 1596700
+Searched 1600117
+Searched 1601079
+Searched 1699423
+Searched 1699443
+Searched 1722144
+Searched 1757735
+Searched 1757742
+Searched 1757744
+Searched 1757745
+Searched 1757747
+Searched 1758159
+Searched 1765054
+Searched 1765062
+Searched 1766011
+Searched 1767231
+Searched 1767667
+Searched 1767668
+Searched 1767740
+Searched 1767807
+Searched 1767818
+Searched 1854101
+Searched 1854166
+Searched 1854168
+Searched 1855416
+Searched 1870172
+Searched 1968701
+Searched 1968799
+Searched 1968964
+Searched 1970049
+Searched 1970052
+Searched 1970064
+Searched 1973852
+Searched 1996052
+Searched 1996077
+Searched 1999753
+Searched 2029502
+Searched 2030142
+Searched 2031352
+Searched 2031353
+Searched 2031370
+Searched 2031371
+Searched 2031375
+Searched 2031573
+Searched 2032754
+Searched 2032756
+Searched 2039456
+Searched 2039468
+Searched 2039469
+Searched 2039471
+Searched 2039472
+Searched 2040387
+Searched 2047818
+Searched 2047825
+Searched 2047997
+Searched 2050729
+Searched 2050972
+Searched 2053206
+Searched 2053212
+Searched 2067870
+Searched 2067889
+Searched 2337919
+Searched 2350735
+Searched 2354094
+Searched 2360026
+Searched 2360370
+Searched 2418930
+Searched 2419164
+Searched 2442156
+Searched 2645150
+Searched 2645848
+Searched 2645849
+Searched 2648279
+Searched 2666850
+Searched 2667835
+Searched 2667836
+Searched 2668217
+Searched 2668219
+Searched 2668221
+Searched 2668223
+Searched 2668238
+Searched 3971867
+Searched 3980111
+Searched 3990381
+Searched 3999232
+Searched 4123444
+Searched 4258987
+Searched 4334139
+Searched 4461067
+Searched 4461163
+Searched 4461167
+Searched 4461172
+Searched 4461174
+Searched 4461563
+Searched 4462194
+Searched 4462877
+Searched 4466702
+Searched 4469545
+Searched 4469561
+Searched 4483747
+Searched 4488039
+Searched 4634426
+Searched 4664679
+Searched 4664682
+Searched 5392781
+Searched 5539470
+Searched 5539805
+Searched 5545095
+Searched 5545117
+Searched 7567006
+Searched 7567042
+Searched 7568466
+Searched 7590932
+Searched 7590938
+Searched 7598648
+Searched 7598652
+Searched 7598661
+Searched 7598662
+Searched 7598791
+Searched 7600786
+Searched 7625472
+Searched 7626038
+Searched 7626051
+Searched 7626061
+Searched 7626378
+Searched 7626709
+Searched 7627176
+Searched 7627506
+Searched 7751259
+Searched 7756875
+Searched 7756885
+Searched 7756895
+Searched 7756922
+Searched 7767074
+Searched 7767081
+Searched 7767371
+Searched 7767374
+Store with id=56 destroyed; Remaining stores: 56
+Store with id=55 destroyed; Remaining stores: 55
+Store with id=54 destroyed; Remaining stores: 54
+Store with id=1 destroyed; Remaining stores: 53
+Store with id=4 destroyed; Remaining stores: 52
+Store with id=7 destroyed; Remaining stores: 51
+Store with id=10 destroyed; Remaining stores: 50
+Store with id=13 destroyed; Remaining stores: 49
+Store with id=16 destroyed; Remaining stores: 48
+Store with id=19 destroyed; Remaining stores: 47
+Store with id=22 destroyed; Remaining stores: 46
+Store with id=25 destroyed; Remaining stores: 45
+Store with id=28 destroyed; Remaining stores: 44
+Store with id=31 destroyed; Remaining stores: 43
+Store with id=34 destroyed; Remaining stores: 42
+Store with id=37 destroyed; Remaining stores: 41
+Store with id=40 destroyed; Remaining stores: 40
+Store with id=43 destroyed; Remaining stores: 39
+Store with id=46 destroyed; Remaining stores: 38
+Store with id=49 destroyed; Remaining stores: 37
+Store with id=52 destroyed; Remaining stores: 36
+Store with id=0 destroyed; Remaining stores: 35
+Store with id=3 destroyed; Remaining stores: 34
+Store with id=6 destroyed; Remaining stores: 33
+Store with id=9 destroyed; Remaining stores: 32
+Store with id=12 destroyed; Remaining stores: 31
+Store with id=15 destroyed; Remaining stores: 30
+Store with id=18 destroyed; Remaining stores: 29
+Store with id=21 destroyed; Remaining stores: 28
+Store with id=24 destroyed; Remaining stores: 27
+Store with id=27 destroyed; Remaining stores: 26
+Store with id=30 destroyed; Remaining stores: 25
+Store with id=33 destroyed; Remaining stores: 24
+Store with id=36 destroyed; Remaining stores: 23
+Store with id=39 destroyed; Remaining stores: 22
+Store with id=42 destroyed; Remaining stores: 21
+Store with id=45 destroyed; Remaining stores: 20
+Store with id=48 destroyed; Remaining stores: 19
+Store with id=51 destroyed; Remaining stores: 18
+took=7998.51, config=num_runs_: 1 capacity_: 8388608 num_levels_: 22 locality_factor_: 32 base_block_size_: 300 store_path_: /home/ubuntu/data/tests/ssd/ min_val_len_: 0 max_val_len_: 0 is_data_mem_: 0 is_aux_mem_: 0 is_ssd_: 1 is_cached_: 1 data_file_: ./kv.csv
+Store with id=2 destroyed; Remaining stores: 17
+Store with id=5 destroyed; Remaining stores: 16
+Store with id=8 destroyed; Remaining stores: 15
+Store with id=11 destroyed; Remaining stores: 14
+Store with id=14 destroyed; Remaining stores: 13
+Store with id=17 destroyed; Remaining stores: 12
+Store with id=20 destroyed; Remaining stores: 11
+Store with id=23 destroyed; Remaining stores: 10
+Store with id=26 destroyed; Remaining stores: 9
+Store with id=29 destroyed; Remaining stores: 8
+Store with id=32 destroyed; Remaining stores: 7
+Store with id=35 destroyed; Remaining stores: 6
+Store with id=38 destroyed; Remaining stores: 5
+Store with id=41 destroyed; Remaining stores: 4
+Store with id=44 destroyed; Remaining stores: 3
+Store with id=47 destroyed; Remaining stores: 2
+Store with id=50 destroyed; Remaining stores: 1
+Store with id=53 destroyed; Remaining stores: 0
++ for n in ${ss[@]}
++ rm -rf /home/ubuntu/data/tests/ssd/
++ mkdir -p /home/ubuntu/data/tests/ssd/
++ ../cmake-build-relwithdebinfo/src/bench/crimes_omap --print_csv_headers -r 1 -N 4 -p /home/ubuntu/data/tests/ssd/ -d -a
+Initializing with id=0, n=15, entry_size=1.3KiB, total store size=20.8KiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Store with id=0 destroyed; Remaining stores: 0
+took=0.248914, config=num_runs_: 1 capacity_: 16 num_levels_: 5 locality_factor_: 1 base_block_size_: 300 store_path_: /home/ubuntu/data/tests/ssd/ min_val_len_: 0 max_val_len_: 0 is_data_mem_: 0 is_aux_mem_: 0 is_ssd_: 1 is_cached_: 1 data_file_: 
++ for n in ${ss[@]}
++ rm -rf /home/ubuntu/data/tests/ssd/
++ mkdir -p /home/ubuntu/data/tests/ssd/
++ ../cmake-build-relwithdebinfo/src/bench/crimes_omap --print_csv_headers -r 1 -N 22 -p /home/ubuntu/data/tests/ssd/ -d -a
+Initializing with id=0, n=4194303, entry_size=1.3KiB, total store size=5.5GiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+took=8.75405, config=num_runs_: 1 capacity_: 4194304 num_levels_: 23 locality_factor_: 1 base_block_size_: 300 store_path_: /home/ubuntu/data/tests/ssd/ min_val_len_: 0 max_val_len_: 0 is_data_mem_: 0 is_aux_mem_: 0 is_ssd_: 1 is_cached_: 1 data_file_: 
+Store with id=0 destroyed; Remaining stores: 0
++ rm -rf /home/ubuntu/data/tests/ssd/

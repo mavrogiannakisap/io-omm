@@ -1,0 +1,40 @@
++ . ./env.sh
+++ export ofs_bench_ex=../cmake-build-relwithdebinfo/src/bench/ofs
+++ ofs_bench_ex=../cmake-build-relwithdebinfo/src/bench/ofs
+++ export append_ofs_bench_ex=../cmake-build-relwithdebinfo/src/bench/append-ofs
+++ append_ofs_bench_ex=../cmake-build-relwithdebinfo/src/bench/append-ofs
+++ export osm_bench_ex=../cmake-build-relwithdebinfo/src/bench/osm
+++ osm_bench_ex=../cmake-build-relwithdebinfo/src/bench/osm
+++ export omap_bench_ex=../cmake-build-relwithdebinfo/src/bench/omap
+++ omap_bench_ex=../cmake-build-relwithdebinfo/src/bench/omap
+++ export hdd_base_path=/mnt/hdd1/tests/cache
+++ hdd_base_path=/mnt/hdd1/tests/cache
+++ export ssd_base_path=/Users/apostolosmavrogiannakis/ssdmount/scratch/datadir/ssd/cache
+++ ssd_base_path=/Users/apostolosmavrogiannakis/ssdmount/scratch/datadir/ssd/cache
+++ export num_runs=1
+++ num_runs=1
+++ export n=18
+++ n=18
+++ vs=(4)
+++ export vs
+++ export v=4
+++ v=4
+++ lvls=(8 9 10)
+++ export lvls
++++ seq 23 2 24
+++ append_ns=23
+++ export append_ns
+++ export append_s=1
+++ append_s=1
+++ export append_lf=1
+++ append_lf=1
++ for v in '${vs[@]}'
++ out=ram-v4-n18-osm32-res.csv
++ test -s ram-v4-n18-osm32-res.csv
++ ../cmake-build-relwithdebinfo/src/bench/osm --print_csv_headers -r 1 -v 4 -N 18
+Starting run  of 
+Constructing OSM
+Initializing with id=0, n=262143, entry_size=272.0B, total store size=67.9MiB, store_type=2, first_build=0, name=oram-n262144-v52; num_stores=1
+Using RAM storage backend.
+Initializing with id=1, n=1, entry_size=8.8KiB, total store size=8.8KiB, store_type=2, first_build=0, name=oram-n262144-v52-stash; num_stores=2
+Using RAM storage backend.

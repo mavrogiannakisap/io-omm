@@ -1,0 +1,540 @@
++ ./hdd.sh 3 32
++ ex=../cmake-build-relwithdebinfo/src/bench/crimes_ofs
++ num_runs=1
++ bbs=4
++ n=23
++ s=3
++ lf=32
++ hdd_base_path=/data/ubuntu/tests/hdd/
++ rm -rf /data/ubuntu/tests/hdd/
++ mkdir -p /data/ubuntu/tests/hdd/
++ ../cmake-build-relwithdebinfo/src/bench/crimes_ofs --print_csv_headers -r 1 -v 4 -N 23 -s 3 -L 32 -p /data/ubuntu/tests/hdd/ -a -d
+Creating OFileStore with lf=32, s=
+Initializing with id=0, n=65535, entry_size=128.0B, total store size=7.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=1, n=65535, entry_size=12.0KiB, total store size=773.9MiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=2, n=65535, entry_size=240.0B, total store size=14.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=3, n=255, entry_size=128.0B, total store size=31.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=4, n=255, entry_size=3.0MiB, total store size=765.0MiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=5, n=255, entry_size=240.0B, total store size=59.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+OFS: levels: 7 15 [23] ; first naive level: 23
+Initializing with id=6, n=1, entry_size=160.0MiB, total store size=160.0MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=7, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=8, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFileStore created with lf=32, s=, levels=[7 15 23 ]
+Setup done, took 0.88114
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+took=39.298, config=num_runs_: 1 capacity_: 8388608 num_levels_: 3 locality_factor_: 32 base_block_size_: 4 store_path_: /data/ubuntu/tests/hdd/ min_val_len_: 0 max_val_len_: 0 is_data_mem_: 0 is_aux_mem_: 0 is_ssd_: 0 is_cached_: 1 data_file_: 
+Store with id=8 destroyed; Remaining stores: 8
+Store with id=7 destroyed; Remaining stores: 7
+Store with id=6 destroyed; Remaining stores: 6
+Store with id=1 destroyed; Remaining stores: 5
+Store with id=4 destroyed; Remaining stores: 4
+Store with id=0 destroyed; Remaining stores: 3
+Store with id=3 destroyed; Remaining stores: 2
+Store with id=2 destroyed; Remaining stores: 1
+Store with id=5 destroyed; Remaining stores: 0
++ rm -rf /data/ubuntu/tests/hdd/
++ ./hdd.sh 3 64
++ ex=../cmake-build-relwithdebinfo/src/bench/crimes_ofs
++ num_runs=1
++ bbs=4
++ n=23
++ s=3
++ lf=64
++ hdd_base_path=/data/ubuntu/tests/hdd/
++ rm -rf /data/ubuntu/tests/hdd/
++ mkdir -p /data/ubuntu/tests/hdd/
++ ../cmake-build-relwithdebinfo/src/bench/crimes_ofs --print_csv_headers -r 1 -v 4 -N 23 -s 3 -L 64 -p /data/ubuntu/tests/hdd/ -a -d
+Creating OFileStore with lf=64, s=
+Initializing with id=0, n=65535, entry_size=128.0B, total store size=7.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=1, n=65535, entry_size=12.0KiB, total store size=773.9MiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=2, n=65535, entry_size=240.0B, total store size=14.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=3, n=255, entry_size=128.0B, total store size=31.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=4, n=255, entry_size=3.0MiB, total store size=765.0MiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=5, n=255, entry_size=240.0B, total store size=59.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+OFS: levels: 7 15 [23] ; first naive level: 23
+Initializing with id=6, n=1, entry_size=160.0MiB, total store size=160.0MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=7, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=8, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFileStore created with lf=64, s=, levels=[7 15 23 ]
+Setup done, took 0.945948
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+took=61.0554, config=num_runs_: 1 capacity_: 8388608 num_levels_: 3 locality_factor_: 64 base_block_size_: 4 store_path_: /data/ubuntu/tests/hdd/ min_val_len_: 0 max_val_len_: 0 is_data_mem_: 0 is_aux_mem_: 0 is_ssd_: 0 is_cached_: 1 data_file_: 
+Store with id=8 destroyed; Remaining stores: 8
+Store with id=7 destroyed; Remaining stores: 7
+Store with id=6 destroyed; Remaining stores: 6
+Store with id=1 destroyed; Remaining stores: 5
+Store with id=4 destroyed; Remaining stores: 4
+Store with id=0 destroyed; Remaining stores: 3
+Store with id=3 destroyed; Remaining stores: 2
+Store with id=2 destroyed; Remaining stores: 1
+Store with id=5 destroyed; Remaining stores: 0
++ rm -rf /data/ubuntu/tests/hdd/
++ ./hdd.sh 3 128
++ ex=../cmake-build-relwithdebinfo/src/bench/crimes_ofs
++ num_runs=1
++ bbs=4
++ n=23
++ s=3
++ lf=128
++ hdd_base_path=/data/ubuntu/tests/hdd/
++ rm -rf /data/ubuntu/tests/hdd/
++ mkdir -p /data/ubuntu/tests/hdd/
++ ../cmake-build-relwithdebinfo/src/bench/crimes_ofs --print_csv_headers -r 1 -v 4 -N 23 -s 3 -L 128 -p /data/ubuntu/tests/hdd/ -a -d
+Creating OFileStore with lf=128, s=
+Initializing with id=0, n=65535, entry_size=128.0B, total store size=7.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=1, n=65535, entry_size=12.0KiB, total store size=773.9MiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=2, n=65535, entry_size=240.0B, total store size=14.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=3, n=255, entry_size=128.0B, total store size=31.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=4, n=255, entry_size=3.0MiB, total store size=765.0MiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=5, n=255, entry_size=240.0B, total store size=59.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+OFS: levels: 7 15 [23] ; first naive level: 23
+Initializing with id=6, n=1, entry_size=160.0MiB, total store size=160.0MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=7, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=8, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFileStore created with lf=128, s=, levels=[7 15 23 ]
+Setup done, took 0.808912
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+took=105.009, config=num_runs_: 1 capacity_: 8388608 num_levels_: 3 locality_factor_: 128 base_block_size_: 4 store_path_: /data/ubuntu/tests/hdd/ min_val_len_: 0 max_val_len_: 0 is_data_mem_: 0 is_aux_mem_: 0 is_ssd_: 0 is_cached_: 1 data_file_: 
+Store with id=8 destroyed; Remaining stores: 8
+Store with id=7 destroyed; Remaining stores: 7
+Store with id=6 destroyed; Remaining stores: 6
+Store with id=1 destroyed; Remaining stores: 5
+Store with id=4 destroyed; Remaining stores: 4
+Store with id=0 destroyed; Remaining stores: 3
+Store with id=3 destroyed; Remaining stores: 2
+Store with id=2 destroyed; Remaining stores: 1
+Store with id=5 destroyed; Remaining stores: 0
++ rm -rf /data/ubuntu/tests/hdd/
++ ./hdd.sh 4 1
++ ex=../cmake-build-relwithdebinfo/src/bench/crimes_ofs
++ num_runs=1
++ bbs=4
++ n=23
++ s=4
++ lf=1
++ hdd_base_path=/data/ubuntu/tests/hdd/
++ rm -rf /data/ubuntu/tests/hdd/
++ mkdir -p /data/ubuntu/tests/hdd/
++ ../cmake-build-relwithdebinfo/src/bench/crimes_ofs --print_csv_headers -r 1 -v 4 -N 23 -s 4 -L 1 -p /data/ubuntu/tests/hdd/ -a -d
+Creating OFileStore with lf=1, s=
+Initializing with id=0, n=262143, entry_size=128.0B, total store size=31.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=1, n=262143, entry_size=3.0KiB, total store size=791.9MiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=2, n=262143, entry_size=240.0B, total store size=59.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=3, n=4095, entry_size=128.0B, total store size=511.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=4, n=4095, entry_size=192.0KiB, total store size=768.1MiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=5, n=4095, entry_size=240.0B, total store size=959.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+OFS: levels: 5 11 [17] 23 ; first naive level: 17
+Initializing with id=6, n=1, entry_size=160.0MiB, total store size=160.0MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=7, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=8, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFileStore created with lf=1, s=, levels=[5 11 17 23 ]
+Setup done, took 3.09971
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+took=24.0261, config=num_runs_: 1 capacity_: 8388608 num_levels_: 4 locality_factor_: 1 base_block_size_: 4 store_path_: /data/ubuntu/tests/hdd/ min_val_len_: 0 max_val_len_: 0 is_data_mem_: 0 is_aux_mem_: 0 is_ssd_: 0 is_cached_: 1 data_file_: 
+Store with id=8 destroyed; Remaining stores: 8
+Store with id=7 destroyed; Remaining stores: 7
+Store with id=6 destroyed; Remaining stores: 6
+Store with id=1 destroyed; Remaining stores: 5
+Store with id=4 destroyed; Remaining stores: 4
+Store with id=0 destroyed; Remaining stores: 3
+Store with id=3 destroyed; Remaining stores: 2
+Store with id=2 destroyed; Remaining stores: 1
+Store with id=5 destroyed; Remaining stores: 0
++ rm -rf /data/ubuntu/tests/hdd/
++ ./hdd.sh 4 2
++ ex=../cmake-build-relwithdebinfo/src/bench/crimes_ofs
++ num_runs=1
++ bbs=4
++ n=23
++ s=4
++ lf=2
++ hdd_base_path=/data/ubuntu/tests/hdd/
++ rm -rf /data/ubuntu/tests/hdd/
++ mkdir -p /data/ubuntu/tests/hdd/
++ ../cmake-build-relwithdebinfo/src/bench/crimes_ofs --print_csv_headers -r 1 -v 4 -N 23 -s 4 -L 2 -p /data/ubuntu/tests/hdd/ -a -d
+Creating OFileStore with lf=2, s=
+Initializing with id=0, n=262143, entry_size=128.0B, total store size=31.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=1, n=262143, entry_size=3.0KiB, total store size=791.9MiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=2, n=262143, entry_size=240.0B, total store size=59.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=3, n=4095, entry_size=128.0B, total store size=511.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=4, n=4095, entry_size=192.0KiB, total store size=768.1MiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=5, n=4095, entry_size=240.0B, total store size=959.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+OFS: levels: 5 11 [17] 23 ; first naive level: 17
+Initializing with id=6, n=1, entry_size=160.0MiB, total store size=160.0MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=7, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=8, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFileStore created with lf=2, s=, levels=[5 11 17 23 ]
+Setup done, took 3.21177
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+took=23.975, config=num_runs_: 1 capacity_: 8388608 num_levels_: 4 locality_factor_: 2 base_block_size_: 4 store_path_: /data/ubuntu/tests/hdd/ min_val_len_: 0 max_val_len_: 0 is_data_mem_: 0 is_aux_mem_: 0 is_ssd_: 0 is_cached_: 1 data_file_: 
+Store with id=8 destroyed; Remaining stores: 8
+Store with id=7 destroyed; Remaining stores: 7
+Store with id=6 destroyed; Remaining stores: 6
+Store with id=1 destroyed; Remaining stores: 5
+Store with id=4 destroyed; Remaining stores: 4
+Store with id=0 destroyed; Remaining stores: 3
+Store with id=3 destroyed; Remaining stores: 2
+Store with id=2 destroyed; Remaining stores: 1
+Store with id=5 destroyed; Remaining stores: 0
++ rm -rf /data/ubuntu/tests/hdd/
++ ./hdd.sh 4 4
++ ex=../cmake-build-relwithdebinfo/src/bench/crimes_ofs
++ num_runs=1
++ bbs=4
++ n=23
++ s=4
++ lf=4
++ hdd_base_path=/data/ubuntu/tests/hdd/
++ rm -rf /data/ubuntu/tests/hdd/
++ mkdir -p /data/ubuntu/tests/hdd/
++ ../cmake-build-relwithdebinfo/src/bench/crimes_ofs --print_csv_headers -r 1 -v 4 -N 23 -s 4 -L 4 -p /data/ubuntu/tests/hdd/ -a -d
+Creating OFileStore with lf=4, s=
+Initializing with id=0, n=262143, entry_size=128.0B, total store size=31.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=1, n=262143, entry_size=3.0KiB, total store size=791.9MiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=2, n=262143, entry_size=240.0B, total store size=59.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=3, n=4095, entry_size=128.0B, total store size=511.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=4, n=4095, entry_size=192.0KiB, total store size=768.1MiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=5, n=4095, entry_size=240.0B, total store size=959.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+OFS: levels: 5 11 [17] 23 ; first naive level: 17
+Initializing with id=6, n=1, entry_size=160.0MiB, total store size=160.0MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=7, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=8, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFileStore created with lf=4, s=, levels=[5 11 17 23 ]
+Setup done, took 3.08395
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+took=24.3363, config=num_runs_: 1 capacity_: 8388608 num_levels_: 4 locality_factor_: 4 base_block_size_: 4 store_path_: /data/ubuntu/tests/hdd/ min_val_len_: 0 max_val_len_: 0 is_data_mem_: 0 is_aux_mem_: 0 is_ssd_: 0 is_cached_: 1 data_file_: 
+Store with id=8 destroyed; Remaining stores: 8
+Store with id=7 destroyed; Remaining stores: 7
+Store with id=6 destroyed; Remaining stores: 6
+Store with id=1 destroyed; Remaining stores: 5
+Store with id=4 destroyed; Remaining stores: 4
+Store with id=0 destroyed; Remaining stores: 3
+Store with id=3 destroyed; Remaining stores: 2
+Store with id=2 destroyed; Remaining stores: 1
+Store with id=5 destroyed; Remaining stores: 0
++ rm -rf /data/ubuntu/tests/hdd/

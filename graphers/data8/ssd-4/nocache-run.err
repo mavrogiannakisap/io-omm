@@ -1,0 +1,3153 @@
++ ./nocache-ssd.sh 3 32
++ ex=../cmake-build-relwithdebinfo/src/bench/crimes_ofs
++ num_runs=5
++ bbs=64
++ n=23
++ s=3
++ lf=32
++ ssd_base_path=/home/ubuntu/data/tests/ssd/nocache
++ rm -rf /home/ubuntu/data/tests/ssd/nocache
++ mkdir -p /home/ubuntu/data/tests/ssd/nocache
++ ../cmake-build-relwithdebinfo/src/bench/crimes_ofs --print_csv_headers -r 5 -v 64 -N 23 -s 3 -L 32 -p /home/ubuntu/data/tests/ssd/nocache -a -d
+Creating OFileStore with lf=32, s=3
+Initializing with id=0, n=65535, entry_size=128.0B, total store size=7.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=1, n=65535, entry_size=72.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=2, n=65535, entry_size=240.0B, total store size=14.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=3, n=255, entry_size=128.0B, total store size=31.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=4, n=255, entry_size=18.0MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=5, n=255, entry_size=240.0B, total store size=59.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+OFS: levels: 7 15 [23] ; first naive level: 23
+Initializing with id=6, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=7, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=8, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFileStore created with lf=32, s=3, levels=[7 15 23 ]
+Setup done, took 5.37984
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 8
+Store with id=8 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 7
+Store with id=7 destroyed; Remaining stores: 7
+Store destroy invoked.
+Store id to destroy: 6
+Store with id=6 destroyed; Remaining stores: 6
+Store destroy invoked.
+Store id to destroy: 1
+Store with id=1 destroyed; Remaining stores: 5
+Store destroy invoked.
+Store id to destroy: 4
+Store destroy invoked.
+Store id to destroy: 0
+Store with id=4 destroyed; Remaining stores: 4
+Store with id=0 destroyed; Remaining stores: 3
+Store destroy invoked.
+Store id to destroy: 3
+Store with id=3 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 2
+Store with id=2 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 5
+Store with id=5 destroyed; Remaining stores: 0
+Creating OFileStore with lf=32, s=3
+Initializing with id=9, n=65535, entry_size=128.0B, total store size=7.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=10, n=65535, entry_size=72.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=11, n=65535, entry_size=240.0B, total store size=14.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=12, n=255, entry_size=128.0B, total store size=31.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=13, n=255, entry_size=18.0MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=14, n=255, entry_size=240.0B, total store size=59.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+OFS: levels: 7 15 [23] ; first naive level: 23
+Initializing with id=15, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=16, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=17, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFileStore created with lf=32, s=3, levels=[7 15 23 ]
+Setup done, took 5.4512
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 17
+Store with id=17 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 16
+Store with id=16 destroyed; Remaining stores: 7
+Store destroy invoked.
+Store id to destroy: 15
+Store with id=15 destroyed; Remaining stores: 6
+Store destroy invoked.
+Store id to destroy: 10
+Store with id=10 destroyed; Remaining stores: 5
+Store destroy invoked.
+Store id to destroy: 13
+Store destroy invoked.
+Store id to destroy: 9
+Store with id=13 destroyed; Remaining stores: 4
+Store with id=9 destroyed; Remaining stores: 3
+Store destroy invoked.
+Store id to destroy: 12
+Store with id=12 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 11
+Store with id=11 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 14
+Store with id=14 destroyed; Remaining stores: 0
+Creating OFileStore with lf=32, s=3
+Initializing with id=18, n=65535, entry_size=128.0B, total store size=7.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=19, n=65535, entry_size=72.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=20, n=65535, entry_size=240.0B, total store size=14.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=21, n=255, entry_size=128.0B, total store size=31.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=22, n=255, entry_size=18.0MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=23, n=255, entry_size=240.0B, total store size=59.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+OFS: levels: 7 15 [23] ; first naive level: 23
+Initializing with id=24, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=25, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=26, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFileStore created with lf=32, s=3, levels=[7 15 23 ]
+Setup done, took 4.82296
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 26
+Store with id=26 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 25
+Store with id=25 destroyed; Remaining stores: 7
+Store destroy invoked.
+Store id to destroy: 24
+Store with id=24 destroyed; Remaining stores: 6
+Store destroy invoked.
+Store id to destroy: 19
+Store with id=19 destroyed; Remaining stores: 5
+Store destroy invoked.
+Store id to destroy: 22
+Store with id=22 destroyed; Remaining stores: 4
+Store destroy invoked.
+Store id to destroy: 18
+Store with id=18 destroyed; Remaining stores: 3
+Store destroy invoked.
+Store id to destroy: 21
+Store with id=21 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 20
+Store with id=20 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 23
+Store with id=23 destroyed; Remaining stores: 0
+Creating OFileStore with lf=32, s=3
+Initializing with id=27, n=65535, entry_size=128.0B, total store size=7.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=28, n=65535, entry_size=72.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=29, n=65535, entry_size=240.0B, total store size=14.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=30, n=255, entry_size=128.0B, total store size=31.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=31, n=255, entry_size=18.0MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=32, n=255, entry_size=240.0B, total store size=59.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+OFS: levels: 7 15 [23] ; first naive level: 23
+Initializing with id=33, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=34, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=35, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFileStore created with lf=32, s=3, levels=[7 15 23 ]
+Setup done, took 5.26447
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 35
+Store destroy invoked.
+Store id to destroy: 34
+Store with id=35 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 33
+Store destroy invoked.
+Store id to destroy: 28
+Store with id=34 destroyed; Remaining stores: 7
+Store with id=33 destroyed; Remaining stores: 6
+Store with id=28 destroyed; Remaining stores: 5
+Store destroy invoked.
+Store id to destroy: 31
+Store with id=31 destroyed; Remaining stores: 4
+Store destroy invoked.
+Store id to destroy: 27
+Store with id=27 destroyed; Remaining stores: 3
+Store destroy invoked.
+Store id to destroy: 30
+Store with id=30 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 29
+Store with id=29 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 32
+Store with id=32 destroyed; Remaining stores: 0
+Creating OFileStore with lf=32, s=3
+Initializing with id=36, n=65535, entry_size=128.0B, total store size=7.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=37, n=65535, entry_size=72.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=38, n=65535, entry_size=240.0B, total store size=14.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=39, n=255, entry_size=128.0B, total store size=31.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=40, n=255, entry_size=18.0MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=41, n=255, entry_size=240.0B, total store size=59.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+OFS: levels: 7 15 [23] ; first naive level: 23
+Initializing with id=42, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=43, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=44, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFileStore created with lf=32, s=3, levels=[7 15 23 ]
+Setup done, took 4.96645
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 44
+Store with id=44 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 43
+Store with id=43 destroyed; Remaining stores: 7
+Store destroy invoked.
+Store id to destroy: 42
+Store with id=42 destroyed; Remaining stores: 6
+Store destroy invoked.
+Store id to destroy: 37
+Store with id=37 destroyed; Remaining stores: 5
+Store destroy invoked.
+Store id to destroy: 40
+Store with id=40 destroyed; Remaining stores: 4
+Store destroy invoked.
+Store id to destroy: 36
+Store with id=36 destroyed; Remaining stores: 3
+Store destroy invoked.
+Store id to destroy: 39
+Store with id=39 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 38
+Store with id=38 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 41
+Store with id=41 destroyed; Remaining stores: 0
+took=815.014, config=num_runs_: 5 capacity_: 8388608 num_levels_: 3 locality_factor_: 32 base_block_size_: 64 store_path_: /home/ubuntu/data/tests/ssd/nocache min_val_len_: 0 max_val_len_: 0 is_data_mem_: 0 is_aux_mem_: 0 is_ssd_: 1 is_cached_: 0 data_file_: 
++ rm -rf /home/ubuntu/data/tests/ssd/nocache
++ ./nocache-ssd.sh 3 64
++ ex=../cmake-build-relwithdebinfo/src/bench/crimes_ofs
++ num_runs=5
++ bbs=64
++ n=23
++ s=3
++ lf=64
++ ssd_base_path=/home/ubuntu/data/tests/ssd/nocache
++ rm -rf /home/ubuntu/data/tests/ssd/nocache
++ mkdir -p /home/ubuntu/data/tests/ssd/nocache
++ ../cmake-build-relwithdebinfo/src/bench/crimes_ofs --print_csv_headers -r 5 -v 64 -N 23 -s 3 -L 64 -p /home/ubuntu/data/tests/ssd/nocache -a -d
+Creating OFileStore with lf=64, s=3
+Initializing with id=0, n=65535, entry_size=128.0B, total store size=7.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=1, n=65535, entry_size=72.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=2, n=65535, entry_size=240.0B, total store size=14.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=3, n=255, entry_size=128.0B, total store size=31.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=4, n=255, entry_size=18.0MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=5, n=255, entry_size=240.0B, total store size=59.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+OFS: levels: 7 15 [23] ; first naive level: 23
+Initializing with id=6, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=7, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=8, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFileStore created with lf=64, s=3, levels=[7 15 23 ]
+Setup done, took 5.57059
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 8
+Store with id=8 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 7
+Store with id=7 destroyed; Remaining stores: 7
+Store destroy invoked.
+Store id to destroy: 6
+Store with id=6 destroyed; Remaining stores: 6
+Store destroy invoked.
+Store id to destroy: 1
+Store with id=1 destroyed; Remaining stores: 5
+Store destroy invoked.
+Store id to destroy: 4
+Store destroy invoked.
+Store id to destroy: 0
+Store destroy invoked.
+Store id to destroy: 3
+Store with id=4 destroyed; Remaining stores: 4
+Store with id=0 destroyed; Remaining stores: 3
+Store with id=3 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 2
+Store with id=2 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 5
+Store with id=5 destroyed; Remaining stores: 0
+Creating OFileStore with lf=64, s=3
+Initializing with id=9, n=65535, entry_size=128.0B, total store size=7.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=10, n=65535, entry_size=72.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=11, n=65535, entry_size=240.0B, total store size=14.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=12, n=255, entry_size=128.0B, total store size=31.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=13, n=255, entry_size=18.0MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=14, n=255, entry_size=240.0B, total store size=59.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+OFS: levels: 7 15 [23] ; first naive level: 23
+Initializing with id=15, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=16, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=17, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFileStore created with lf=64, s=3, levels=[7 15 23 ]
+Setup done, took 5.61623
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 17
+Store with id=17 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 16
+Store with id=16 destroyed; Remaining stores: 7
+Store destroy invoked.
+Store id to destroy: 15
+Store with id=15 destroyed; Remaining stores: 6
+Store destroy invoked.
+Store id to destroy: 10
+Store with id=10 destroyed; Remaining stores: 5
+Store destroy invoked.
+Store id to destroy: 13
+Store destroy invoked.
+Store id to destroy: 9
+Store with id=13 destroyed; Remaining stores: 4
+Store with id=9 destroyed; Remaining stores: 3
+Store destroy invoked.
+Store id to destroy: 12
+Store with id=12 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 11
+Store with id=11 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 14
+Store with id=14 destroyed; Remaining stores: 0
+Creating OFileStore with lf=64, s=3
+Initializing with id=18, n=65535, entry_size=128.0B, total store size=7.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=19, n=65535, entry_size=72.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=20, n=65535, entry_size=240.0B, total store size=14.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=21, n=255, entry_size=128.0B, total store size=31.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=22, n=255, entry_size=18.0MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=23, n=255, entry_size=240.0B, total store size=59.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+OFS: levels: 7 15 [23] ; first naive level: 23
+Initializing with id=24, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=25, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=26, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFileStore created with lf=64, s=3, levels=[7 15 23 ]
+Setup done, took 5.47582
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 26
+Store with id=26 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 25
+Store with id=25 destroyed; Remaining stores: 7
+Store destroy invoked.
+Store id to destroy: 24
+Store with id=24 destroyed; Remaining stores: 6
+Store destroy invoked.
+Store id to destroy: 19
+Store with id=19 destroyed; Remaining stores: 5
+Store destroy invoked.
+Store id to destroy: 22
+Store destroy invoked.
+Store id to destroy: 18
+Store with id=22 destroyed; Remaining stores: 4
+Store with id=18 destroyed; Remaining stores: 3
+Store destroy invoked.
+Store id to destroy: 21
+Store with id=21 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 20
+Store with id=20 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 23
+Store with id=23 destroyed; Remaining stores: 0
+Creating OFileStore with lf=64, s=3
+Initializing with id=27, n=65535, entry_size=128.0B, total store size=7.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=28, n=65535, entry_size=72.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=29, n=65535, entry_size=240.0B, total store size=14.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=30, n=255, entry_size=128.0B, total store size=31.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=31, n=255, entry_size=18.0MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=32, n=255, entry_size=240.0B, total store size=59.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+OFS: levels: 7 15 [23] ; first naive level: 23
+Initializing with id=33, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=34, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=35, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFileStore created with lf=64, s=3, levels=[7 15 23 ]
+Setup done, took 5.70062
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 35
+Store destroy invoked.
+Store id to destroy: 34
+Store destroy invoked.
+Store id to destroy: 33
+Store with id=35 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 28
+Store with id=34 destroyed; Remaining stores: 7
+Store with id=33 destroyed; Remaining stores: 6
+Store with id=28 destroyed; Remaining stores: 5
+Store destroy invoked.
+Store id to destroy: 31
+Store with id=31 destroyed; Remaining stores: 4
+Store destroy invoked.
+Store id to destroy: 27
+Store with id=27 destroyed; Remaining stores: 3
+Store destroy invoked.
+Store id to destroy: 30
+Store with id=30 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 29
+Store with id=29 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 32
+Store with id=32 destroyed; Remaining stores: 0
+Creating OFileStore with lf=64, s=3
+Initializing with id=36, n=65535, entry_size=128.0B, total store size=7.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=37, n=65535, entry_size=72.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=38, n=65535, entry_size=240.0B, total store size=14.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=39, n=255, entry_size=128.0B, total store size=31.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=40, n=255, entry_size=18.0MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=41, n=255, entry_size=240.0B, total store size=59.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+OFS: levels: 7 15 [23] ; first naive level: 23
+Initializing with id=42, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=43, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=44, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFileStore created with lf=64, s=3, levels=[7 15 23 ]
+Setup done, took 5.25713
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 44
+Store destroy invoked.
+Store id to destroy: 43
+Store destroy invoked.
+Store id to destroy: 42
+Store with id=44 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 37
+Store with id=43 destroyed; Remaining stores: 7
+Store with id=42 destroyed; Remaining stores: 6
+Store with id=37 destroyed; Remaining stores: 5
+Store destroy invoked.
+Store id to destroy: 40
+Store with id=40 destroyed; Remaining stores: 4
+Store destroy invoked.
+Store id to destroy: 36
+Store with id=36 destroyed; Remaining stores: 3
+Store destroy invoked.
+Store id to destroy: 39
+Store with id=39 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 38
+Store with id=38 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 41
+Store with id=41 destroyed; Remaining stores: 0
+took=1402.68, config=num_runs_: 5 capacity_: 8388608 num_levels_: 3 locality_factor_: 64 base_block_size_: 64 store_path_: /home/ubuntu/data/tests/ssd/nocache min_val_len_: 0 max_val_len_: 0 is_data_mem_: 0 is_aux_mem_: 0 is_ssd_: 1 is_cached_: 0 data_file_: 
++ rm -rf /home/ubuntu/data/tests/ssd/nocache
++ ./nocache-ssd.sh 3 128
++ ex=../cmake-build-relwithdebinfo/src/bench/crimes_ofs
++ num_runs=5
++ bbs=64
++ n=23
++ s=3
++ lf=128
++ ssd_base_path=/home/ubuntu/data/tests/ssd/nocache
++ rm -rf /home/ubuntu/data/tests/ssd/nocache
++ mkdir -p /home/ubuntu/data/tests/ssd/nocache
++ ../cmake-build-relwithdebinfo/src/bench/crimes_ofs --print_csv_headers -r 5 -v 64 -N 23 -s 3 -L 128 -p /home/ubuntu/data/tests/ssd/nocache -a -d
+Creating OFileStore with lf=128, s=3
+Initializing with id=0, n=65535, entry_size=128.0B, total store size=7.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=1, n=65535, entry_size=72.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=2, n=65535, entry_size=240.0B, total store size=14.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=3, n=255, entry_size=128.0B, total store size=31.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=4, n=255, entry_size=18.0MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=5, n=255, entry_size=240.0B, total store size=59.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+OFS: levels: 7 15 [23] ; first naive level: 23
+Initializing with id=6, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=7, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=8, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFileStore created with lf=128, s=3, levels=[7 15 23 ]
+Setup done, took 5.49888
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 8
+Store destroy invoked.
+Store id to destroy: 7
+Store destroy invoked.
+Store id to destroy: 6
+Store with id=8 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 1
+Store with id=7 destroyed; Remaining stores: 7
+Store with id=6 destroyed; Remaining stores: 6
+Store with id=1 destroyed; Remaining stores: 5
+Store destroy invoked.
+Store id to destroy: 4
+Store destroy invoked.
+Store id to destroy: 0
+Store with id=4 destroyed; Remaining stores: 4
+Store with id=0 destroyed; Remaining stores: 3
+Store destroy invoked.
+Store id to destroy: 3
+Store with id=3 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 2
+Store with id=2 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 5
+Store with id=5 destroyed; Remaining stores: 0
+Creating OFileStore with lf=128, s=3
+Initializing with id=9, n=65535, entry_size=128.0B, total store size=7.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=10, n=65535, entry_size=72.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=11, n=65535, entry_size=240.0B, total store size=14.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=12, n=255, entry_size=128.0B, total store size=31.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=13, n=255, entry_size=18.0MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=14, n=255, entry_size=240.0B, total store size=59.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+OFS: levels: 7 15 [23] ; first naive level: 23
+Initializing with id=15, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=16, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=17, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFileStore created with lf=128, s=3, levels=[7 15 23 ]
+Setup done, took 5.23408
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 17
+Store destroy invoked.
+Store id to destroy: 16
+Store destroy invoked.
+Store id to destroy: 15
+Store destroy invoked.
+Store id to destroy: 10
+Store destroy invoked.
+Store id to destroy: 13
+Store with id=17 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 9
+Store with id=16 destroyed; Remaining stores: 7
+Store with id=15 destroyed; Remaining stores: 6
+Store with id=10 destroyed; Remaining stores: 5
+Store with id=13 destroyed; Remaining stores: 4
+Store with id=9 destroyed; Remaining stores: 3
+Store destroy invoked.
+Store id to destroy: 12
+Store with id=12 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 11
+Store with id=11 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 14
+Store with id=14 destroyed; Remaining stores: 0
+Creating OFileStore with lf=128, s=3
+Initializing with id=18, n=65535, entry_size=128.0B, total store size=7.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=19, n=65535, entry_size=72.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=20, n=65535, entry_size=240.0B, total store size=14.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=21, n=255, entry_size=128.0B, total store size=31.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=22, n=255, entry_size=18.0MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=23, n=255, entry_size=240.0B, total store size=59.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+OFS: levels: 7 15 [23] ; first naive level: 23
+Initializing with id=24, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=25, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=26, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFileStore created with lf=128, s=3, levels=[7 15 23 ]
+Setup done, took 5.24585
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 26
+Store destroy invoked.
+Store id to destroy: 25
+Store destroy invoked.
+Store id to destroy: 24
+Store destroy invoked.
+Store id to destroy: 19
+Store with id=26 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 22
+Store with id=25 destroyed; Remaining stores: 7
+Store with id=24 destroyed; Remaining stores: 6
+Store with id=19 destroyed; Remaining stores: 5
+Store with id=22 destroyed; Remaining stores: 4
+Store destroy invoked.
+Store id to destroy: 18
+Store with id=18 destroyed; Remaining stores: 3
+Store destroy invoked.
+Store id to destroy: 21
+Store with id=21 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 20
+Store with id=20 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 23
+Store with id=23 destroyed; Remaining stores: 0
+Creating OFileStore with lf=128, s=3
+Initializing with id=27, n=65535, entry_size=128.0B, total store size=7.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=28, n=65535, entry_size=72.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=29, n=65535, entry_size=240.0B, total store size=14.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=30, n=255, entry_size=128.0B, total store size=31.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=31, n=255, entry_size=18.0MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=32, n=255, entry_size=240.0B, total store size=59.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+OFS: levels: 7 15 [23] ; first naive level: 23
+Initializing with id=33, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=34, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=35, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFileStore created with lf=128, s=3, levels=[7 15 23 ]
+Setup done, took 5.04594
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 35
+Store destroy invoked.
+Store id to destroy: 34
+Store destroy invoked.
+Store id to destroy: 33
+Store destroy invoked.
+Store id to destroy: 28
+Store destroy invoked.
+Store id to destroy: 31
+Store destroy invoked.
+Store id to destroy: 27
+Store destroy invoked.
+Store id to destroy: 30
+Store destroy invoked.
+Store id to destroy: 29
+Store with id=35 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 32
+Store with id=34 destroyed; Remaining stores: 7
+Store with id=33 destroyed; Remaining stores: 6
+Store with id=28 destroyed; Remaining stores: 5
+Store with id=31 destroyed; Remaining stores: 4
+Store with id=27 destroyed; Remaining stores: 3
+Store with id=30 destroyed; Remaining stores: 2
+Store with id=29 destroyed; Remaining stores: 1
+Store with id=32 destroyed; Remaining stores: 0
+Creating OFileStore with lf=128, s=3
+Initializing with id=36, n=65535, entry_size=128.0B, total store size=7.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=37, n=65535, entry_size=72.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=38, n=65535, entry_size=240.0B, total store size=14.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=39, n=255, entry_size=128.0B, total store size=31.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=40, n=255, entry_size=18.0MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=41, n=255, entry_size=240.0B, total store size=59.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+OFS: levels: 7 15 [23] ; first naive level: 23
+Initializing with id=42, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=43, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=44, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFileStore created with lf=128, s=3, levels=[7 15 23 ]
+Setup done, took 5.23637
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 44
+Store destroy invoked.
+Store id to destroy: 43
+Store destroy invoked.
+Store id to destroy: 42
+Store destroy invoked.
+Store id to destroy: 37
+Store destroy invoked.
+Store id to destroy: 40
+Store destroy invoked.
+Store id to destroy: 36
+Store destroy invoked.
+Store id to destroy: 39
+Store with id=44 destroyed; Remaining stores: 8
+Store with id=43 destroyed; Remaining stores: 7
+Store with id=42 destroyed; Remaining stores: 6
+Store with id=37 destroyed; Remaining stores: 5
+Store with id=40 destroyed; Remaining stores: 4
+Store with id=36 destroyed; Remaining stores: 3
+Store with id=39 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 38
+Store with id=38 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 41
+Store with id=41 destroyed; Remaining stores: 0
+took=2510.55, config=num_runs_: 5 capacity_: 8388608 num_levels_: 3 locality_factor_: 128 base_block_size_: 64 store_path_: /home/ubuntu/data/tests/ssd/nocache min_val_len_: 0 max_val_len_: 0 is_data_mem_: 0 is_aux_mem_: 0 is_ssd_: 1 is_cached_: 0 data_file_: 
++ rm -rf /home/ubuntu/data/tests/ssd/nocache
++ ./nocache-ssd.sh 4 1
++ ex=../cmake-build-relwithdebinfo/src/bench/crimes_ofs
++ num_runs=5
++ bbs=64
++ n=23
++ s=4
++ lf=1
++ ssd_base_path=/home/ubuntu/data/tests/ssd/nocache
++ rm -rf /home/ubuntu/data/tests/ssd/nocache
++ mkdir -p /home/ubuntu/data/tests/ssd/nocache
++ ../cmake-build-relwithdebinfo/src/bench/crimes_ofs --print_csv_headers -r 5 -v 64 -N 23 -s 4 -L 1 -p /home/ubuntu/data/tests/ssd/nocache -a -d
+Creating OFileStore with lf=1, s=4
+Initializing with id=0, n=262143, entry_size=128.0B, total store size=31.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=1, n=262143, entry_size=18.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=2, n=262143, entry_size=240.0B, total store size=59.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=3, n=4095, entry_size=128.0B, total store size=511.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=4, n=4095, entry_size=1.1MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=5, n=4095, entry_size=240.0B, total store size=959.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+Initializing with id=6, n=63, entry_size=128.0B, total store size=7.8KiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=7, n=63, entry_size=72.0MiB, total store size=4.4GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=8, n=63, entry_size=240.0B, total store size=14.7KiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFS: levels: 5 11 17 [23] ; first naive level: 23
+Initializing with id=9, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=10
+Using MMap File storage backend.
+Initializing with id=10, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=11
+Using MMap File storage backend.
+Initializing with id=11, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=12
+Using MMap File storage backend.
+OFileStore created with lf=1, s=4, levels=[5 11 17 23 ]
+Setup done, took 21.2114
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 11
+Store with id=11 destroyed; Remaining stores: 11
+Store destroy invoked.
+Store id to destroy: 10
+Store with id=10 destroyed; Remaining stores: 10
+Store destroy invoked.
+Store id to destroy: 9
+Store with id=9 destroyed; Remaining stores: 9
+Store destroy invoked.
+Store id to destroy: 1
+Store with id=1 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 4
+Store with id=4 destroyed; Remaining stores: 7
+Store destroy invoked.
+Store id to destroy: 7
+Store with id=7 destroyed; Remaining stores: 6
+Store destroy invoked.
+Store id to destroy: 0
+Store with id=0 destroyed; Remaining stores: 5
+Store destroy invoked.
+Store id to destroy: 3
+Store with id=3 destroyed; Remaining stores: 4
+Store destroy invoked.
+Store id to destroy: 6
+Store with id=6 destroyed; Remaining stores: 3
+Store destroy invoked.
+Store id to destroy: 2
+Store with id=2 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 5
+Store with id=5 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 8
+Store with id=8 destroyed; Remaining stores: 0
+Creating OFileStore with lf=1, s=4
+Initializing with id=12, n=262143, entry_size=128.0B, total store size=31.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=13, n=262143, entry_size=18.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=14, n=262143, entry_size=240.0B, total store size=59.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=15, n=4095, entry_size=128.0B, total store size=511.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=16, n=4095, entry_size=1.1MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=17, n=4095, entry_size=240.0B, total store size=959.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+Initializing with id=18, n=63, entry_size=128.0B, total store size=7.8KiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=19, n=63, entry_size=72.0MiB, total store size=4.4GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=20, n=63, entry_size=240.0B, total store size=14.7KiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFS: levels: 5 11 17 [23] ; first naive level: 23
+Initializing with id=21, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=10
+Using MMap File storage backend.
+Initializing with id=22, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=11
+Using MMap File storage backend.
+Initializing with id=23, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=12
+Using MMap File storage backend.
+OFileStore created with lf=1, s=4, levels=[5 11 17 23 ]
+Setup done, took 19.9072
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 23
+Store with id=23 destroyed; Remaining stores: 11
+Store destroy invoked.
+Store id to destroy: 22
+Store destroy invoked.
+Store id to destroy: 21
+Store destroy invoked.
+Store id to destroy: 13
+Store with id=22 destroyed; Remaining stores: 10
+Store with id=21 destroyed; Remaining stores: 9
+Store with id=13 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 16
+Store with id=16 destroyed; Remaining stores: 7
+Store destroy invoked.
+Store id to destroy: 19
+Store destroy invoked.
+Store id to destroy: 12
+Store destroy invoked.
+Store id to destroy: 15
+Store destroy invoked.
+Store id to destroy: 18
+Store with id=19 destroyed; Remaining stores: 6
+Store with id=12 destroyed; Remaining stores: 5
+Store with id=15 destroyed; Remaining stores: 4
+Store with id=18 destroyed; Remaining stores: 3
+Store destroy invoked.
+Store id to destroy: 14
+Store with id=14 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 17
+Store with id=17 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 20
+Store with id=20 destroyed; Remaining stores: 0
+Creating OFileStore with lf=1, s=4
+Initializing with id=24, n=262143, entry_size=128.0B, total store size=31.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=25, n=262143, entry_size=18.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=26, n=262143, entry_size=240.0B, total store size=59.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=27, n=4095, entry_size=128.0B, total store size=511.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=28, n=4095, entry_size=1.1MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=29, n=4095, entry_size=240.0B, total store size=959.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+Initializing with id=30, n=63, entry_size=128.0B, total store size=7.8KiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=31, n=63, entry_size=72.0MiB, total store size=4.4GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=32, n=63, entry_size=240.0B, total store size=14.7KiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFS: levels: 5 11 17 [23] ; first naive level: 23
+Initializing with id=33, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=10
+Using MMap File storage backend.
+Initializing with id=34, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=11
+Using MMap File storage backend.
+Initializing with id=35, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=12
+Using MMap File storage backend.
+OFileStore created with lf=1, s=4, levels=[5 11 17 23 ]
+Setup done, took 21.1056
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 35
+Store with id=35 destroyed; Remaining stores: 11
+Store destroy invoked.
+Store id to destroy: 34
+Store with id=34 destroyed; Remaining stores: 10
+Store destroy invoked.
+Store id to destroy: 33
+Store with id=33 destroyed; Remaining stores: 9
+Store destroy invoked.
+Store id to destroy: 25
+Store with id=25 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 28
+Store with id=28 destroyed; Remaining stores: 7
+Store destroy invoked.
+Store id to destroy: 31
+Store with id=31 destroyed; Remaining stores: 6
+Store destroy invoked.
+Store id to destroy: 24
+Store with id=24 destroyed; Remaining stores: 5
+Store destroy invoked.
+Store id to destroy: 27
+Store with id=27 destroyed; Remaining stores: 4
+Store destroy invoked.
+Store id to destroy: 30
+Store with id=30 destroyed; Remaining stores: 3
+Store destroy invoked.
+Store id to destroy: 26
+Store with id=26 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 29
+Store with id=29 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 32
+Store with id=32 destroyed; Remaining stores: 0
+Creating OFileStore with lf=1, s=4
+Initializing with id=36, n=262143, entry_size=128.0B, total store size=31.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=37, n=262143, entry_size=18.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=38, n=262143, entry_size=240.0B, total store size=59.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=39, n=4095, entry_size=128.0B, total store size=511.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=40, n=4095, entry_size=1.1MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=41, n=4095, entry_size=240.0B, total store size=959.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+Initializing with id=42, n=63, entry_size=128.0B, total store size=7.8KiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=43, n=63, entry_size=72.0MiB, total store size=4.4GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=44, n=63, entry_size=240.0B, total store size=14.7KiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFS: levels: 5 11 17 [23] ; first naive level: 23
+Initializing with id=45, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=10
+Using MMap File storage backend.
+Initializing with id=46, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=11
+Using MMap File storage backend.
+Initializing with id=47, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=12
+Using MMap File storage backend.
+OFileStore created with lf=1, s=4, levels=[5 11 17 23 ]
+Setup done, took 22.9259
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 47
+Store with id=47 destroyed; Remaining stores: 11
+Store destroy invoked.
+Store id to destroy: 46
+Store with id=46 destroyed; Remaining stores: 10
+Store destroy invoked.
+Store id to destroy: 45
+Store with id=45 destroyed; Remaining stores: 9
+Store destroy invoked.
+Store id to destroy: 37
+Store with id=37 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 40
+Store with id=40 destroyed; Remaining stores: 7
+Store destroy invoked.
+Store id to destroy: 43
+Store destroy invoked.
+Store id to destroy: 36
+Store destroy invoked.
+Store id to destroy: 39
+Store destroy invoked.
+Store id to destroy: 42
+Store destroy invoked.
+Store id to destroy: 38
+Store destroy invoked.
+Store id to destroy: 41
+Store with id=43 destroyed; Remaining stores: 6
+Store with id=36 destroyed; Remaining stores: 5
+Store with id=39 destroyed; Remaining stores: 4
+Store with id=42 destroyed; Remaining stores: 3
+Store with id=38 destroyed; Remaining stores: 2
+Store with id=41 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 44
+Store with id=44 destroyed; Remaining stores: 0
+Creating OFileStore with lf=1, s=4
+Initializing with id=48, n=262143, entry_size=128.0B, total store size=31.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=49, n=262143, entry_size=18.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=50, n=262143, entry_size=240.0B, total store size=59.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=51, n=4095, entry_size=128.0B, total store size=511.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=52, n=4095, entry_size=1.1MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=53, n=4095, entry_size=240.0B, total store size=959.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+Initializing with id=54, n=63, entry_size=128.0B, total store size=7.8KiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=55, n=63, entry_size=72.0MiB, total store size=4.4GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=56, n=63, entry_size=240.0B, total store size=14.7KiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFS: levels: 5 11 17 [23] ; first naive level: 23
+Initializing with id=57, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=10
+Using MMap File storage backend.
+Initializing with id=58, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=11
+Using MMap File storage backend.
+Initializing with id=59, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=12
+Using MMap File storage backend.
+OFileStore created with lf=1, s=4, levels=[5 11 17 23 ]
+Setup done, took 22.5782
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 59
+Store with id=59 destroyed; Remaining stores: 11
+Store destroy invoked.
+Store id to destroy: 58
+Store with id=58 destroyed; Remaining stores: 10
+Store destroy invoked.
+Store id to destroy: 57
+Store with id=57 destroyed; Remaining stores: 9
+Store destroy invoked.
+Store id to destroy: 49
+Store with id=49 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 52
+Store with id=52 destroyed; Remaining stores: 7
+Store destroy invoked.
+Store id to destroy: 55
+Store destroy invoked.
+Store id to destroy: 48
+Store destroy invoked.
+Store id to destroy: 51
+Store destroy invoked.
+Store id to destroy: 54
+Store destroy invoked.
+Store id to destroy: 50
+Store with id=55 destroyed; Remaining stores: 6
+Store with id=48 destroyed; Remaining stores: 5
+Store with id=51 destroyed; Remaining stores: 4
+Store with id=54 destroyed; Remaining stores: 3
+Store with id=50 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 53
+Store with id=53 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 56
+Store with id=56 destroyed; Remaining stores: 0
+took=416.651, config=num_runs_: 5 capacity_: 8388608 num_levels_: 4 locality_factor_: 1 base_block_size_: 64 store_path_: /home/ubuntu/data/tests/ssd/nocache min_val_len_: 0 max_val_len_: 0 is_data_mem_: 0 is_aux_mem_: 0 is_ssd_: 1 is_cached_: 0 data_file_: 
++ rm -rf /home/ubuntu/data/tests/ssd/nocache
++ ./nocache-ssd.sh 4 2
++ ex=../cmake-build-relwithdebinfo/src/bench/crimes_ofs
++ num_runs=5
++ bbs=64
++ n=23
++ s=4
++ lf=2
++ ssd_base_path=/home/ubuntu/data/tests/ssd/nocache
++ rm -rf /home/ubuntu/data/tests/ssd/nocache
++ mkdir -p /home/ubuntu/data/tests/ssd/nocache
++ ../cmake-build-relwithdebinfo/src/bench/crimes_ofs --print_csv_headers -r 5 -v 64 -N 23 -s 4 -L 2 -p /home/ubuntu/data/tests/ssd/nocache -a -d
+Creating OFileStore with lf=2, s=4
+Initializing with id=0, n=262143, entry_size=128.0B, total store size=31.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=1, n=262143, entry_size=18.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=2, n=262143, entry_size=240.0B, total store size=59.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=3, n=4095, entry_size=128.0B, total store size=511.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=4, n=4095, entry_size=1.1MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=5, n=4095, entry_size=240.0B, total store size=959.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+Initializing with id=6, n=63, entry_size=128.0B, total store size=7.8KiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=7, n=63, entry_size=72.0MiB, total store size=4.4GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=8, n=63, entry_size=240.0B, total store size=14.7KiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFS: levels: 5 11 17 [23] ; first naive level: 23
+Initializing with id=9, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=10
+Using MMap File storage backend.
+Initializing with id=10, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=11
+Using MMap File storage backend.
+Initializing with id=11, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=12
+Using MMap File storage backend.
+OFileStore created with lf=2, s=4, levels=[5 11 17 23 ]
+Setup done, took 19.8879
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 11
+Store with id=11 destroyed; Remaining stores: 11
+Store destroy invoked.
+Store id to destroy: 10
+Store destroy invoked.
+Store id to destroy: 9
+Store with id=10 destroyed; Remaining stores: 10
+Store with id=9 destroyed; Remaining stores: 9
+Store destroy invoked.
+Store id to destroy: 1
+Store with id=1 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 4
+Store with id=4 destroyed; Remaining stores: 7
+Store destroy invoked.
+Store id to destroy: 7
+Store with id=7 destroyed; Remaining stores: 6
+Store destroy invoked.
+Store id to destroy: 0
+Store with id=0 destroyed; Remaining stores: 5
+Store destroy invoked.
+Store id to destroy: 3
+Store with id=3 destroyed; Remaining stores: 4
+Store destroy invoked.
+Store id to destroy: 6
+Store with id=6 destroyed; Remaining stores: 3
+Store destroy invoked.
+Store id to destroy: 2
+Store with id=2 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 5
+Store with id=5 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 8
+Store with id=8 destroyed; Remaining stores: 0
+Creating OFileStore with lf=2, s=4
+Initializing with id=12, n=262143, entry_size=128.0B, total store size=31.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=13, n=262143, entry_size=18.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=14, n=262143, entry_size=240.0B, total store size=59.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=15, n=4095, entry_size=128.0B, total store size=511.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=16, n=4095, entry_size=1.1MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=17, n=4095, entry_size=240.0B, total store size=959.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+Initializing with id=18, n=63, entry_size=128.0B, total store size=7.8KiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=19, n=63, entry_size=72.0MiB, total store size=4.4GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=20, n=63, entry_size=240.0B, total store size=14.7KiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFS: levels: 5 11 17 [23] ; first naive level: 23
+Initializing with id=21, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=10
+Using MMap File storage backend.
+Initializing with id=22, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=11
+Using MMap File storage backend.
+Initializing with id=23, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=12
+Using MMap File storage backend.
+OFileStore created with lf=2, s=4, levels=[5 11 17 23 ]
+Setup done, took 20.4699
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 23
+Store with id=23 destroyed; Remaining stores: 11
+Store destroy invoked.
+Store id to destroy: 22
+Store destroy invoked.
+Store id to destroy: 21
+Store with id=22 destroyed; Remaining stores: 10
+Store with id=21 destroyed; Remaining stores: 9
+Store destroy invoked.
+Store id to destroy: 13
+Store with id=13 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 16
+Store with id=16 destroyed; Remaining stores: 7
+Store destroy invoked.
+Store id to destroy: 19
+Store destroy invoked.
+Store id to destroy: 12
+Store with id=19 destroyed; Remaining stores: 6
+Store with id=12 destroyed; Remaining stores: 5
+Store destroy invoked.
+Store id to destroy: 15
+Store with id=15 destroyed; Remaining stores: 4
+Store destroy invoked.
+Store id to destroy: 18
+Store with id=18 destroyed; Remaining stores: 3
+Store destroy invoked.
+Store id to destroy: 14
+Store with id=14 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 17
+Store with id=17 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 20
+Store with id=20 destroyed; Remaining stores: 0
+Creating OFileStore with lf=2, s=4
+Initializing with id=24, n=262143, entry_size=128.0B, total store size=31.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=25, n=262143, entry_size=18.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=26, n=262143, entry_size=240.0B, total store size=59.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=27, n=4095, entry_size=128.0B, total store size=511.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=28, n=4095, entry_size=1.1MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=29, n=4095, entry_size=240.0B, total store size=959.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+Initializing with id=30, n=63, entry_size=128.0B, total store size=7.8KiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=31, n=63, entry_size=72.0MiB, total store size=4.4GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=32, n=63, entry_size=240.0B, total store size=14.7KiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFS: levels: 5 11 17 [23] ; first naive level: 23
+Initializing with id=33, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=10
+Using MMap File storage backend.
+Initializing with id=34, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=11
+Using MMap File storage backend.
+Initializing with id=35, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=12
+Using MMap File storage backend.
+OFileStore created with lf=2, s=4, levels=[5 11 17 23 ]
+Setup done, took 21.8905
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 35
+Store with id=35 destroyed; Remaining stores: 11
+Store destroy invoked.
+Store id to destroy: 34
+Store with id=34 destroyed; Remaining stores: 10
+Store destroy invoked.
+Store id to destroy: 33
+Store with id=33 destroyed; Remaining stores: 9
+Store destroy invoked.
+Store id to destroy: 25
+Store with id=25 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 28
+Store with id=28 destroyed; Remaining stores: 7
+Store destroy invoked.
+Store id to destroy: 31
+Store destroy invoked.
+Store id to destroy: 24
+Store destroy invoked.
+Store id to destroy: 27
+Store destroy invoked.
+Store id to destroy: 30
+Store destroy invoked.
+Store id to destroy: 26
+Store destroy invoked.
+Store id to destroy: 29
+Store destroy invoked.
+Store id to destroy: 32
+Creating OFileStore with lf=2, s=4
+Store with id=31 destroyed; Remaining stores: 6
+Store with id=24 destroyed; Remaining stores: 5
+Store with id=27 destroyed; Remaining stores: 4
+Store with id=30 destroyed; Remaining stores: 3
+Store with id=26 destroyed; Remaining stores: 2
+Store with id=29 destroyed; Remaining stores: 1
+Store with id=32 destroyed; Remaining stores: 0
+Initializing with id=36, n=262143, entry_size=128.0B, total store size=31.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=37, n=262143, entry_size=18.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=38, n=262143, entry_size=240.0B, total store size=59.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=39, n=4095, entry_size=128.0B, total store size=511.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=40, n=4095, entry_size=1.1MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=41, n=4095, entry_size=240.0B, total store size=959.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+Initializing with id=42, n=63, entry_size=128.0B, total store size=7.8KiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=43, n=63, entry_size=72.0MiB, total store size=4.4GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=44, n=63, entry_size=240.0B, total store size=14.7KiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFS: levels: 5 11 17 [23] ; first naive level: 23
+Initializing with id=45, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=10
+Using MMap File storage backend.
+Initializing with id=46, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=11
+Using MMap File storage backend.
+Initializing with id=47, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=12
+Using MMap File storage backend.
+OFileStore created with lf=2, s=4, levels=[5 11 17 23 ]
+Setup done, took 22.62
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 47
+Store with id=47 destroyed; Remaining stores: 11
+Store destroy invoked.
+Store id to destroy: 46
+Store destroy invoked.
+Store id to destroy: 45
+Store with id=46 destroyed; Remaining stores: 10
+Store with id=45 destroyed; Remaining stores: 9
+Store destroy invoked.
+Store id to destroy: 37
+Store with id=37 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 40
+Store with id=40 destroyed; Remaining stores: 7
+Store destroy invoked.
+Store id to destroy: 43
+Store destroy invoked.
+Store id to destroy: 36
+Store with id=43 destroyed; Remaining stores: 6
+Store with id=36 destroyed; Remaining stores: 5
+Store destroy invoked.
+Store id to destroy: 39
+Store with id=39 destroyed; Remaining stores: 4
+Store destroy invoked.
+Store id to destroy: 42
+Store with id=42 destroyed; Remaining stores: 3
+Store destroy invoked.
+Store id to destroy: 38
+Store with id=38 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 41
+Store with id=41 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 44
+Store with id=44 destroyed; Remaining stores: 0
+Creating OFileStore with lf=2, s=4
+Initializing with id=48, n=262143, entry_size=128.0B, total store size=31.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=49, n=262143, entry_size=18.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=50, n=262143, entry_size=240.0B, total store size=59.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=51, n=4095, entry_size=128.0B, total store size=511.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=52, n=4095, entry_size=1.1MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=53, n=4095, entry_size=240.0B, total store size=959.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+Initializing with id=54, n=63, entry_size=128.0B, total store size=7.8KiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=55, n=63, entry_size=72.0MiB, total store size=4.4GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=56, n=63, entry_size=240.0B, total store size=14.7KiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFS: levels: 5 11 17 [23] ; first naive level: 23
+Initializing with id=57, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=10
+Using MMap File storage backend.
+Initializing with id=58, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=11
+Using MMap File storage backend.
+Initializing with id=59, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=12
+Using MMap File storage backend.
+OFileStore created with lf=2, s=4, levels=[5 11 17 23 ]
+Setup done, took 19.3911
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 59
+Store with id=59 destroyed; Remaining stores: 11
+Store destroy invoked.
+Store id to destroy: 58
+Store destroy invoked.
+Store id to destroy: 57
+Store with id=58 destroyed; Remaining stores: 10
+Store with id=57 destroyed; Remaining stores: 9
+Store destroy invoked.
+Store id to destroy: 49
+Store with id=49 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 52
+Store with id=52 destroyed; Remaining stores: 7
+Store destroy invoked.
+Store id to destroy: 55
+Store with id=55 destroyed; Remaining stores: 6
+Store destroy invoked.
+Store id to destroy: 48
+Store with id=48 destroyed; Remaining stores: 5
+Store destroy invoked.
+Store id to destroy: 51
+Store with id=51 destroyed; Remaining stores: 4
+Store destroy invoked.
+Store id to destroy: 54
+Store with id=54 destroyed; Remaining stores: 3
+Store destroy invoked.
+Store id to destroy: 50
+Store with id=50 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 53
+Store with id=53 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 56
+Store with id=56 destroyed; Remaining stores: 0
+took=422.973, config=num_runs_: 5 capacity_: 8388608 num_levels_: 4 locality_factor_: 2 base_block_size_: 64 store_path_: /home/ubuntu/data/tests/ssd/nocache min_val_len_: 0 max_val_len_: 0 is_data_mem_: 0 is_aux_mem_: 0 is_ssd_: 1 is_cached_: 0 data_file_: 
++ rm -rf /home/ubuntu/data/tests/ssd/nocache
++ ./nocache-ssd.sh 4 4
++ ex=../cmake-build-relwithdebinfo/src/bench/crimes_ofs
++ num_runs=5
++ bbs=64
++ n=23
++ s=4
++ lf=4
++ ssd_base_path=/home/ubuntu/data/tests/ssd/nocache
++ rm -rf /home/ubuntu/data/tests/ssd/nocache
++ mkdir -p /home/ubuntu/data/tests/ssd/nocache
++ ../cmake-build-relwithdebinfo/src/bench/crimes_ofs --print_csv_headers -r 5 -v 64 -N 23 -s 4 -L 4 -p /home/ubuntu/data/tests/ssd/nocache -a -d
+Creating OFileStore with lf=4, s=4
+Initializing with id=0, n=262143, entry_size=128.0B, total store size=31.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=1, n=262143, entry_size=18.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=2, n=262143, entry_size=240.0B, total store size=59.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=3, n=4095, entry_size=128.0B, total store size=511.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=4, n=4095, entry_size=1.1MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=5, n=4095, entry_size=240.0B, total store size=959.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+Initializing with id=6, n=63, entry_size=128.0B, total store size=7.8KiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=7, n=63, entry_size=72.0MiB, total store size=4.4GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=8, n=63, entry_size=240.0B, total store size=14.7KiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFS: levels: 5 11 17 [23] ; first naive level: 23
+Initializing with id=9, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=10
+Using MMap File storage backend.
+Initializing with id=10, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=11
+Using MMap File storage backend.
+Initializing with id=11, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=12
+Using MMap File storage backend.
+OFileStore created with lf=4, s=4, levels=[5 11 17 23 ]
+Setup done, took 20.6746
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 11
+Store with id=11 destroyed; Remaining stores: 11
+Store destroy invoked.
+Store id to destroy: 10
+Store destroy invoked.
+Store id to destroy: 9
+Store destroy invoked.
+Store id to destroy: 1
+Store with id=10 destroyed; Remaining stores: 10
+Store with id=9 destroyed; Remaining stores: 9
+Store with id=1 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 4
+Store with id=4 destroyed; Remaining stores: 7
+Store destroy invoked.
+Store id to destroy: 7
+Store with id=7 destroyed; Remaining stores: 6
+Store destroy invoked.
+Store id to destroy: 0
+Store with id=0 destroyed; Remaining stores: 5
+Store destroy invoked.
+Store id to destroy: 3
+Store with id=3 destroyed; Remaining stores: 4
+Store destroy invoked.
+Store id to destroy: 6
+Store with id=6 destroyed; Remaining stores: 3
+Store destroy invoked.
+Store id to destroy: 2
+Store with id=2 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 5
+Store with id=5 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 8
+Store with id=8 destroyed; Remaining stores: 0
+Creating OFileStore with lf=4, s=4
+Initializing with id=12, n=262143, entry_size=128.0B, total store size=31.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=13, n=262143, entry_size=18.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=14, n=262143, entry_size=240.0B, total store size=59.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=15, n=4095, entry_size=128.0B, total store size=511.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=16, n=4095, entry_size=1.1MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=17, n=4095, entry_size=240.0B, total store size=959.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+Initializing with id=18, n=63, entry_size=128.0B, total store size=7.8KiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=19, n=63, entry_size=72.0MiB, total store size=4.4GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=20, n=63, entry_size=240.0B, total store size=14.7KiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFS: levels: 5 11 17 [23] ; first naive level: 23
+Initializing with id=21, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=10
+Using MMap File storage backend.
+Initializing with id=22, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=11
+Using MMap File storage backend.
+Initializing with id=23, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=12
+Using MMap File storage backend.
+OFileStore created with lf=4, s=4, levels=[5 11 17 23 ]
+Setup done, took 21.0826
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 23
+Store with id=23 destroyed; Remaining stores: 11
+Store destroy invoked.
+Store id to destroy: 22
+Store destroy invoked.
+Store id to destroy: 21
+Store destroy invoked.
+Store id to destroy: 13
+Store with id=22 destroyed; Remaining stores: 10
+Store with id=21 destroyed; Remaining stores: 9
+Store with id=13 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 16
+Store with id=16 destroyed; Remaining stores: 7
+Store destroy invoked.
+Store id to destroy: 19
+Store with id=19 destroyed; Remaining stores: 6
+Store destroy invoked.
+Store id to destroy: 12
+Store with id=12 destroyed; Remaining stores: 5
+Store destroy invoked.
+Store id to destroy: 15
+Store with id=15 destroyed; Remaining stores: 4
+Store destroy invoked.
+Store id to destroy: 18
+Store with id=18 destroyed; Remaining stores: 3
+Store destroy invoked.
+Store id to destroy: 14
+Store with id=14 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 17
+Store with id=17 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 20
+Store with id=20 destroyed; Remaining stores: 0
+Creating OFileStore with lf=4, s=4
+Initializing with id=24, n=262143, entry_size=128.0B, total store size=31.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=25, n=262143, entry_size=18.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=26, n=262143, entry_size=240.0B, total store size=59.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=27, n=4095, entry_size=128.0B, total store size=511.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=28, n=4095, entry_size=1.1MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=29, n=4095, entry_size=240.0B, total store size=959.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+Initializing with id=30, n=63, entry_size=128.0B, total store size=7.8KiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=31, n=63, entry_size=72.0MiB, total store size=4.4GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=32, n=63, entry_size=240.0B, total store size=14.7KiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFS: levels: 5 11 17 [23] ; first naive level: 23
+Initializing with id=33, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=10
+Using MMap File storage backend.
+Initializing with id=34, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=11
+Using MMap File storage backend.
+Initializing with id=35, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=12
+Using MMap File storage backend.
+OFileStore created with lf=4, s=4, levels=[5 11 17 23 ]
+Setup done, took 22.2065
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 35
+Store with id=35 destroyed; Remaining stores: 11
+Store destroy invoked.
+Store id to destroy: 34
+Store destroy invoked.
+Store id to destroy: 33
+Store with id=34 destroyed; Remaining stores: 10
+Store with id=33 destroyed; Remaining stores: 9
+Store destroy invoked.
+Store id to destroy: 25
+Store with id=25 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 28
+Store with id=28 destroyed; Remaining stores: 7
+Store destroy invoked.
+Store id to destroy: 31
+Store with id=31 destroyed; Remaining stores: 6
+Store destroy invoked.
+Store id to destroy: 24
+Store with id=24 destroyed; Remaining stores: 5
+Store destroy invoked.
+Store id to destroy: 27
+Store with id=27 destroyed; Remaining stores: 4
+Store destroy invoked.
+Store id to destroy: 30
+Store with id=30 destroyed; Remaining stores: 3
+Store destroy invoked.
+Store id to destroy: 26
+Store with id=26 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 29
+Store with id=29 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 32
+Store with id=32 destroyed; Remaining stores: 0
+Creating OFileStore with lf=4, s=4
+Initializing with id=36, n=262143, entry_size=128.0B, total store size=31.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=37, n=262143, entry_size=18.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=38, n=262143, entry_size=240.0B, total store size=59.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=39, n=4095, entry_size=128.0B, total store size=511.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=40, n=4095, entry_size=1.1MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=41, n=4095, entry_size=240.0B, total store size=959.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+Initializing with id=42, n=63, entry_size=128.0B, total store size=7.8KiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=43, n=63, entry_size=72.0MiB, total store size=4.4GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=44, n=63, entry_size=240.0B, total store size=14.7KiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFS: levels: 5 11 17 [23] ; first naive level: 23
+Initializing with id=45, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=10
+Using MMap File storage backend.
+Initializing with id=46, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=11
+Using MMap File storage backend.
+Initializing with id=47, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=12
+Using MMap File storage backend.
+OFileStore created with lf=4, s=4, levels=[5 11 17 23 ]
+Setup done, took 21.9226
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 47
+Store with id=47 destroyed; Remaining stores: 11
+Store destroy invoked.
+Store id to destroy: 46
+Store destroy invoked.
+Store id to destroy: 45
+Store destroy invoked.
+Store id to destroy: 37
+Store with id=46 destroyed; Remaining stores: 10
+Store with id=45 destroyed; Remaining stores: 9
+Store with id=37 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 40
+Store with id=40 destroyed; Remaining stores: 7
+Store destroy invoked.
+Store id to destroy: 43
+Store with id=43 destroyed; Remaining stores: 6
+Store destroy invoked.
+Store id to destroy: 36
+Store with id=36 destroyed; Remaining stores: 5
+Store destroy invoked.
+Store id to destroy: 39
+Store with id=39 destroyed; Remaining stores: 4
+Store destroy invoked.
+Store id to destroy: 42
+Store with id=42 destroyed; Remaining stores: 3
+Store destroy invoked.
+Store id to destroy: 38
+Store with id=38 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 41
+Store with id=41 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 44
+Store with id=44 destroyed; Remaining stores: 0
+Creating OFileStore with lf=4, s=4
+Initializing with id=48, n=262143, entry_size=128.0B, total store size=31.9MiB, store_type=2; num_stores=1
+Using MMap File storage backend.
+Initializing with id=49, n=262143, entry_size=18.0KiB, total store size=4.5GiB, store_type=2; num_stores=2
+Using MMap File storage backend.
+Initializing with id=50, n=262143, entry_size=240.0B, total store size=59.9MiB, store_type=2; num_stores=3
+Using MMap File storage backend.
+Initializing with id=51, n=4095, entry_size=128.0B, total store size=511.8KiB, store_type=2; num_stores=4
+Using MMap File storage backend.
+Initializing with id=52, n=4095, entry_size=1.1MiB, total store size=4.4GiB, store_type=2; num_stores=5
+Using MMap File storage backend.
+Initializing with id=53, n=4095, entry_size=240.0B, total store size=959.7KiB, store_type=2; num_stores=6
+Using MMap File storage backend.
+Initializing with id=54, n=63, entry_size=128.0B, total store size=7.8KiB, store_type=2; num_stores=7
+Using MMap File storage backend.
+Initializing with id=55, n=63, entry_size=72.0MiB, total store size=4.4GiB, store_type=2; num_stores=8
+Using MMap File storage backend.
+Initializing with id=56, n=63, entry_size=240.0B, total store size=14.7KiB, store_type=2; num_stores=9
+Using MMap File storage backend.
+OFS: levels: 5 11 17 [23] ; first naive level: 23
+Initializing with id=57, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2; num_stores=10
+Using MMap File storage backend.
+Initializing with id=58, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=11
+Using MMap File storage backend.
+Initializing with id=59, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2; num_stores=12
+Using MMap File storage backend.
+OFileStore created with lf=4, s=4, levels=[5 11 17 23 ]
+Setup done, took 21.4409
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 59
+Store with id=59 destroyed; Remaining stores: 11
+Store destroy invoked.
+Store id to destroy: 58
+Store destroy invoked.
+Store id to destroy: 57
+Store destroy invoked.
+Store id to destroy: 49
+Store with id=58 destroyed; Remaining stores: 10
+Store with id=57 destroyed; Remaining stores: 9
+Store with id=49 destroyed; Remaining stores: 8
+Store destroy invoked.
+Store id to destroy: 52
+Store with id=52 destroyed; Remaining stores: 7
+Store destroy invoked.
+Store id to destroy: 55
+Store with id=55 destroyed; Remaining stores: 6
+Store destroy invoked.
+Store id to destroy: 48
+Store with id=48 destroyed; Remaining stores: 5
+Store destroy invoked.
+Store id to destroy: 51
+Store with id=51 destroyed; Remaining stores: 4
+Store destroy invoked.
+Store id to destroy: 54
+Store with id=54 destroyed; Remaining stores: 3
+Store destroy invoked.
+Store id to destroy: 50
+Store with id=50 destroyed; Remaining stores: 2
+Store destroy invoked.
+Store id to destroy: 53
+Store with id=53 destroyed; Remaining stores: 1
+Store destroy invoked.
+Store id to destroy: 56
+Store with id=56 destroyed; Remaining stores: 0
+took=521.045, config=num_runs_: 5 capacity_: 8388608 num_levels_: 4 locality_factor_: 4 base_block_size_: 64 store_path_: /home/ubuntu/data/tests/ssd/nocache min_val_len_: 0 max_val_len_: 0 is_data_mem_: 0 is_aux_mem_: 0 is_ssd_: 1 is_cached_: 0 data_file_: 
++ rm -rf /home/ubuntu/data/tests/ssd/nocache

@@ -1,0 +1,77 @@
++ . ./env.sh
+++ export ofs_bench_ex=../cmake-build-relwithdebinfo/src/bench/ofs
+++ ofs_bench_ex=../cmake-build-relwithdebinfo/src/bench/ofs
+++ export append_ofs_bench_ex=../cmake-build-relwithdebinfo/src/bench/append-ofs
+++ append_ofs_bench_ex=../cmake-build-relwithdebinfo/src/bench/append-ofs
+++ export osm_bench_ex=../cmake-build-relwithdebinfo/src/bench/osm
+++ osm_bench_ex=../cmake-build-relwithdebinfo/src/bench/osm
+++ export omap_bench_ex=../cmake-build-relwithdebinfo/src/bench/omap
+++ omap_bench_ex=../cmake-build-relwithdebinfo/src/bench/omap
+++ export hdd_base_path=/mnt/hdd1/tests/cache
+++ hdd_base_path=/mnt/hdd1/tests/cache
+++ export ssd_base_path=/Users/apostolosmavrogiannakis/ssdmount/scratch/datadir/ssd/cache
+++ ssd_base_path=/Users/apostolosmavrogiannakis/ssdmount/scratch/datadir/ssd/cache
+++ export num_runs=1
+++ num_runs=1
+++ export n=17
+++ n=17
+++ vs=(4)
+++ export vs
+++ export v=4
+++ v=4
+++ lvls=(7 9 10 12)
+++ export lvls
++++ seq 23 2 24
+++ append_ns=23
+++ export append_ns
+++ export append_s=1
+++ append_s=1
+++ export append_lf=1
+++ append_lf=1
++ for v in '${vs[@]}'
++ out=ram-v4-n17-osm-res.csv
++ test -s ram-v4-n17-osm-res.csv
++ ../cmake-build-relwithdebinfo/src/bench/osm --print_csv_headers -r 1 -v 4 -N 17
+Starting run  of 
+Constructing OSM
+Initializing with id=0, n=131071, entry_size=272.0B, total store size=33.9MiB, store_type=2, first_build=0, name=oram-n131072-v52; num_stores=1
+Using RAM storage backend.
+Initializing with id=1, n=1, entry_size=8.8KiB, total store size=8.8KiB, store_type=2, first_build=0, name=oram-n131072-v52-stash; num_stores=2
+Using RAM storage backend.
+Setup done, took 4.96846
+Inserted 1 ( total: 1)time: 6.67e-07
+Inserted 2 ( total: 3)time: 1.209e-06
+Inserted 4 ( total: 7)time: 5.041e-06
+Inserted 8 ( total: 15)time: 5.958e-06
+Inserted 16 ( total: 31)time: 1.4208e-05
+Inserted 32 ( total: 63)time: 3.1042e-05
+Inserted 64 ( total: 127)time: 7.3792e-05
+Inserted 128 ( total: 255)time: 0.000167167
+Inserted 256 ( total: 511)time: 0.000436708
+Inserted 512 ( total: 1023)time: 0.00105417
+Inserted 1024 ( total: 2047)time: 0.00257017
+Inserted 2048 ( total: 4095)time: 0.00644408
+Inserted 4096 ( total: 8191)time: 0.0237742
+Inserted 8192 ( total: 16383)time: 0.0362815
+Inserted 16384 ( total: 32767)time: 0.0848217
+Inserted 32768 ( total: 65535)time: 0.200378
+Inserted 65536 ( total: 131071)time: 0.463859
+Evicting..
+--------------------------------
+Searched 1 (1)time: 0.12897
+Searched 2 (3)time: 0.128958
+Searched 4 (7)time: 0.137492
+Searched 8 (15)time: 0.140167
+Searched 16 (31)time: 0.147073
+Searched 32 (63)time: 0.157527
+Searched 64 (127)time: 0.220464
+Searched 128 (255)time: 0.289545
+Searched 256 (511)time: 0.400017
+Searched 512 (1023)time: 0.642158
+Searched 1024 (2047)time: 1.04213
+Searched 2048 (4095)time: 1.85172
+Searched 4096 (8191)time: 2.90957
+Searched 8192 (16383)time: 5.0603
+Searched 16384 (32767)time: 7.27586
+Searched 32768 (65535)time: 9.79495
+took=56.3139, config=num_runs_: 1 capacity_: 131072 num_levels_: 18 locality_factor_: 1 base_block_size_: 4 store_path_:  min_val_len_: 0 max_val_len_: 0 is_data_mem_: 1 is_aux_mem_: 1 is_ssd_: 0 is_cached_: 1 data_file_: 

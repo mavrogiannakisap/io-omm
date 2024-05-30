@@ -1,0 +1,2 @@
+test,data_mem,aux_mem,ssd,cached,bbs,n,s,lf,id,insert,insert_bytes,load_data,search,search_bytes,search_false_pos,setup,setup_bytes,total_time
+omap,0,0,0,1,4096,1048576,21,1,0,0.191217,38860394.880000,0.000000,0.195800,39502460.160000,9642.730000,102.460327,17414733600.000000,143.164771

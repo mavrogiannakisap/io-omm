@@ -1,0 +1,326 @@
++ . ./env.sh
+++ export ofs_bench_ex=../cmake-build-relwithdebinfo/src/bench/ofs
+++ ofs_bench_ex=../cmake-build-relwithdebinfo/src/bench/ofs
+++ export append_ofs_bench_ex=../cmake-build-relwithdebinfo/src/bench/append-ofs
+++ append_ofs_bench_ex=../cmake-build-relwithdebinfo/src/bench/append-ofs
+++ export osm_bench_ex=../cmake-build-relwithdebinfo/src/bench/osm
+++ osm_bench_ex=../cmake-build-relwithdebinfo/src/bench/osm
+++ export omap_bench_ex=../cmake-build-relwithdebinfo/src/bench/omap
+++ omap_bench_ex=../cmake-build-relwithdebinfo/src/bench/omap
+++ export hdd_base_path=/mnt/hdd1/tests/cache
+++ hdd_base_path=/mnt/hdd1/tests/cache
+++ export ssd_base_path=/Users/apostolosmavrogiannakis/ssdmount/scratch/datadir/ssd/cache
+++ ssd_base_path=/Users/apostolosmavrogiannakis/ssdmount/scratch/datadir/ssd/cache
+++ export num_runs=1
+++ num_runs=1
+++ export n=17
+++ n=17
+++ vs=(4)
+++ export vs
+++ export v=4
+++ v=4
+++ lvls=(7 9 10 12)
+++ export lvls
++++ seq 23 2 24
+++ append_ns=23
+++ export append_ns
+++ export append_s=1
+++ append_s=1
+++ export append_lf=1
+++ append_lf=1
++ for v in '${vs[@]}'
++ out=ram-v4-n17-osm-res.csv
++ test -s ram-v4-n17-osm-res.csv
++ ../cmake-build-relwithdebinfo/src/bench/osm --print_csv_headers -r 1 -v 4 -N 17
+Starting run  of 
+Constructing OSM
+Initializing with id=0, n=131071, entry_size=272.0B, total store size=33.9MiB, store_type=2, first_build=0, name=oram-n131072-v52; num_stores=1
+Using RAM storage backend.
+Initializing with id=1, n=1, entry_size=8.8KiB, total store size=8.8KiB, store_type=2, first_build=0, name=oram-n131072-v52-stash; num_stores=2
+Using RAM storage backend.
+Setup done, took 5.119
+Inserted 1 ( total: 1)time: 3.75e-07
+Inserted 2 ( total: 3)time: 1.084e-06
+Inserted 4 ( total: 7)time: 2.041e-06
+Inserted 8 ( total: 15)time: 5.333e-06
+Inserted 16 ( total: 31)time: 1.2833e-05
+Inserted 32 ( total: 63)time: 3.4417e-05
+Inserted 64 ( total: 127)time: 7.0333e-05
+Inserted 128 ( total: 255)time: 0.000173541
+Inserted 256 ( total: 511)time: 0.000410292
+Inserted 512 ( total: 1023)time: 0.00102525
+Inserted 1024 ( total: 2047)time: 0.00252587
+Inserted 2048 ( total: 4095)time: 0.00621637
+Inserted 4096 ( total: 8191)time: 0.0149628
+Inserted 8192 ( total: 16383)time: 0.0353493
+Inserted 16384 ( total: 32767)time: 0.0844747
+Inserted 32768 ( total: 65535)time: 0.198437
+Inserted 65536 ( total: 131071)time: 0.459935
+Evicting..
+	EvictAll
+--------------------
+
+	AsyncFetch in FetchDummyPath: 7.65075 To fetch: 9699254
+
+	num_ops: 0
+	pad_to: 9699254
+	Fetch Dummies Time(): 12.9432
+
+	Gen positions & add to oram stash: 0.10546
+
+	Evict ORam: 5.11148
+--------------------
+	EvictAll
+--------------------
+
+	AsyncFetch in FetchDummyPath: 0.0662698 To fetch: 207
+
+	num_ops: 17
+	pad_to: 224
+	Fetch Dummies Time(): 0.0669302
+
+	Gen positions & add to oram stash: 0.000103667
+
+	Evict ORam: 0.0489987
+--------------------
+--------------------------------
+	EvictAll
+--------------------
+
+	AsyncFetch in FetchDummyPath: 0.0815432 To fetch: 207
+
+	num_ops: 17
+	pad_to: 224
+	Fetch Dummies Time(): 0.0822743
+
+	Gen positions & add to oram stash: 0.000101875
+
+	Evict ORam: 0.0570354
+--------------------
+Searched 1 (1)time: 0.151023
+--------------------
+	EvictAll
+--------------------
+
+	AsyncFetch in FetchDummyPath: 0.0638409 To fetch: 209
+
+	num_ops: 17
+	pad_to: 226
+	Fetch Dummies Time(): 0.064482
+
+	Gen positions & add to oram stash: 9.8333e-05
+
+	Evict ORam: 0.0565798
+--------------------
+Searched 2 (3)time: 0.132471
+--------------------
+	EvictAll
+--------------------
+
+	AsyncFetch in FetchDummyPath: 0.0822317 To fetch: 212
+
+	num_ops: 18
+	pad_to: 230
+	Fetch Dummies Time(): 0.0829705
+
+	Gen positions & add to oram stash: 0.000103666
+
+	Evict ORam: 0.068981
+--------------------
+Searched 4 (7)time: 0.163956
+--------------------
+	EvictAll
+--------------------
+
+	AsyncFetch in FetchDummyPath: 0.0964523 To fetch: 217
+
+	num_ops: 21
+	pad_to: 238
+	Fetch Dummies Time(): 0.0972961
+
+	Gen positions & add to oram stash: 9.5292e-05
+
+	Evict ORam: 0.0779373
+--------------------
+Searched 8 (15)time: 0.188408
+--------------------
+	EvictAll
+--------------------
+
+	AsyncFetch in FetchDummyPath: 0.0640811 To fetch: 226
+
+	num_ops: 28
+	pad_to: 254
+	Fetch Dummies Time(): 0.0647304
+
+	Gen positions & add to oram stash: 0.00012625
+
+	Evict ORam: 0.0661731
+--------------------
+Searched 16 (31)time: 0.142529
+--------------------
+	EvictAll
+--------------------
+
+	AsyncFetch in FetchDummyPath: 0.067469 To fetch: 243
+
+	num_ops: 43
+	pad_to: 286
+	Fetch Dummies Time(): 0.0682013
+
+	Gen positions & add to oram stash: 0.000107125
+
+	Evict ORam: 0.107309
+--------------------
+Searched 32 (63)time: 0.191406
+--------------------
+	EvictAll
+--------------------
+
+	AsyncFetch in FetchDummyPath: 0.100139 To fetch: 276
+
+	num_ops: 74
+	pad_to: 350
+	Fetch Dummies Time(): 0.101281
+
+	Gen positions & add to oram stash: 0.000126375
+
+	Evict ORam: 0.131034
+--------------------
+Searched 64 (127)time: 0.274999
+--------------------
+	EvictAll
+--------------------
+
+	AsyncFetch in FetchDummyPath: 0.0864874 To fetch: 341
+
+	num_ops: 137
+	pad_to: 478
+	Fetch Dummies Time(): 0.0875996
+
+	Gen positions & add to oram stash: 0.000195416
+
+	Evict ORam: 0.127129
+--------------------
+Searched 128 (255)time: 0.26818
+--------------------
+	EvictAll
+--------------------
+
+	AsyncFetch in FetchDummyPath: 0.111686 To fetch: 470
+
+	num_ops: 264
+	pad_to: 734
+	Fetch Dummies Time(): 0.113122
+
+	Gen positions & add to oram stash: 0.000267625
+
+	Evict ORam: 0.228597
+--------------------
+Searched 256 (511)time: 0.422059
+--------------------
+	EvictAll
+--------------------
+
+	AsyncFetch in FetchDummyPath: 0.153639 To fetch: 727
+
+	num_ops: 519
+	pad_to: 1246
+	Fetch Dummies Time(): 0.155952
+
+	Gen positions & add to oram stash: 0.000423
+
+	Evict ORam: 0.302355
+--------------------
+Searched 512 (1023)time: 0.620158
+--------------------
+	EvictAll
+--------------------
+
+	AsyncFetch in FetchDummyPath: 0.253036 To fetch: 1240
+
+	num_ops: 1030
+	pad_to: 2270
+	Fetch Dummies Time(): 0.2574
+
+	Gen positions & add to oram stash: 0.000784958
+
+	Evict ORam: 0.503697
+--------------------
+Searched 1024 (2047)time: 1.02733
+--------------------
+	EvictAll
+--------------------
+
+	AsyncFetch in FetchDummyPath: 0.376394 To fetch: 2265
+
+	num_ops: 2053
+	pad_to: 4318
+	Fetch Dummies Time(): 0.384265
+
+	Gen positions & add to oram stash: 0.00141367
+
+	Evict ORam: 0.83169
+--------------------
+Searched 2048 (4095)time: 1.69232
+--------------------
+	EvictAll
+--------------------
+
+	AsyncFetch in FetchDummyPath: 0.602801 To fetch: 4314
+
+	num_ops: 4100
+	pad_to: 8414
+	Fetch Dummies Time(): 0.619903
+
+	Gen positions & add to oram stash: 0.00271371
+
+	Evict ORam: 1.34924
+--------------------
+Searched 4096 (8191)time: 2.78333
+--------------------
+	EvictAll
+--------------------
+
+	AsyncFetch in FetchDummyPath: 0.996297 To fetch: 8411
+
+	num_ops: 8195
+	pad_to: 16606
+	Fetch Dummies Time(): 1.0323
+
+	Gen positions & add to oram stash: 0.00599488
+
+	Evict ORam: 2.21721
+--------------------
+Searched 8192 (16383)time: 4.89709
+--------------------
+	EvictAll
+--------------------
+
+	AsyncFetch in FetchDummyPath: 1.42745 To fetch: 16604
+
+	num_ops: 16386
+	pad_to: 32990
+	Fetch Dummies Time(): 1.48893
+
+	Gen positions & add to oram stash: 0.0118029
+
+	Evict ORam: 3.15482
+--------------------
+Searched 16384 (32767)time: 7.18703
+--------------------
+	EvictAll
+--------------------
+
+	AsyncFetch in FetchDummyPath: 1.8387 To fetch: 32989
+
+	num_ops: 32769
+	pad_to: 65758
+	Fetch Dummies Time(): 1.9476
+
+	Gen positions & add to oram stash: 0.0251273
+
+	Evict ORam: 4.22375
+--------------------
+Searched 32768 (65535)time: 11.6477
+took=56.0102, config=num_runs_: 1 capacity_: 131072 num_levels_: 18 locality_factor_: 1 base_block_size_: 4 store_path_:  min_val_len_: 0 max_val_len_: 0 is_data_mem_: 1 is_aux_mem_: 1 is_ssd_: 0 is_cached_: 1 data_file_: 

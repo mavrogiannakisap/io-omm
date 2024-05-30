@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package file_oram.storage;
+
+import "google/protobuf/empty.proto";
+
+message InitializeRequest {
+  uint64 n = 1;
+  uint64 entry_size = 2;
+  enum StoreType {
+    RAM = 0;
+    POSIX_SINGLE_FILE = 1;
+    MMAP_RAM = 2;
+    MMAP_FILE = 3;
+  }
+  StoreType store_type = 3;
+  string name = 4;
+  bool first_build = 5;
+}
+
+message InitializeResponse {
+  bool found_prebuilt = 1;
+}
+
+message ReadManyRequest {
+  repeated uint64 indexes = 1;
+}
+
+message EntryPart {
+  uint64 index = 1;
+  uint64 offset = 2;
+  bytes data = 3;
+}
+
+service RemoteStore {
+  rpc Initialize(InitializeRequest) returns (InitializeResponse) {}
+  rpc Destroy(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc ReadMany(ReadManyRequest) returns (stream EntryPart) {}
+  rpc WriteMany(stream EntryPart) returns (google.protobuf.Empty) {}
+}

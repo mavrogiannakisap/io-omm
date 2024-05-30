@@ -1,0 +1,117 @@
+Making server at: unix:///tmp/1683104172271702578.sock
+Made server
+Making channel
+Made channel
+Creating OFileStore with lf=64, s=3
+Initializing with id=0, n=65535, entry_size=128.0B, total store size=7.9MiB, store_type=2, first_build=0, name=ost-n65536-v256; num_stores=1
+Found prebuilt store state
+Copied prebuilt store state
+Using MMap File storage backend.
+Initializing with id=1, n=65535, entry_size=72.0KiB, total store size=4.5GiB, store_type=2, first_build=0, name=oram-n65536-v18440; num_stores=2
+Found prebuilt store state
+Copied prebuilt store state
+Using MMap File storage backend.
+Initializing with id=2, n=65535, entry_size=240.0B, total store size=14.9MiB, store_type=2, first_build=0, name=omap-n65536-v4; num_stores=3
+Found prebuilt store state
+Copied prebuilt store state
+Using MMap File storage backend.
+Initializing with id=3, n=255, entry_size=128.0B, total store size=31.8KiB, store_type=2, first_build=0, name=ost-n256-v65536; num_stores=4
+Found prebuilt store state
+Copied prebuilt store state
+Using MMap File storage backend.
+Initializing with id=4, n=255, entry_size=18.0MiB, total store size=4.4GiB, store_type=2, first_build=0, name=oram-n256-v4718600; num_stores=5
+Found prebuilt store state
+Copied prebuilt store state
+Using MMap File storage backend.
+Initializing with id=5, n=255, entry_size=240.0B, total store size=59.7KiB, store_type=2, first_build=0, name=omap-n256-v4; num_stores=6
+Found prebuilt store state
+Copied prebuilt store state
+Using MMap File storage backend.
+OFS: levels: 7 15 [23] ; first naive level: 23
+Initializing with id=6, n=1, entry_size=640.0MiB, total store size=640.0MiB, store_type=2, first_build=0, name=naive-n671088672; num_stores=7
+No prebuilt state found
+Using MMap File storage backend.
+Initializing with id=7, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2, first_build=0, name=omap-n8388608-v4; num_stores=8
+Found prebuilt store state
+Copied prebuilt store state
+Using MMap File storage backend.
+Initializing with id=8, n=8388607, entry_size=240.0B, total store size=1.8GiB, store_type=2, first_build=0, name=omap-n8388608-v4; num_stores=9
+Found prebuilt store state
+Copied prebuilt store state
+Using MMap File storage backend.
+OFileStore created with lf=64, s=3, levels=[7 15 23 ]
+Setup done, took 904.358
+Inserted 1 (1)
+Inserted 2 (3)
+Inserted 4 (7)
+Inserted 8 (15)
+Inserted 16 (31)
+Inserted 32 (63)
+Inserted 64 (127)
+Inserted 128 (255)
+Inserted 256 (511)
+Inserted 512 (1023)
+Inserted 1024 (2047)
+Inserted 2048 (4095)
+Inserted 4096 (8191)
+Inserted 8192 (16383)
+Inserted 16384 (32767)
+Inserted 32768 (65535)
+Inserted 65536 (131071)
+Inserted 131072 (262143)
+Inserted 262144 (524287)
+Inserted 524288 (1048575)
+Inserted 1048576 (2097151)
+Inserted 2097152 (4194303)
+Inserted 4194304 (8388607)
+Searched 1 (1)
+Searched 2 (3)
+Searched 4 (7)
+Searched 8 (15)
+Searched 16 (31)
+Searched 32 (63)
+Searched 64 (127)
+Searched 128 (255)
+Searched 256 (511)
+Searched 512 (1023)
+Searched 1024 (2047)
+Searched 2048 (4095)
+Searched 4096 (8191)
+Searched 8192 (16383)
+Searched 16384 (32767)
+Searched 32768 (65535)
+Searched 65536 (131071)
+Searched 131072 (262143)
+Searched 262144 (524287)
+Searched 524288 (1048575)
+Searched 1048576 (2097151)
+Searched 2097152 (4194303)
+Searched 4194304 (8388607)
+Store destroy invoked.
+Store id to destroy: 8
+Store destroy invoked.
+Store id to destroy: 7
+Store destroy invoked.
+Store id to destroy: 6
+Store destroy invoked.
+Store id to destroy: 1
+Store destroy invoked.
+Store id to destroy: 4
+Store destroy invoked.
+Store id to destroy: 0
+Store destroy invoked.
+Store id to destroy: 3
+Store destroy invoked.
+Store id to destroy: 2
+Store destroy invoked.
+Store id to destroy: 5
+took=2223.47, config=num_runs_: 1 capacity_: 8388608 num_levels_: 3 locality_factor_: 64 base_block_size_: 64 store_path_: /mnt/hdd1/tests/cache/ min_val_len_: 0 max_val_len_: 0 is_data_mem_: 0 is_aux_mem_: 0 is_ssd_: 0 is_cached_: 1 data_file_: 
+Store with id=8 destroyed; Remaining stores: 8
+Store with id=7 destroyed; Remaining stores: 7
+Store with id=6 destroyed; Remaining stores: 6
+Store with id=1 destroyed; Remaining stores: 5
+Store with id=4 destroyed; Remaining stores: 4
+Store with id=0 destroyed; Remaining stores: 3
+Store with id=3 destroyed; Remaining stores: 2
+Store with id=2 destroyed; Remaining stores: 1
+Store with id=5 destroyed; Remaining stores: 0

@@ -1,0 +1,13 @@
+add_subdirectory(all_in_one)
+add_subdirectory(bench)
+add_subdirectory(o_file_store)
+add_subdirectory(path_omap)
+add_subdirectory(path_oram)
+add_subdirectory(path_osegtree)
+add_subdirectory(path_osm)
+add_subdirectory(proto)
+add_subdirectory(remote_store)
+add_subdirectory(utils)
+# add_subdirectory(server_storage)
+
+add_executable(store_bench remote_store/internal/bench.cpp)

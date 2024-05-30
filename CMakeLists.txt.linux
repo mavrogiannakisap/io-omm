@@ -1,0 +1,101 @@
+set(CMAKE_TOOLCHAIN_FILE cmake/toolchain_llvm.cmake)
+
+cmake_minimum_required(VERSION 3.15)
+project(FileORAM LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -stdlib=libc++ -lc++abi")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+
+function(select_best_linker) #lld for Clang and GNU gold for GCC
+    message(STATUS "Select best linker running")
+    if (UNIX AND NOT APPLE)
+        message(STATUS "Select best linker --> UNIX")
+        message(STATUS "Select best linker --> CMAKE_CXX_COMPILER_ID: ${CMAKE_CXX_COMPILER_ID}")
+        include(ProcessorCount)
+        ProcessorCount(HOST_PROC_COUNT)
+
+        if(${CMAKE_CXX_COMPILER_ID} MATCHES Clang)
+
+            # By default LLD uses all system threads.
+            # This could be tweaked for versions 11+ (--threads=1), but cannot be disabled for older versions
+            # add_link_options("-fuse-ld=lld-${CLANG_VERSION_MAJOR};LINKER:--threads=${HOST_PROC_COUNT}") #LLD>=11
+            # add_link_options("-fuse-ld=lld;LINKER:--threads")#LLD <= 10 this is the default state
+
+            string(REPLACE "." ";" VERSION_LIST ${CMAKE_CXX_COMPILER_VERSION})
+            list(GET VERSION_LIST 0 CLANG_VERSION_MAJOR) #extract major compiler version
+
+            find_program(LLD_PROGRAM_MATCH_VER lld-${CLANG_VERSION_MAJOR}) #search for lld-13 when clang 13.x.x is used
+            find_program(LLD_PROGRAM lld) #else find default lld
+
+            if (LLD_PROGRAM_MATCH_VER) #lld matching compiler version
+                message(STATUS "Set linker to LLD (multi-threaded): ${LLD_PROGRAM_MATCH_VER}")
+                add_link_options("-fuse-ld=lld-${CLANG_VERSION_MAJOR}")
+            elseif(LLD_PROGRAM) #default lld
+                message(STATUS "Set linker to LLD (multi-threaded): ${LLD_PROGRAM}")
+                add_link_options("-fuse-ld=lld")
+            endif(LLD_PROGRAM_MATCH_VER)
+
+        elseif(${CMAKE_CXX_COMPILER_ID} MATCHES GNU)
+
+            find_program(GNU_GOLD_PROGRAM gold)
+            if (GNU_GOLD_PROGRAM)
+                message(STATUS "Set linker to GNU gold: ${GNU_GOLD_PROGRAM}, using threads: ${HOST_PROC_COUNT}")
+                add_link_options("-fuse-ld=gold;LINKER:--threads,--thread-count=${HOST_PROC_COUNT}")
+            endif(GNU_GOLD_PROGRAM)
+
+        endif(${CMAKE_CXX_COMPILER_ID} MATCHES Clang)
+    endif(UNIX AND NOT APPLE)
+endfunction(select_best_linker)
+select_best_linker()
+
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR})
+list(APPEND CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR})
+
+if (NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
+    message(STATUS "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
+    file(DOWNLOAD "https://raw.githubusercontent.com/conan-io/cmake-conan/0.18.1/conan.cmake"
+            "${CMAKE_BINARY_DIR}/conan.cmake"
+            TLS_VERIFY ON)
+endif ()
+
+include(${CMAKE_BINARY_DIR}/conan.cmake)
+
+conan_cmake_configure(REQUIRES
+        cxxopts/3.0.0
+        grpc/1.48.0
+        openssl/3.0.5
+        protobuf/3.21.4
+        GENERATORS cmake_find_package_multi)
+
+conan_cmake_install(PATH_OR_REFERENCE .
+        BUILD missing
+        REMOTE conancenter
+        SETTINGS build_type=${CMAKE_BUILD_TYPE}
+		 compiler=clang
+		 compiler.cppstd=17
+		 compiler.libcxx=libc++
+		 compiler.version=16)
+
+#if (${CMAKE_BUILD_TYPE} EQUAL Debug)
+#    link_libraries(profiler)
+#
+#   SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
+#   SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pg")
+#   SET(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -pg")
+#link_libraries(c_p)
+#endif ()
+
+find_package(cxxopts REQUIRED CONFIG)
+find_package(gRPC REQUIRED CONFIG)
+find_package(Protobuf REQUIRED CONFIG)
+find_package(OpenSSL REQUIRED CONFIG)
+
+link_libraries(cxxopts::cxxopts)
+
+# Source: https://github.com/buq2/grpc-conan; + cmake_find_package_multi support for multiple build types.
+include(cmake/grpc_extras.cmake)
+
+include_directories(${PROJECT_SOURCE_DIR}/src)
+
+add_subdirectory(src)
