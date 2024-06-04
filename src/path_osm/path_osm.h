@@ -84,7 +84,8 @@ class OSM {
   static std::optional<OSM> Construct(size_t n, size_t val_len,
                                       utils::Key enc_key,
                                       std::shared_ptr<grpc::Channel> channel,
-                                      storage::InitializeRequest_StoreType st);
+                                      storage::InitializeRequest_StoreType st,
+                                      std::string store_path);
   void Destroy();
 
   void Insert(Key k, Val v);
@@ -105,7 +106,7 @@ class OSM {
  private:
   OSM(size_t n, size_t val_len,
       utils::Key enc_key, std::shared_ptr<grpc::Channel> channel,
-      storage::InitializeRequest_StoreType st);
+      storage::InitializeRequest_StoreType st, std::string store_path);
   std::unique_ptr<path_oram::ORam> oram_;
   const size_t capacity_;
   const size_t val_len_;

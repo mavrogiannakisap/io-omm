@@ -15,7 +15,6 @@
 #include "remote_store.grpc.pb.h"
 #include "remote_store/server.h"
 #include "utils/crypto.h"
-#include "server_storage/local_server.h"
 
 namespace file_oram::path_oram {
 
@@ -23,12 +22,12 @@ using Pos = uint32_t;
 using Key = uint32_t;
 using Val = std::unique_ptr<char[]>;
 using OptVal = std::optional<Val>;
-using namespace Storage;
+
 class ORam;
 
 namespace internal {
 
-const size_t kAsyncBatchSize = 1ULL << 10;
+const size_t kAsyncBatchSize = 1;
 using AsyncSem = std::counting_semaphore<kAsyncBatchSize>;
 
 class BlockMetadata {
@@ -49,12 +48,12 @@ class Block {
   explicit Block(bool zero_fill = false);
   Block(Pos p, Key k, Val v);
   Block(char *data, size_t val_len);
-/*  Block& operator=(const Block &other);
-  Block(const Block&& other);
-  Block(const Block& other);
-*/
+  // Block& operator=(const Block &other);
+  // Block(const Block&& other);
+  // Block(const Block& other);
+
   void ToBytes(size_t val_len, char *out);
-  void Copy(Block &from);
+  // void Copy(Block &from);
   static size_t BlockSize(size_t val_len);
 };
 
@@ -81,7 +80,6 @@ class Bucket {
   Bucket(char *data, size_t val_len);
 
   std::unique_ptr<char[]> ToBytes(size_t val_len);
-  void ToBytes(size_t val_len, char *out);
 };
 
 class BucketUploader : public grpc::ClientWriteReactor<storage::EntryPart> {
@@ -126,8 +124,7 @@ class ORam {
       storage::InitializeRequest_StoreType aux_st,
       bool upload_stash = false,
       const std::string &name = "",
-      bool first_build = false,
-      std::string file_path="");
+      bool first_build = false, std::string store_path="");
   void Destroy();
 
 
@@ -162,7 +159,7 @@ class ORam {
        storage::InitializeRequest_StoreType aux_st,
        bool upload_stash = false,
        std::string name = "",
-       bool first_build = false, std::string file_path = "");
+       bool first_build = false);
 
   const size_t capacity_;
   const size_t val_len_;
@@ -182,8 +179,6 @@ class ORam {
   storage::InitializeRequest_StoreType aux_store_type_;
   uint32_t data_store_id_ = 0;
   uint32_t aux_store_id_ = 0;
-  RAMServer<internal::Bucket> mem_;
-  Server<internal::Bucket> storage_;
   size_t blocks_in_remote_stash_ = 0;
   size_t most_blocks_in_remote_stash_yet_ = 0;
   const bool upload_stash_;

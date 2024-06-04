@@ -47,7 +47,7 @@ int main(int argc, char **argv) {
     Measurement run;
     std::clog << "Constructing OSM" << std::endl;
     auto opt_osm =
-      OSM::Construct(c.capacity_, c.base_block_size_, ek, chan, data_store);
+      OSM::Construct(c.capacity_, c.base_block_size_, ek, chan, data_store, c.store_path_);
     if (!opt_osm.has_value()) {
       std::clog << "Benchmark OSM failed" << std::endl;
       std::clog << "Config: " << c << std::endl;
@@ -81,14 +81,14 @@ int main(int argc, char **argv) {
       prev_bytes = osm.BytesMoved();
     }
     std::clog << "Evicting.." << std::endl;
-    osm.BatchEvict();
+    osm.EvictAll(); 
     // osm.ReadAll(1); // One dummy access
     // osm.EvictAll();
     prev_bytes = osm.BytesMoved();
     std::clog << "--------------------------------" << std::endl;
     size_t searched = 0;
     std::clog << "Result size, time" << std::endl;
-    for (uint64_t k = 1; k < size_t(c.capacity_); k <<=1) {
+    for (uint64_t k = 1; k < size_t(c.capacity_)/8; k <<=1) {
 
       // std::clog << "Searching for " << k << std::endl;
       run.Took();

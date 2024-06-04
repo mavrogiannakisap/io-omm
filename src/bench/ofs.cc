@@ -48,7 +48,7 @@ int main(int argc, char **argv) {
     // std::clog << "Creating OFileStore with lf=" << lf << ", s=" << int(c.num_levels_) << std::endl;
     auto opt_ofs = OFileStore::SConstruct(
         c.capacity_, c.num_levels_, lf, c.base_block_size_,
-        ek, chan, data_store, aux_store, true, true, c.storage_type_, r, c.initial_level_);
+        ek, chan, data_store, aux_store, true, true, c.storage_type_, r, c.initial_level_, c.store_path_);
     if (!opt_ofs.has_value()) {
       std::clog << "Benchmark OMM failed" << std::endl;
       std::clog << "Config: " << c << std::endl;

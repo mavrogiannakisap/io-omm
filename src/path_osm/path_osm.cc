@@ -8,6 +8,7 @@
 #include <memory>
 #include <optional>
 #include <chrono>
+#include <iostream>
 
 #include <grpcpp/channel.h>
 #include <grpcpp/client_context.h>
@@ -72,8 +73,8 @@ static Block empty(0, nullptr, 0);// TODO: Hack; fix!
 std::optional<OSM> OSM::Construct(
     const size_t n, const size_t val_len,
     const utils::Key enc_key, std::shared_ptr<grpc::Channel> channel,
-    storage::InitializeRequest_StoreType st) {
-  auto o = OSM(n, val_len, enc_key, channel, st);
+    storage::InitializeRequest_StoreType st, std::string store_path) {
+  auto o = OSM(n, val_len, enc_key, channel, st, store_path);
   if (o.setup_successful_) { return o; }
   return std::nullopt;
 }
@@ -84,18 +85,19 @@ void OSM::FillWithDummies() { return oram_->FillWithDummies(); }
 
 OSM::OSM(size_t n, size_t val_len,
          utils::Key enc_key, std::shared_ptr<grpc::Channel> channel,
-         storage::InitializeRequest_StoreType st)
+         storage::InitializeRequest_StoreType st, std::string store_path)
     : capacity_(n), val_len_(val_len), pad_per_op_(ceil(1.44 * 3.0 * log2(n))) {
   if (n & (n - 1)) { // Not a power of 2.
     return;
   }
   auto opt_oram = path_oram::ORam::Construct(
       n, BlockSize(val_len), enc_key, std::move(channel),
-      st, st, false); // TODO st, st
+      st, st, false, "osm-ram", false, store_path); // TODO st, st
   if (!opt_oram.has_value()) {
     return;
   }
   oram_ = std::unique_ptr<path_oram::ORam>(opt_oram.value());
+  std::clog << "Calling FillWithDummies()\n";
   oram_->FillWithDummies();
   setup_successful_ = true;
 }

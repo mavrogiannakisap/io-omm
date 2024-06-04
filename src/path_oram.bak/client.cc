@@ -1,7 +1,6 @@
 #include "path_oram.h"
 
 #include <cstddef>
-#include <iostream>
 
 #include <grpcpp/create_channel.h>
 #include <grpcpp/security/credentials.h>
@@ -20,11 +19,11 @@ int main() {
   auto channel = grpc::CreateCustomChannel("localhost:50052",
                                            grpc::InsecureChannelCredentials(),
                                            args);
-  const size_t val_len = 4;
+  const size_t val_len = 1UL << 10;
   const size_t n = 8;
   auto enc_key = file_oram::utils::GenerateKey();
   auto opt_oram = file_oram::path_oram::ORam::Construct(
-      n, val_len, enc_key, channel, data_st, aux_st, false, "oram", false, "/Users/apostolosmavrogiannakis/Documents/ssdmount/storage");
+      n, val_len, enc_key, channel, data_st, aux_st, false);
   if (!opt_oram.has_value()) {
     std::clog << "Failed to create ORAM!" << std::endl;
     return 1;
@@ -32,9 +31,8 @@ int main() {
   std::clog << "ORAM created." << std::endl;
   auto &oram = opt_oram.value();
 
-  oram->FillWithDummies();
   std::map<file_oram::path_oram::Key, file_oram::path_oram::Pos> pos_map;
-  for (file_oram::path_oram::Key k = 1; k < n; ++k) {
+  for (file_oram::path_oram::Key k = 0; k < n; ++k) {
     auto to_fetch = oram->GeneratePos();
     std::clog << "Fetching pos " << to_fetch << std::endl;
     oram->FetchPath(to_fetch);
@@ -46,10 +44,9 @@ int main() {
     pos_map[k] = p;
   }
   oram->EvictAll();
-  
-  for (file_oram::path_oram::Key k = 1; k < n; ++k) {
+
+  for (file_oram::path_oram::Key k = 0; k < n; ++k) {
     auto p = pos_map[k];
-    std::clog << "Searching for k= " << k << std::endl; 
     oram->FetchPath(p);
     auto ov = oram->ReadAndRemoveFromStash(k);
     my_assert(ov.has_value());
@@ -62,12 +59,11 @@ int main() {
     pos_map[k] = p;
   }
   oram->EvictAll();
+
   for (auto p = oram->min_pos_; p <= oram->max_pos_; ++p) {
-    std::cout << "P = " << p << std::endl;
     oram->FetchPath(p);
   }
-  
-  for (file_oram::path_oram::Key k = 1; k < n; ++k) {
+  for (file_oram::path_oram::Key k = 0; k < n; ++k) {
     auto ov = oram->ReadAndRemoveFromStash(k);
     my_assert(ov.has_value());
     auto v = std::move(ov.value());

@@ -235,7 +235,7 @@ class OFileStore {
              storage::InitializeRequest_StoreType data_st,
              storage::InitializeRequest_StoreType aux_st,
              bool upload_stash = true,
-             bool first_build = false, std::string storage_type_ = "RAM", uint8_t init_level_ = 10);
+             bool first_build = false, std::string storage_type_ = "RAM", uint8_t init_level_ = 10, std::string store_path = "");
   static std::optional<OFileStore> SConstruct(uint32_t n, uint8_t s, size_t &lf, uint32_t base_block_size,
     utils::Key enc_key,
     const std::shared_ptr<grpc::Channel> &channel,
@@ -243,7 +243,7 @@ class OFileStore {
     storage::InitializeRequest_StoreType aux_st,
     bool upload_stash,
     bool first_build,
-    std::string storage_type_, uint8_t num_runs, uint8_t init_level_);
+    std::string storage_type_, uint8_t num_runs, uint8_t init_level_ , std::string store_path="");
 
   void Append(Key k, Val v, bool optimized = false); // InsertOne, InsertMany
   void AppendSingleLevel(Key k, Val v);
@@ -275,7 +275,7 @@ class OFileStore {
     storage::InitializeRequest_StoreType aux_st,
     bool upload_stash,
     bool first_build,
-    std::string storage_type_, uint8_t init_level_);
+    std::string storage_type_, uint8_t init_level_, std::string store_path_);
 
   OFileStore(uint32_t n, uint8_t s, uint32_t base_block_size,
     utils::Key enc_key,
@@ -284,7 +284,7 @@ class OFileStore {
     storage::InitializeRequest_StoreType aux_st,
     bool upload_stash,
     bool first_build,
-    std::string storage_type_, uint8_t init_level_);
+    std::string storage_type_, uint8_t init_level_, std::string store_path_);
 
   const uint32_t capacity_; // Number of base blocks
   const bool has_all_levels_;

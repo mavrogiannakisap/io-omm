@@ -1,6 +1,7 @@
 #include "path_osm.h"
 
 #include <cstddef>
+#include <iostream>
 
 #include <grpcpp/create_channel.h>
 #include <grpcpp/security/credentials.h>
@@ -19,19 +20,19 @@ int main() {
   auto channel = grpc::CreateCustomChannel("localhost:50052",
                                            grpc::InsecureChannelCredentials(),
                                            args);
-  constexpr static size_t cap = 1UL << 10;
+  constexpr static size_t cap = 8;
   constexpr static size_t n = cap >> 1;
-  constexpr static size_t val_len = 8;
+  constexpr static size_t val_len = 4;
   auto enc_key = file_oram::utils::GenerateKey();
+  std::string store_path("/Users/apostolosmavrogiannakis/Documents/ssdmount/storage");
   auto opt_osm =
-      file_oram::path_osm::OSM::Construct(cap, val_len, enc_key, channel, st);
+      file_oram::path_osm::OSM::Construct(cap, val_len, enc_key, channel, st, store_path);
   if (!opt_osm.has_value()) {
     std::clog << "Failed to create OSM!" << std::endl;
     return 1;
   }
   std::clog << "OSM Created." << std::endl;
   auto &osm = opt_osm.value();
-
   for (file_oram::path_osm::Key k = 1; k <= n; k <<= 1) {
   //for (file_oram::path_osm::Key k = n; k >= 1; k >>= 1) {
     auto len = k;
@@ -41,10 +42,12 @@ int main() {
       *v.get() = char(k + i);
       osm.Insert(k, std::move(v));
     }
+    std::clog << "["<< k << "]=" << osm.Count(k) << std::endl; 
   }
   osm.EvictAll();
   std::clog << "Inserted." << std::endl;
-
+  auto val = osm.Read(1);
+  assert(val.has_value());
   for (file_oram::path_osm::Key k = 1; k <= n; k <<= 1) {
   //for (file_oram::path_osm::Key k = n; k >= 1; k >>= 1) {
     auto len = k;

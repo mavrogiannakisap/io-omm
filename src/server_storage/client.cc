@@ -4,6 +4,7 @@
 #include <fstream>
 
 #include "local_server.h"
+#include "block.h"
 
 using namespace Storage;
 
@@ -16,7 +17,7 @@ int main() {
     uint32_t val_len = 4;
     std::string file_path = "/Users/apostolosmavrogiannakis/Desktop/PhD-prep/Source Codes/server-storage/storage";
 
-    Server server(file_path, n);
+    Server<Block> server(file_path, n);
 
     std::vector<Block> blocks;
     std::vector<uint32_t> ind;
@@ -73,7 +74,7 @@ int main() {
         ind.push_back(k-1);
     }
     
-    RAMServer rserver(n);
+    RAMServer<Block> rserver(n);
     
     rserver.WriteMany(blocks, ind);
        

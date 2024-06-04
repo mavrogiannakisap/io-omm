@@ -380,9 +380,9 @@ std::optional<OFileStore> OFileStore::Construct
     storage::InitializeRequest_StoreType data_st,
     storage::InitializeRequest_StoreType aux_st,
     bool upload_stash,
-    bool first_build, std::string storage_type_, uint8_t init_level_) {
+    bool first_build, std::string storage_type_, uint8_t init_level_, std::string store_path) {
   auto o = OFileStore(n, s, lf, base_block_size, enc_key,
-                      channel, data_st, aux_st, upload_stash, first_build, storage_type_, init_level_);
+                      channel, data_st, aux_st, upload_stash, first_build, storage_type_, init_level_, store_path);
   if (o.setup_successful_) { return o; }
   return std::nullopt;
 }
@@ -394,14 +394,14 @@ std::optional<OFileStore> OFileStore::SConstruct(uint32_t n, uint8_t s, size_t &
     storage::InitializeRequest_StoreType aux_st,
     bool upload_stash,
     bool first_build,
-    std::string storage_type_, uint8_t num_runs, uint8_t init_level_) {
+    std::string storage_type_, uint8_t num_runs, uint8_t init_level_, std::string store_path) {
 
   if(s > 1) {
     return OFileStore(n, s, lf, base_block_size, enc_key,
-                      channel, data_st, aux_st, upload_stash, first_build, storage_type_,  init_level_);
+                      channel, data_st, aux_st, upload_stash, first_build, storage_type_,  init_level_, store_path);
   } else {
     return OFileStore(n, s, base_block_size, enc_key,
-                      channel, data_st, aux_st, upload_stash, first_build, storage_type_, init_level_);
+                      channel, data_st, aux_st, upload_stash, first_build, storage_type_, init_level_, store_path);
   }
   return std::nullopt;
 }
@@ -416,7 +416,7 @@ OFileStore::OFileStore(
     storage::InitializeRequest_StoreType aux_st,
     bool upload_stash,
     bool first_build,
-    std::string storage_type_, uint8_t init_level_)
+    std::string storage_type_, uint8_t init_level_, std::string store_path)
     : capacity_(n),
       levels_(MakeLevels(n, s, storage_type_, base_block_size, init_level_)),
       has_all_levels_(levels_.size() == lg(n) + 1),
@@ -554,7 +554,7 @@ OFileStore::OFileStore(
     storage::InitializeRequest_StoreType aux_st,
     bool upload_stash,
     bool first_build,
-    std::string storage_type_, uint8_t init_level_)
+    std::string storage_type_, uint8_t init_level_, std::string store_path)
     : capacity_(n),
       levels_(MakeLevels(n, s, storage_type_, base_block_size, init_level_)), //TODO: Fix 
       has_all_levels_(levels_.size() == lg(n) + 1),
