@@ -47,6 +47,7 @@ class BlockPointer {
   bool valid_ = false;
 
   BlockPointer() = default;
+  explicit BlockPointer(ORKey k, ORPos p, bool v);
   explicit BlockPointer(ORKey k);
 };
 using BP = BlockPointer;
@@ -55,13 +56,14 @@ using OptBP = std::optional<BlockPointer>;
 class BlockMetadata {
  public:
   Key key_;
-  BP l_, r_, next_;
+  BP l_, r_;
+  OptBP next_;
   uint8_t height_;
 
   BlockMetadata() = default;
   BlockMetadata(Key k, uint32_t h);
   BlockMetadata(Key k, BP l, BP r, uint32_t h);
-  BlockMetadata(Key k, BP l, BP r, uint32_t h, uint32_t lc, uint32_t rc);
+  BlockMetadata(Key k, BP l, BP r, OptBP next, uint32_t h);
 };
 
 class Block {
@@ -72,7 +74,7 @@ class Block {
   Block() = default;
   Block(Key k, Val v, uint32_t h);
   Block(Key k, Val v, BP l, BP r, uint32_t h);
-  Block(Key k, const Val &v, BP l, BP r, uint32_t h, uint32_t lc, uint32_t rc);
+  Block(Key k, const Val &v, BP l, BP r, OptBP next, uint32_t h);
   Block(char *data, size_t val_len);
 
   ORVal ToBytes(size_t val_len);
@@ -86,12 +88,12 @@ class OLM {
                                       std::shared_ptr<grpc::Channel> channel,
                                       storage::InitializeRequest_StoreType st);
   void Destroy();
-
+  
   void Insert(Key k, Val v);
   OptVal Read(Key k);
   std::vector<Val> ReadAll(Key k);
   uint32_t Count(Key k);
-  OptVal ReadAndRemove(Key k);
+  // OptVal ReadAndRemove(Key k);
   void EvictAll();
   void EvictORam();
   void DummyOp(bool evict = false);
@@ -112,16 +114,18 @@ class OLM {
   size_t num_ops_ = 0;
   internal::BP root_;
   std::map<internal::ORKey, internal::Block> stash_;
+  std::map<internal::ORKey, internal::ORPos> pos_map_;
   bool setup_successful_ = false;
   // This limits the number of possible insertions to (2^64 - 1); Need an additional
   // stack for freed `ORKey`s to increase the limit.
   internal::ORKey next_key_ = 0;
   std::optional<Val> delete_res_;
 
-  internal::BP Insert(Key k, Val v, internal::BP bp, internal::OptBP opt_parent);
+  internal::BP Insert(Key k, Val v, internal::BP bp, std::optional<internal::Block> opt_parent=std::nullopt);
   std::optional<internal::BP> Read(Key k, internal::BP bp);
   void ReadAll(Key k, internal::BP bp, std::vector<Val> &res);
   // internal::BP ReadAndRemove(Key k, internal::BP bp);
+  uint32_t Count(Key k, internal::BP bp);
   internal::Block &FetchOrGetFromStash(internal::BP bp);
   internal::BP Balance(internal::BP bp);
   int8_t BalanceFactor(internal::BP bp);

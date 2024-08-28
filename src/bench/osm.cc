@@ -10,8 +10,7 @@
 #include <grpcpp/security/credentials.h>
 
 #include "path_osm/path_osm.h"
-// #include "remote_store/server.h"
-#include "remote_store/async_server.h"
+#include "remote_store/server.h"
 #include "utils/assert.h"
 #include "utils/bench.h"
 #include "utils/crypto.h"
@@ -30,7 +29,7 @@ int main(int argc, char **argv) {
   const std::string server_addr = "unix:///tmp/"
       + std::to_string(klock::now().time_since_epoch().count())
       + ".sock";
-  auto server = MakeServer(server_addr, {new AsyncCallbackRemoteStoreImpl(c.store_path_, true)});
+  auto server = MakeServer(server_addr, {new RemoteStoreImpl(c.store_path_, true)});
 
   auto data_store = c.is_data_mem_ ? kRamStore : kFileStore;
   auto aux_store = c.is_aux_mem_ ? kRamStore : kFileStore;
@@ -47,7 +46,7 @@ int main(int argc, char **argv) {
     Measurement run;
     std::clog << "Constructing OSM" << std::endl;
     auto opt_osm =
-      OSM::Construct(c.capacity_, c.base_block_size_, ek, chan, data_store, c.store_path_);
+      OSM::Construct(c.capacity_, c.base_block_size_, ek, chan, data_store);
     if (!opt_osm.has_value()) {
       std::clog << "Benchmark OSM failed" << std::endl;
       std::clog << "Config: " << c << std::endl;
@@ -80,34 +79,31 @@ int main(int argc, char **argv) {
       run.numbers_[{"vl", k}] = double(k);
       prev_bytes = osm.BytesMoved();
     }
+    osm.prebuild_phase_ = false;
     std::clog << "Evicting.." << std::endl;
-    osm.EvictAll(); 
-    // osm.ReadAll(1); // One dummy access
-    // osm.EvictAll();
+    osm.EvictAll();
+    osm.ReadAll(1); // One dummy access
+    osm.EvictAll();
     prev_bytes = osm.BytesMoved();
-    std::clog << "--------------------------------" << std::endl;
     size_t searched = 0;
-    std::clog << "Result size, time" << std::endl;
-    for (uint64_t k = 1; k < size_t(c.capacity_)/8; k <<=1) {
+    for (uint64_t k = 1; k < size_t(c.capacity_)/4; k<<=1) {
 
       // std::clog << "Searching for " << k << std::endl;
       run.Took();
-      
       auto vals = osm.ReadAll(k);
-      // auto read = run.Took();
+      // my_assert(vals.has_value());
+      // my_assert(osm.BytesMoved() >= prev_bytes);
       auto bytes = osm.BytesMoved() - prev_bytes;
       auto transferred = bytes / c.base_block_size_;
       auto res_size = k;  
       searched += res_size;
       osm.EvictAll();
-      // auto evict = run.Took();
       // std::clog << "\tRead: " << read << "\n\tEviction: " << evict << std::endl;
 
       run.numbers_[{"search", k}] = run.Took();
       run.numbers_[{"search_bytes", k}] = double(bytes);
       run.numbers_[{"search_false_pos", k}] = double(transferred - res_size);
-//      std::clog << "Searched " << k << " (" << searched << ")" << "time: " << run.numbers_[{"search", k}] << std::endl;
-      std::clog << k << ", " << run.numbers_[{"search", k}] << std::endl;
+      std::clog << "Searched " << k << " (" << searched << ")" << "time: " << run.numbers_[{"search", k}] << std::endl;
       // my_assert((run.numbers_[{"vl", k}] == double(res_size)));
       prev_bytes = osm.BytesMoved();
     }

@@ -76,7 +76,6 @@ class OMap {
   OptVal Read(Key k);
   OptVal ReadAndRemove(Key k);
   void EvictAll();
-  void BatchEvict();
   void EvictORam();
   void DummyOp(bool evict = false, size_t extra_fetches = 0);
   [[nodiscard]] size_t Capacity() const;

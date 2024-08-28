@@ -1,3 +1,0 @@
-test,data_mem,aux_mem,ssd,cached,bbs,n,s,lf,id,append,append_bytes,insert,insert_bytes,setup,setup_bytes,vl,total_time
-ofs-update,0,0,0,1,4096,32,3,2,0,0,0,0,0,0.005974,14880.000000,0,0.126643
-ofs-update,0,0,0,1,4096,32,3,2,16,0.005772,289872.000000,0.004416,152016.000000,0,0,16.000000,0.126643

@@ -1,2 +1,0 @@
-Writing: 4563402480 bytes
-Assertion failed (plen == BucketSize(val_len_)): function FetchPath, line 270, file /Users/apostolosmavrogiannakis/Desktop/PhD-prep/io-omm/src/path_oram/path_oram.cc.

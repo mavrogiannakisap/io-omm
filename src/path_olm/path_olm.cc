@@ -1,4 +1,4 @@
-#include "path_osm.h"
+#include "path_olm.h"
 
 #include <algorithm>
 #include <cmath>
@@ -23,13 +23,14 @@ using namespace file_oram::path_olm;
 using namespace file_oram::path_olm::internal;
 
 BlockPointer::BlockPointer(ORKey k) : key_(k), valid_(true) {}
+BlockPointer::BlockPointer(ORKey k, ORPos p, bool v) : key_(k), pos_(p), valid_(v) {}
 
 BlockMetadata::BlockMetadata(Key k, uint32_t h)
-    : key_(k), height_(h), l_count_(0), r_count_(0) {}
+    : key_(k), height_(h) {next_ = std::nullopt;}
 BlockMetadata::BlockMetadata(Key k, BP l, BP r, uint32_t h)
-    : key_(k), l_(l), r_(r), height_(h), l_count_(0), r_count_(0) {}
-BlockMetadata::BlockMetadata(Key k, BP l, BP r, uint32_t h, uint32_t lc, uint32_t rc)
-    : key_(k), l_(l), r_(r), height_(h), l_count_(lc), r_count_(rc) {}
+    : key_(k), l_(l), r_(r), height_(h) {next_ = std::nullopt;}
+    
+BlockMetadata::BlockMetadata(Key k, BP l, BP r, OptBP next, uint32_t h) : key_(k), l_(l), r_(r), next_(next), height_(h) {}
 
 namespace {
 inline static size_t BlockSize(size_t val_len) {
@@ -40,16 +41,16 @@ inline static size_t BlockSize(size_t val_len) {
 Block::Block(Key k, Val v, uint32_t h) : meta_(k, h), val_(std::move(v)) {}
 Block::Block(Key k, Val v, BP l, BP r, uint32_t h)
     : meta_(k, l, r, h), val_(std::move(v)) {}
-Block::Block(Key k, const Val &v, BP l, BP r, uint32_t h, uint32_t lc, uint32_t rc)
-    : meta_(k, l, r, h, lc, rc), val_(v) {
-
-}
 Block::Block(char *data, size_t val_len) {
   utils::FromBytes(data, meta_);
   val_ = std::make_unique<char[]>(val_len);
   std::copy(data + sizeof(BlockMetadata),
             data + sizeof(BlockMetadata) + val_len,
             val_.get());
+}
+Block::Block(Key k, const Val &v, BP l, BP r, OptBP next, uint32_t h):
+    meta_(k, l, r, h), val_(v) {
+  meta_.next_.swap(next);
 }
 
 ORVal Block::ToBytes(size_t val_len) {
@@ -93,6 +94,7 @@ OLM::OLM(size_t n, size_t val_len,
   if (!opt_oram.has_value()) {
     return;
   }
+  std::clog << "Created ORAM" << std::endl;
   oram_ = std::unique_ptr<path_oram::ORam>(opt_oram.value());
   oram_->FillWithDummies();
   setup_successful_ = true;
@@ -100,11 +102,11 @@ OLM::OLM(size_t n, size_t val_len,
 
 void OLM::Insert(Key k, Val v) {
   pad_to_ += pad_per_op_;
-  root_ = Insert(k, std::move(v), root_, std::nullptr);
+  root_ = Insert(k, std::move(v), root_, std::nullopt);
 }
 
 OptVal OLM::Read(Key k) {
-  pad_to_ += pad_per_op_;
+  pad_to_ += pad_per_op_ + 2;
   auto bp = Read(k, root_);
   if (!bp.has_value()) return std::nullopt;
   return stash_[bp->key_].val_;
@@ -112,32 +114,22 @@ OptVal OLM::Read(Key k) {
 
 std::vector<Val> OLM::ReadAll(Key k) {
   pad_to_ += pad_per_op_;
-  auto count = Count(k);
-  if (count == 0) {
-    return {};
-  }
-  pad_to_ += 2 * count;
   std::vector<Val> res;
   ReadAll(k, root_, res);
+  pad_to_ += 2 * res.size();
   return res;
 }
 
-uint32_t OLM::Count(Key k) {
-  pad_to_ += pad_per_op_;
-  return Count(k, root_);
-}
-
+/*
 OptVal OLM::ReadAndRemove(Key k) {
   pad_to_ += pad_per_op_;
-  auto count = Count(k);
-  if (k == 0) {
-    return std::nullopt;
-  }
   root_ = ReadAndRemove(k, root_);
   auto res = std::move(delete_res_);
+  pad_to_ += 2;
   delete_res_.reset();
   return res;
 }
+*/
 
 void OLM::EvictAll() {
   // Pad reads
@@ -145,22 +137,17 @@ void OLM::EvictAll() {
     oram_->FetchDummyPath();
 
   // Re-position and re-write all cached
-  std::map<ORKey, ORPos> pos_map;
-  for (auto &stash_entry : stash_) {
-    pos_map[stash_entry.first] = oram_->GeneratePos();
-  }
-
-  if (pos_map.find(root_.key_) != pos_map.end())
-    root_.pos_ = pos_map[root_.key_];
+  if (pos_map_.find(root_.key_) != pos_map_.end())
+    root_.pos_ = pos_map_[root_.key_];
 
   for (auto &stash_entry : stash_) {
     auto ok = stash_entry.first;
-    auto op = pos_map[ok];
+    auto op = pos_map_[ok];
     auto bl = std::move(stash_entry.second);
-    if (pos_map.find(bl.meta_.l_.key_) != pos_map.end())
-      bl.meta_.l_.pos_ = pos_map[bl.meta_.l_.key_];
-    if (pos_map.find(bl.meta_.r_.key_) != pos_map.end())
-      bl.meta_.r_.pos_ = pos_map[bl.meta_.r_.key_];
+    if (pos_map_.find(bl.meta_.l_.key_) != pos_map_.end())
+      bl.meta_.l_.pos_ = pos_map_[bl.meta_.l_.key_];
+    if (pos_map_.find(bl.meta_.r_.key_) != pos_map_.end())
+      bl.meta_.r_.pos_ = pos_map_[bl.meta_.r_.key_];
     auto ov = bl.ToBytes(val_len_);
     oram_->AddToStash(op, ok, std::move(ov));
   }
@@ -182,35 +169,38 @@ void OLM::DummyOp(bool evict) {
   }
 }
 
-BP OLM::Insert(Key k, Val v, BP bp, OptBP opt_parent) {
+BP OLM::Insert(Key k, Val v, BP bp, std::optional<internal::Block> opt_parent) {
   if (!bp.valid_) {
+    bp = BP(next_key_++);
+    pos_map_[bp.key_] = oram_->GeneratePos();
+    stash_[bp.key_] = Block(k, std::move(v), 1);
     if (opt_parent.has_value()) {
       auto parent = opt_parent.value();
-      parent.next_ = bp;
+      // must insert at the end of the list
+      my_assert(!parent.meta_.next_.has_value() 
+              && parent.meta_.key_ == k);
+      parent.meta_.next_ = BP{bp.key_, pos_map_[bp.key_], true};
+      my_assert(parent.meta_.next_.has_value());
     }
-    bp = BP(next_key_++);
-    stash_[bp.key_] = Block(k, std::move(v), 1);
     my_assert(next_key_ != 0); // Overflow; more than 2^64 insertions!
     return bp;
   }
 
   auto &p = FetchOrGetFromStash(bp);
-  if (k < p.meta_.key_ || (k == p.meta_.key_ && IsSmaller(v, p.val_, val_len_))) {
-    if (p.meta_.key_ == k) {
-      ++p.meta_.l_count_;
-    }
-    p.meta_.l_ = Insert(k, std::move(v), p.meta_.l_);
-  } else {
-    if (p.meta_.key_ == k) {
-      ++p.meta_.r_count_;
-    }
-    p.meta_.r_ = Insert(k, std::move(v), p.meta_.r_);
+  if (k > p.meta_.key_) { 
+       p.meta_.r_ = Insert(k, std::move(v), p.meta_.r_, opt_parent);
+  } else if (k == p.meta_.key_){
+    opt_parent = p;
+    p.meta_.r_ = Insert(k, std::move(v), p.meta_.r_, opt_parent);
+  } else { 
+      p.meta_.l_ = Insert(k, std::move(v), p.meta_.l_, opt_parent);
   }
 
   p.meta_.height_ = 1 + max(Height(p.meta_.l_), Height(p.meta_.r_));
   return Balance(bp);
 }
 
+// Returns the first occurrence of `k` in the AVL-tree.
 std::optional<BP> OLM::Read(Key k, BP bp) {
   if (!bp.valid_)
     return std::nullopt;
@@ -223,7 +213,7 @@ std::optional<BP> OLM::Read(Key k, BP bp) {
 }
 
 void OLM::ReadAll(Key k, internal::BP bp, std::vector<Val> &res) {
-  if(!bp.valid) {
+  if(!bp.valid_) {
     return;
   }
   auto &bl = FetchOrGetFromStash(bp);
@@ -235,9 +225,14 @@ void OLM::ReadAll(Key k, internal::BP bp, std::vector<Val> &res) {
     ReadAll(k, bl.meta_.r_, res);
     return;
   }
-  // k == bl.meta_.key
+  // k == _bl.meta_.key
+  std::cout << "Reached a node with the same key" << k << ", looking at pos " << bl.meta_.next_->pos_ << std::endl;
   res.push_back(bl.val_);
-  ReadAll(k, bl.meta_.next_, res);
+  if(bl.meta_.next_.has_value()) {
+    std::cout << "Going to next node " << bl.meta_.next_->pos_ << std::endl;
+    ReadAll(k, bl.meta_.next_.value(), res);
+  }
+  ReadAll(k, bl.meta_.l_, res);
 }
 
 Block &OLM::FetchOrGetFromStash(BP bp) {
@@ -300,15 +295,13 @@ BP OLM::LRotate(BP bp) {
 
   auto res = p.meta_.r_;
 
-  auto new_l = Block(p.meta_.key_, p.val_, p.meta_.l_, r.meta_.l_,
-                     1 + max(l.meta_.height_, r_l.meta_.height_),
-                     p.meta_.l_count_, Count(p.meta_.key_, r.meta_.l_));
+  auto new_l = Block(p.meta_.key_, p.val_, p.meta_.l_, r.meta_.l_, 
+                     p.meta_.next_, 1 + max(l.meta_.height_, r_l.meta_.height_));
   p = std::move(new_l);
   auto new_r = r_r;
 
-  auto new_p = Block(r.meta_.key_, r.val_, bp, r.meta_.r_,
-                     1 + max(new_l.meta_.height_, new_r.meta_.height_),
-                     Count(r.meta_.key_, bp), r.meta_.r_count_);
+  auto new_p = Block(r.meta_.key_, r.val_, bp, r.meta_.r_, r.meta_.next_,
+                     1 + max(new_l.meta_.height_, new_r.meta_.height_));
   r = std::move(new_p);
 
   return res;
@@ -325,13 +318,11 @@ BP OLM::RRotate(BP bp) {
 
   auto new_l = l_l;
   auto new_r = Block(p.meta_.key_, p.val_, l.meta_.r_, p.meta_.r_,
-                     1 + max(l_r.meta_.height_, r.meta_.height_),
-                     Count(p.meta_.key_, l.meta_.r_), p.meta_.r_count_);
+                     p.meta_.next_, 1 + max(l_r.meta_.height_, r.meta_.height_));
   p = std::move(new_r);
 
   auto new_p = Block(l.meta_.key_, l.val_, l.meta_.l_, bp,
-                     1 + max(new_l.meta_.height_, new_r.meta_.height_),
-                     l.meta_.l_count_, Count(l.meta_.key_, bp));
+                     l.meta_.next_, 1 + max(new_l.meta_.height_, new_r.meta_.height_));
   l = std::move(new_p);
 
   return res;

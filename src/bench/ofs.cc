@@ -4,14 +4,14 @@
 #include <iostream>
 #include <memory>
 #include <string>
+#include <sys/resource.h>
 
 #include <grpc/grpc.h>
 #include <grpcpp/create_channel.h>
 #include <grpcpp/security/credentials.h>
 
 #include "o_file_store/o_file_store.h"
-// #include "remote_store/server.h"
-#include "remote_store/async_server.h"
+#include "remote_store/server.h"
 #include "utils/assert.h"
 #include "utils/bench.h"
 #include "utils/crypto.h"
@@ -23,7 +23,14 @@ using namespace file_oram::o_file_store;
 using namespace file_oram::storage;
 using namespace file_oram::utils;
 
+long get_mem_usage() {
+    struct rusage usage;
+    getrusage(RUSAGE_SELF, &usage);
+    return usage.ru_maxrss;
+}
+
 int main(int argc, char **argv) {
+  long baseline = get_mem_usage();
   Config c(argc, argv);
   Measurement total{"ofs", c};
   auto start = klock::now();
@@ -31,7 +38,7 @@ int main(int argc, char **argv) {
   const std::string server_addr = "unix:///tmp/"
       + std::to_string(klock::now().time_since_epoch().count())
       + ".sock";
-  auto server = MakeServer(server_addr, {new AsyncCallbackRemoteStoreImpl(c.store_path_, true)});
+  auto server = MakeServer(server_addr, {new RemoteStoreImpl(c.store_path_, true)});
   auto data_store = c.is_data_mem_ ? kRamStore : kFileStore;
   auto aux_store = c.is_aux_mem_ ? kRamStore : kFileStore;
   auto ek = DumbKey();
@@ -48,7 +55,7 @@ int main(int argc, char **argv) {
     // std::clog << "Creating OFileStore with lf=" << lf << ", s=" << int(c.num_levels_) << std::endl;
     auto opt_ofs = OFileStore::SConstruct(
         c.capacity_, c.num_levels_, lf, c.base_block_size_,
-        ek, chan, data_store, aux_store, true, true, c.storage_type_, r, c.initial_level_, c.store_path_);
+        ek, chan, data_store, aux_store, true, true, c.storage_type_, r, c.initial_level_);
     if (!opt_ofs.has_value()) {
       std::clog << "Benchmark OMM failed" << std::endl;
       std::clog << "Config: " << c << std::endl;
@@ -85,23 +92,25 @@ int main(int argc, char **argv) {
       auto bytes = ofs.BytesMoved() - prev_bytes;
       inserted += k;
       run.numbers_[{"insert", k}] = run.Took();
-      // run.numbers_[{"insert_bytes", k}] = double(bytes);
+      run.numbers_[{"insert_bytes", k}] = double(bytes);
       std::clog << "Inserted " << k << " (" << inserted << ") took " << run.numbers_[{"insert", k}] << std::endl;
       run.numbers_[{"vl", k}] = double(k);
       prev_bytes = ofs.BytesMoved();
     }
     std::clog << "Evicting.." << std::endl;
-    ofs.BatchEvict();
 
+    ofs.EvictAll();
+    OptVal opt_v_temp;
+    ofs.ReadUpdate(1, OFileStore::MakeReader(opt_v_temp));
+    ofs.EvictAll();
     prev_bytes = ofs.BytesMoved();
     size_t searched = 0;
-    for (uint64_t k = 1; k < size_t(c.capacity_); k <<= 1) {
+    for (uint64_t k = 1; k < size_t(c.capacity_)/4; k <<= 1) {
       run.Took();
       OptVal opt_v;
       ofs.ReadUpdate(k, OFileStore::MakeReader(opt_v));
       ofs.EvictAll();
       // ofs.Search(k, OFileStore::MakeReader(opt_v));
-//      ofs.EvictAll();
       my_assert(opt_v.has_value());
       my_assert(ofs.BytesMoved() >= prev_bytes);
       auto bytes = ofs.BytesMoved() - prev_bytes;
@@ -110,8 +119,8 @@ int main(int argc, char **argv) {
       my_assert(transferred >= res_size); // Assuming no compression
       searched += res_size;
       run.numbers_[{"search", k}] = run.Took();
-      // run.numbers_[{"search_bytes", k}] = double(bytes);
-      // run.numbers_[{"search_false_pos", k}] = double(transferred - res_size);
+      run.numbers_[{"search_bytes", k}] = double(bytes);
+      run.numbers_[{"search_false_pos", k}] = double(transferred - res_size);
       std::clog << "Searched " << k << " (" << searched << ") took " << run.numbers_[{"search", k}] << std::endl;
       my_assert((run.numbers_[{"vl", k}] == double(res_size)));
       prev_bytes = ofs.BytesMoved();
@@ -120,6 +129,8 @@ int main(int argc, char **argv) {
     if (r != c.num_runs_)
       ofs.Destroy(); // Last one gets cleaned anyway.
   }
+
+  std::cout << "Total memory usage: " << get_mem_usage() - baseline << std::endl;
   total /= c.num_runs_;
 
   std::cout << total;

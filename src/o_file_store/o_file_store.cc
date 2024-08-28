@@ -380,9 +380,9 @@ std::optional<OFileStore> OFileStore::Construct
     storage::InitializeRequest_StoreType data_st,
     storage::InitializeRequest_StoreType aux_st,
     bool upload_stash,
-    bool first_build, std::string storage_type_, uint8_t init_level_, std::string store_path) {
+    bool first_build, std::string storage_type_, uint8_t init_level_) {
   auto o = OFileStore(n, s, lf, base_block_size, enc_key,
-                      channel, data_st, aux_st, upload_stash, first_build, storage_type_, init_level_, store_path);
+                      channel, data_st, aux_st, upload_stash, first_build, storage_type_, init_level_);
   if (o.setup_successful_) { return o; }
   return std::nullopt;
 }
@@ -394,14 +394,14 @@ std::optional<OFileStore> OFileStore::SConstruct(uint32_t n, uint8_t s, size_t &
     storage::InitializeRequest_StoreType aux_st,
     bool upload_stash,
     bool first_build,
-    std::string storage_type_, uint8_t num_runs, uint8_t init_level_, std::string store_path) {
+    std::string storage_type_, uint8_t num_runs, uint8_t init_level_) {
 
   if(s > 1) {
     return OFileStore(n, s, lf, base_block_size, enc_key,
-                      channel, data_st, aux_st, upload_stash, first_build, storage_type_,  init_level_, store_path);
+                      channel, data_st, aux_st, upload_stash, first_build, storage_type_,  init_level_);
   } else {
     return OFileStore(n, s, base_block_size, enc_key,
-                      channel, data_st, aux_st, upload_stash, first_build, storage_type_, init_level_, store_path);
+                      channel, data_st, aux_st, upload_stash, first_build, storage_type_, init_level_);
   }
   return std::nullopt;
 }
@@ -416,7 +416,7 @@ OFileStore::OFileStore(
     storage::InitializeRequest_StoreType aux_st,
     bool upload_stash,
     bool first_build,
-    std::string storage_type_, uint8_t init_level_, std::string store_path)
+    std::string storage_type_, uint8_t init_level_)
     : capacity_(n),
       levels_(MakeLevels(n, s, storage_type_, base_block_size, init_level_)),
       has_all_levels_(levels_.size() == lg(n) + 1),
@@ -427,7 +427,7 @@ OFileStore::OFileStore(
   }
   // Since all levels are dummy-filled, evictions will have
   // already happened once constructed.
-  SetAutoEvict();
+  //SetAutoEvict();
   for (uint8_t l = 0; l < uint8_t(levels_.size()); ++l) {
     if (IsLevelNaive(l)) {
       std::clog << "OFS: levels: ";
@@ -554,7 +554,7 @@ OFileStore::OFileStore(
     storage::InitializeRequest_StoreType aux_st,
     bool upload_stash,
     bool first_build,
-    std::string storage_type_, uint8_t init_level_, std::string store_path)
+    std::string storage_type_, uint8_t init_level_)
     : capacity_(n),
       levels_(MakeLevels(n, s, storage_type_, base_block_size, init_level_)), //TODO: Fix 
       has_all_levels_(levels_.size() == lg(n) + 1),
@@ -689,7 +689,8 @@ std::vector<uint8_t> OFileStore::MakeLevels(size_t n, uint8_t s,
   std::vector<uint8_t> res;
 
   std::clog << "Encrypted Bucket Size: " <<  EncryptedBucketSize(base_block_size_) << std::endl;
-  int step = log2(n)/(2*s);
+  //int step = log2(n)/(2*s);
+  int step = 4;
 
   if (!storage_type_.compare("RAM")) {
 
@@ -990,6 +991,7 @@ void OFileStore::AppendSingleLevel(Key k, Val v) {
   my_assert((v.l_ % base_block_size_) == 0);
   auto bl_count = NumBlocks(v.l_);
   auto opt_curr_size = size_map_->ReadAndRemove(k);
+  manual_evict_ = true;
   if (!manual_evict_) {
     size_map_->EvictAll();
   }
@@ -1321,12 +1323,12 @@ OptVal OFileStore::AllLevelsDelete(Key k) {
 }
 
 void OFileStore::ReadUpdate(Key k, const ValUpdateFunc &val_updater) {
-
   if (has_all_levels_) {
     AllLevelsReadUpdate(k, val_updater);
     return;
   }
-  
+
+  manual_evict_ = true; 
   auto opt_curr_size = size_map_->ReadAndRemove(k);
   if (!manual_evict_) {
     size_map_->EvictAll();
@@ -1625,14 +1627,6 @@ size_t OFileStore::BytesMoved() const {
   for (auto &o : allocators_) if (o) res += o->BytesMoved();
   for (auto &o : pos_maps_) if (o) res += o->BytesMoved();
   return res;
-}
-
-void OFileStore::BatchEvict() {
-  if (part_oram_key_map_) part_oram_key_map_->BatchEvict();
-  if (size_map_) size_map_->BatchEvict();
-  if (size_key_pos_map_) size_key_pos_map_->BatchEvict();
-  for (auto &o : orams_) if (o) o->EvictAll();
-  for (auto &o : pos_maps_) if (o) o->BatchEvict();
 }
 
 void OFileStore::EvictAll() {

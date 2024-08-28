@@ -28,7 +28,6 @@ int main() {
   constexpr uint32_t n = 1UL << nlg;
   constexpr uint8_t bslg = 4;
   constexpr uint32_t bs = 1UL << bslg;
-  std::string store_path = "Users/apostolosmavrogiannakis/Documents/ssdmount/storage";
 
   for (const auto &s : utils::SList(n)) {
     for (const auto &lf_loop : utils::LfList(n, s)) {

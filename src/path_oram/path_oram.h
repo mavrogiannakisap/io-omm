@@ -10,12 +10,11 @@
 #include <set>
 #include <vector>
 
-//#include <grpcpp/channel.h>
+#include <grpcpp/channel.h>
 
 #include "remote_store.grpc.pb.h"
 #include "remote_store/server.h"
 #include "utils/crypto.h"
-#include "server_storage/local_server.h"
 
 namespace file_oram::path_oram {
 
@@ -23,7 +22,7 @@ using Pos = uint32_t;
 using Key = uint32_t;
 using Val = std::unique_ptr<char[]>;
 using OptVal = std::optional<Val>;
-using namespace Storage;
+
 class ORam;
 
 namespace internal {
@@ -32,7 +31,7 @@ const size_t kAsyncBatchSize = 1ULL << 10;
 using AsyncSem = std::counting_semaphore<kAsyncBatchSize>;
 
 class BlockMetadata {
- public:
+public:
   Pos pos_;
   Key key_;
 
@@ -40,22 +39,16 @@ class BlockMetadata {
   BlockMetadata(Pos p, Key k);
 };
 
-
 class Block {
- public:
+public:
   BlockMetadata meta_;
   Val val_;
-  
+
   explicit Block(bool zero_fill = false);
   Block(Pos p, Key k, Val v);
   Block(char *data, size_t val_len);
-/*  Block& operator=(const Block &other);
-  Block(const Block&& other);
-  Block(const Block& other);
-*/
+
   void ToBytes(size_t val_len, char *out);
-  void Copy(Block &from);
-  static size_t BlockSize(size_t val_len);
 };
 
 // To support values higher than 6, the type of Bucket::meta_::flags_ should be
@@ -66,13 +59,13 @@ const static unsigned char kLeftChildValid = 0x01;
 const static unsigned char kRightChildValid = 0x02;
 
 class BucketMetadata {
- public:
+public:
   char flags_ = 0;
   explicit BucketMetadata(char f) : flags_(f) {}
 };
 
 class Bucket {
- public:
+public:
   std::array<Block, kBlocksPerBucket> blocks_;
   BucketMetadata meta_{0};
 
@@ -81,20 +74,19 @@ class Bucket {
   Bucket(char *data, size_t val_len);
 
   std::unique_ptr<char[]> ToBytes(size_t val_len);
-  void ToBytes(size_t val_len, char *out);
 };
 
 class BucketUploader : public grpc::ClientWriteReactor<storage::EntryPart> {
- public:
-  BucketUploader(storage::RemoteStore::Stub *stub, uint32_t store_id,
-                 Pos p, std::unique_ptr<char[]> val, size_t len,
+public:
+  BucketUploader(storage::RemoteStore::Stub *stub, uint32_t store_id, Pos p,
+                 std::unique_ptr<char[]> val, size_t len,
                  std::shared_ptr<AsyncSem> done_sem);
   void OnWriteDone(bool ok) override;
   void OnDone(const grpc::Status &s) override;
   grpc::Status Await();
   void Restart();
 
- private:
+private:
   void Start();
   void NextWrite();
   const Pos p_;
@@ -117,19 +109,15 @@ class BucketUploader : public grpc::ClientWriteReactor<storage::EntryPart> {
 
 // Assumes power-of-two sizes.
 class ORam {
- public:
-  static std::optional<ORam *> Construct(
-      size_t n, size_t val_len,
-      utils::Key enc_key,
-      std::shared_ptr<grpc::Channel> channel,
-      storage::InitializeRequest_StoreType data_st,
-      storage::InitializeRequest_StoreType aux_st,
-      bool upload_stash = false,
-      const std::string &name = "",
-      bool first_build = false,
-      std::string file_path="");
+public:
+  static std::optional<ORam *>
+  Construct(size_t n, size_t val_len, utils::Key enc_key,
+            std::shared_ptr<grpc::Channel> channel,
+            storage::InitializeRequest_StoreType data_st,
+            storage::InitializeRequest_StoreType aux_st,
+            bool upload_stash = false, const std::string &name = "",
+            bool first_build = false);
   void Destroy();
-
 
   // Read: FetchPath -> ReadAndRemoveFromStash
   // Write: FetchPath ->  AddToStash -> Evict
@@ -141,7 +129,9 @@ class ORam {
   void EvictAll();
   void BatchSetupEvictAll();
 
-  [[nodiscard]] size_t TotalSizeOfStore() const { return store_size_ * store_entry_size_; }
+  [[nodiscard]] size_t TotalSizeOfStore() const {
+    return store_size_ * store_entry_size_;
+  }
   [[nodiscard]] size_t Capacity() const;
   [[nodiscard]] Pos GeneratePos() const;
   void FillWithDummies();
@@ -150,19 +140,13 @@ class ORam {
 
   const Pos min_pos_;
   const Pos max_pos_;
-  // TOREMOVE
-  double fetchTook = 0;
-  bool fetchDummy = false;
-  size_t num_stashed_nodes_ = 0;
 
- private:
-  ORam(size_t n, size_t val_len,
-       utils::Key enc_key, std::shared_ptr<grpc::Channel> channel,
+private:
+  ORam(size_t n, size_t val_len, utils::Key enc_key,
+       std::shared_ptr<grpc::Channel> channel,
        storage::InitializeRequest_StoreType data_st,
-       storage::InitializeRequest_StoreType aux_st,
-       bool upload_stash = false,
-       std::string name = "",
-       bool first_build = false, std::string file_path = "");
+       storage::InitializeRequest_StoreType aux_st, bool upload_stash = false,
+       std::string name = "", bool first_build = false);
 
   const size_t capacity_;
   const size_t val_len_;
@@ -182,8 +166,6 @@ class ORam {
   storage::InitializeRequest_StoreType aux_store_type_;
   uint32_t data_store_id_ = 0;
   uint32_t aux_store_id_ = 0;
-  RAMServer<internal::Bucket> mem_;
-  Server<internal::Bucket> storage_;
   size_t blocks_in_remote_stash_ = 0;
   size_t most_blocks_in_remote_stash_yet_ = 0;
   const bool upload_stash_;
@@ -204,12 +186,14 @@ class ORam {
   [[nodiscard]] std::vector<Pos> Path(Pos p) const;
   [[nodiscard]] Pos PathAtLevel(Pos p, uint32_t level) const;
   void AsyncFetch(const std::vector<Pos> &nodes);
-  std::unique_ptr<internal::BucketUploader> AsyncUpload(Pos p, internal::Bucket bu);
-  std::shared_ptr<internal::AsyncSem> running_workers_semaphore_ = std::make_shared<internal::AsyncSem>(internal::kAsyncBatchSize);
+  std::unique_ptr<internal::BucketUploader> AsyncUpload(Pos p,
+                                                        internal::Bucket bu);
+  std::shared_ptr<internal::AsyncSem> running_workers_semaphore_ =
+      std::make_shared<internal::AsyncSem>(internal::kAsyncBatchSize);
   static inline Pos Parent(Pos p);
   static inline Pos LChild(Pos p);
   static inline Pos RChild(Pos p);
 };
 } // namespace file_oram::path_oram
 
-#endif //FILEORAM_PATH_ORAM_PATH_ORAM_H_
+#endif // FILEORAM_PATH_ORAM_PATH_ORAM_H_

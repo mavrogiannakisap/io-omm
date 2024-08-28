@@ -1,7 +1,3 @@
-#pragma once
-#ifndef COMMON_BENCH_H_
-#define COMMON_BENCH_H_
-
 #include <algorithm>
 #include <chrono>
 #include <cmath>
@@ -43,6 +39,17 @@ static inline std::vector<uint64_t> AppendValueSizes() {
   res.emplace_back(512);
   res.emplace_back(1024);
   res.emplace_back(4096);
+  return res;
+}
+
+static inline std::vector<uint64_t> InsertValueSizes() {
+  std::vector<uint64_t> res{};
+  res.emplace_back(128);
+  res.emplace_back(512);
+  res.emplace_back(1024);
+  res.emplace_back(4096);
+  res.emplace_back(16384);
+//  res.emplace_back(65535);
   return res;
 }
 
@@ -94,7 +101,7 @@ class Config {
   std::string data_file_ = "";
   std::string storage_type_ = "";
   uint8_t initial_level_ = 10;
-  bool flush_cache_ = true;
+  bool full_init_ = false;
 
   Config() = default;
   Config(int argc, char **argv) {
@@ -122,8 +129,8 @@ class Config {
         ("d,data_on_disk", "Store the main data (ORAMs) on disk") // default type is bool
         ("a,aux_on_disk", "Store the auxiliary data (OMaps/OSTs) on disk") // default type is bool
         ("print_csv_headers", "Print CSV headers") // default type is bool
-        ("nocache", "Do not flush caches") // default type is bool
         ("h,help", "Print usage") // default type is bool
+        ("full_init", "Initialize scheme with real values") // default type is bool
         ("f,data_file", "Path to crimes of chicago data preprocessed file",
          cxxopts::value<std::string>()->default_value(""))
         ("t,storage_type","Define the type of storage {RAM, HDD, SSD}",
@@ -156,8 +163,8 @@ class Config {
     print_csv_headers_ = parsed.count("print_csv_headers");
     data_file_ = parsed["data_file"].as<std::string>();
     storage_type_ = parsed["storage_type"].as<std::string>();
+
     initial_level_ = parsed["initial_level"].as<uint8_t>();
-    flush_cache_ = !parsed.count("nocache");
 
   }
 
@@ -279,5 +286,3 @@ class Measurement {
 };
 
 } // namespace file_oram::utils
-
-#endif // COMMON_BENCH_H

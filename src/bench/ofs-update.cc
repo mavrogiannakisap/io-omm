@@ -43,6 +43,7 @@ int main(int argc, char **argv) {
   auto chan = grpc::CreateCustomChannel(
       server_addr, grpc::InsecureChannelCredentials(), cargs);
   std::clog << "Made channel" << std::endl;
+  bool full_init = c.full_init_;
 
   for (uint8_t r = 1; r <= c.num_runs_; ++r) {
     std::clog << "Starting run " << r << " of " << c.num_runs_ << std::endl;
@@ -51,7 +52,7 @@ int main(int argc, char **argv) {
     std::clog << "Creating OFileStore with lf=" << lf << ", s=" << int(c.num_levels_) << std::endl;
     auto opt_ofs = OFileStore::SConstruct(
         c.capacity_, c.num_levels_, lf, c.base_block_size_,
-        ek, chan, data_store, aux_store, true, true, c.storage_type_, c.num_runs_, c.initial_level_, c.store_path_);
+        ek, chan, data_store, aux_store, true, true, c.storage_type_, c.num_runs_, c.initial_level_);
     if (!opt_ofs.has_value()) {
       std::clog << "Benchmark OFS-Update failed" << std::endl;
       std::clog << "Config: " << c << std::endl;
@@ -71,27 +72,59 @@ int main(int argc, char **argv) {
 
     auto prev_bytes = ofs.BytesMoved();
     size_t inserted = 0;
-    for (const auto &k : AppendValueSizes()) {
-      if (k > c.capacity_) {
-        break;
+    if (full_init) {
+      for (uint64_t k = 1; k < size_t(c.capacity_); k <<= 1) {
+        run.Took();
+        auto v = Val(k * c.base_block_size_); // lists of size k
+        my_assert(v.l_ == c.base_block_size_ * k);
+        ofs.AppendSingleLevel(k, std::move(v));
+        my_assert(ofs.BytesMoved() >= prev_bytes);
+        auto bytes = ofs.BytesMoved() - prev_bytes;
+        inserted += k;
+        run.numbers_[{"insert", k}] = run.Took();
+        run.numbers_[{"insert_bytes", k}] = double(bytes);
+        std::clog << "Inserted " << k << " (" << inserted << ") took " << run.numbers_[{"insert", k}] << std::endl;
+        run.numbers_[{"vl", k}] = double(k);
+        prev_bytes = ofs.BytesMoved();
       }
-      if(k > c.capacity_) {
-        break;
-      }
-      run.Took();
-      auto v = Val(k * c.base_block_size_);
-      my_assert(v.l_ == c.base_block_size_ * k);
-      ofs.Append(k, std::move(v));
-      my_assert(ofs.BytesMoved() >= prev_bytes);
-      auto bytes = ofs.BytesMoved() - prev_bytes;
-      inserted += k;
-      run.numbers_[{"insert", k}] = run.Took();
-      run.numbers_[{"insert_bytes", k}] = double(bytes);
-      std::clog << "Inserted " << k << " (" << inserted << ")" << std::endl;
-      run.numbers_[{"vl", k}] = double(k);
-      prev_bytes = ofs.BytesMoved();
-    }
+      std::clog << "Evicting.." << std::endl;
 
+      ofs.EvictAll();
+    }
+    else {
+      if(c.capacity_ == 1 << 22) {
+        for (const auto &k : InsertValueSizes()) {
+          run.Took();
+          auto v = Val(k * c.base_block_size_); // lists of size k
+          my_assert(v.l_ == c.base_block_size_ * k);
+          ofs.AppendSingleLevel(k, std::move(v));
+          ofs.EvictAll();
+          my_assert(ofs.BytesMoved() >= prev_bytes);
+          auto bytes = ofs.BytesMoved() - prev_bytes;
+          inserted += k;
+          run.numbers_[{"insert", k}] = run.Took();
+          run.numbers_[{"insert_bytes", k}] = double(bytes);
+          std::clog << "Inserted " << k << " (" << inserted << ") took " << run.numbers_[{"insert", k}] << std::endl;
+          run.numbers_[{"vl", k}] = double(k);
+          prev_bytes = ofs.BytesMoved();
+        } 
+      } 
+      else {
+        for (const auto &k : AppendValueSizes()) {
+          run.Took();
+          auto append_val = Val(k * c.base_block_size_);
+          my_assert(append_val.l_ == c.base_block_size_ * k);
+          ofs.AppendSingleLevel(k, std::move(append_val));
+          my_assert(ofs.BytesMoved() >= prev_bytes);
+          auto bytes = ofs.BytesMoved() - prev_bytes;
+          run.numbers_[{"insert", k}] = run.Took();
+          run.numbers_[{"insert_bytes", k}] = double(bytes);
+          std::clog << "Inserted to " << k << std::endl;
+          prev_bytes = ofs.BytesMoved();
+        }
+        ofs.EvictAll();
+      }
+    }
     prev_bytes = ofs.BytesMoved();
     for (const auto &k : AppendValueSizes()) {
       if (k > c.capacity_) {
@@ -99,7 +132,8 @@ int main(int argc, char **argv) {
       }
       run.Took();
       auto append_val = Val(c.base_block_size_);
-      ofs.Append(k, std::move(append_val));
+      ofs.AppendSingleLevel(k, std::move(append_val));
+      ofs.EvictAll();
       my_assert(ofs.BytesMoved() >= prev_bytes);
       auto bytes = ofs.BytesMoved() - prev_bytes;
       run.numbers_[{"append", k}] = run.Took();

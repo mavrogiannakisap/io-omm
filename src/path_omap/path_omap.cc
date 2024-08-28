@@ -127,39 +127,6 @@ void OMap::EvictAll() {
   // Pad reads
   for (auto cnt = num_ops_; cnt < pad_to_; ++cnt)
     oram_->FetchDummyPath();
-    EvictORam();
-
-  // Re-position and re-write all cached
-  std::map<internal::ORKey, internal::ORPos> pos_map;
-  for (auto &stash_entry : stash_) {
-    auto ok = stash_entry.first;
-    pos_map[ok] = ok == root_.key_ ? oram_->min_pos_ : oram_->GeneratePos();
-  }
-
-  if (pos_map.find(root_.key_) != pos_map.end())
-    root_.pos_ = pos_map[root_.key_];
-
-  for (auto &stash_entry : stash_) {
-    auto ok = stash_entry.first;
-    auto op = pos_map[ok];
-    auto bl = std::move(stash_entry.second);
-    if (pos_map.find(bl.meta_.l_.key_) != pos_map.end())
-      bl.meta_.l_.pos_ = pos_map[bl.meta_.l_.key_];
-    if (pos_map.find(bl.meta_.r_.key_) != pos_map.end())
-      bl.meta_.r_.pos_ = pos_map[bl.meta_.r_.key_];
-    auto ov = bl.ToBytes(val_len_);
-    oram_->AddToStash(op, ok, std::move(ov));
-  }
-
-  pad_to_ = 0;
-  num_ops_ = 0;
-  stash_.clear();
-}
-
-void OMap::BatchEvict() {
-  // Pad reads
-  for (auto cnt = num_ops_; cnt < pad_to_; ++cnt)
-    oram_->FetchDummyPath();
 
   // Re-position and re-write all cached
   std::map<internal::ORKey, internal::ORPos> pos_map;

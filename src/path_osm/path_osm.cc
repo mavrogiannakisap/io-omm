@@ -1,14 +1,13 @@
 #include "path_osm.h"
 
 #include <algorithm>
+#include <chrono>
 #include <cmath>
 #include <cstddef>
 #include <cstdint>
 #include <map>
 #include <memory>
 #include <optional>
-#include <chrono>
-#include <iostream>
 
 #include <grpcpp/channel.h>
 #include <grpcpp/client_context.h>
@@ -19,45 +18,46 @@
 #include "utils/crypto.h"
 #include "utils/trace.h"
 
-#define max(a, b) ((a)>(b)?(a):(b))
+#define max(a, b) ((a) > (b) ? (a) : (b))
 
 using namespace file_oram::path_osm;
 using namespace file_oram::path_osm::internal;
-using klock = std::chrono::high_resolution_clock; 
+using klock = std::chrono::high_resolution_clock;
 
 BlockPointer::BlockPointer(ORKey k) : key_(k), valid_(true) {}
+BlockPointer::BlockPointer(ORKey k, ORPos pos)
+    : key_(k), pos_(pos), valid_(true) {}
 
 BlockMetadata::BlockMetadata(Key k, uint32_t h)
     : key_(k), height_(h), l_count_(0), r_count_(0) {}
 BlockMetadata::BlockMetadata(Key k, BP l, BP r, uint32_t h)
     : key_(k), l_(l), r_(r), height_(h), l_count_(0), r_count_(0) {}
-BlockMetadata::BlockMetadata(Key k, BP l, BP r, uint32_t h, uint32_t lc, uint32_t rc)
+BlockMetadata::BlockMetadata(Key k, BP l, BP r, uint32_t h, uint32_t lc,
+                             uint32_t rc)
     : key_(k), l_(l), r_(r), height_(h), l_count_(lc), r_count_(rc) {}
 
 namespace {
 inline static size_t BlockSize(size_t val_len) {
   return sizeof(BlockMetadata) + val_len;
 }
-}//namespace
+} // namespace
 
 Block::Block(Key k, Val v, uint32_t h) : meta_(k, h), val_(std::move(v)) {}
 Block::Block(Key k, Val v, BP l, BP r, uint32_t h)
     : meta_(k, l, r, h), val_(std::move(v)) {}
-Block::Block(Key k, const Val &v, BP l, BP r, uint32_t h, uint32_t lc, uint32_t rc)
-    : meta_(k, l, r, h, lc, rc), val_(v) {
-
-}
+Block::Block(Key k, const Val &v, BP l, BP r, uint32_t h, uint32_t lc,
+             uint32_t rc)
+    : meta_(k, l, r, h, lc, rc), val_(v) {}
 Block::Block(char *data, size_t val_len) {
   utils::FromBytes(data, meta_);
   val_ = std::make_unique<char[]>(val_len);
   std::copy(data + sizeof(BlockMetadata),
-            data + sizeof(BlockMetadata) + val_len,
-            val_.get());
+            data + sizeof(BlockMetadata) + val_len, val_.get());
 }
 
 ORVal Block::ToBytes(size_t val_len) {
   ORVal res = std::make_unique<char[]>(BlockSize(val_len));
-  const auto meta_f = reinterpret_cast<const char *> (std::addressof(meta_));
+  const auto meta_f = reinterpret_cast<const char *>(std::addressof(meta_));
   const auto meta_l = meta_f + sizeof(BlockMetadata);
   std::copy(meta_f, meta_l, res.get());
   if (val_)
@@ -67,15 +67,17 @@ ORVal Block::ToBytes(size_t val_len) {
 }
 
 namespace {
-static Block empty(0, nullptr, 0);// TODO: Hack; fix!
+static Block empty(0, nullptr, 0); // TODO: Hack; fix!
 } // namespace
 
-std::optional<OSM> OSM::Construct(
-    const size_t n, const size_t val_len,
-    const utils::Key enc_key, std::shared_ptr<grpc::Channel> channel,
-    storage::InitializeRequest_StoreType st, std::string store_path) {
-  auto o = OSM(n, val_len, enc_key, channel, st, store_path);
-  if (o.setup_successful_) { return o; }
+std::optional<OSM> OSM::Construct(const size_t n, const size_t val_len,
+                                  const utils::Key enc_key,
+                                  std::shared_ptr<grpc::Channel> channel,
+                                  storage::InitializeRequest_StoreType st) {
+  auto o = OSM(n, val_len, enc_key, channel, st);
+  if (o.setup_successful_) {
+    return o;
+  }
   return std::nullopt;
 }
 
@@ -83,21 +85,20 @@ void OSM::Destroy() { oram_->Destroy(); }
 size_t OSM::Capacity() const { return capacity_; }
 void OSM::FillWithDummies() { return oram_->FillWithDummies(); }
 
-OSM::OSM(size_t n, size_t val_len,
-         utils::Key enc_key, std::shared_ptr<grpc::Channel> channel,
-         storage::InitializeRequest_StoreType st, std::string store_path)
+OSM::OSM(size_t n, size_t val_len, utils::Key enc_key,
+         std::shared_ptr<grpc::Channel> channel,
+         storage::InitializeRequest_StoreType st)
     : capacity_(n), val_len_(val_len), pad_per_op_(ceil(1.44 * 3.0 * log2(n))) {
   if (n & (n - 1)) { // Not a power of 2.
     return;
   }
-  auto opt_oram = path_oram::ORam::Construct(
-      n, BlockSize(val_len), enc_key, std::move(channel),
-      st, st, false, "osm-ram", false, store_path); // TODO st, st
+  auto opt_oram = path_oram::ORam::Construct(n, BlockSize(val_len), enc_key,
+                                             std::move(channel), st, st,
+                                             false); // TODO st, st
   if (!opt_oram.has_value()) {
     return;
   }
   oram_ = std::unique_ptr<path_oram::ORam>(opt_oram.value());
-  std::clog << "Calling FillWithDummies()\n";
   oram_->FillWithDummies();
   setup_successful_ = true;
 }
@@ -110,7 +111,8 @@ void OSM::Insert(Key k, Val v) {
 OptVal OSM::Read(Key k) {
   pad_to_ += pad_per_op_;
   auto bp = Read(k, root_);
-  if (!bp.has_value()) return std::nullopt;
+  if (!bp.has_value())
+    return std::nullopt;
   return stash_[bp->key_].val_;
 }
 
@@ -120,7 +122,8 @@ std::vector<Val> OSM::ReadAll(Key k) {
   if (count == 0) {
     return {};
   }
-  pad_to_ += 2 * count; //l * 2 + 2 *3*1.44 logN
+
+  pad_to_ += 2 * count; // l * 2 + 2 *3*1.44 logN
   std::vector<Val> res;
   ReadAll(k, root_, res);
 
@@ -129,6 +132,8 @@ std::vector<Val> OSM::ReadAll(Key k) {
 
 uint32_t OSM::Count(Key k) {
   pad_to_ += pad_per_op_;
+
+  my_assert(root_.valid_);
   return Count(k, root_);
 }
 
@@ -144,85 +149,41 @@ OptVal OSM::ReadAndRemove(Key k) {
   return res;
 }
 
-void OSM::BatchEvict() {
-  // Pad reads
-  std::clog << "\tEvictAll" << std::endl;
-  std::clog << "--------------------" << std::endl;
-  std::clog << "\n\tReadAll -> FetchFromStash: " << fetch_node_from_stash_ << std::endl;
-  fetch_node_from_stash_ = 0;
-  auto last_read_ = klock::now();
-  oram_ -> fetchDummy = true;
-  for (auto cnt = num_ops_; cnt < pad_to_; ++cnt) {
-    oram_->FetchDummyPath();
-  }
-  auto now = klock::now();
-  std::chrono::duration<double> res = now - last_read_;
-  std::clog << "\tNumber of skipped fetches due to path already existing in the stash: " << num_stashed_nodes_;
-  std::clog << "\n\tAsyncFetch in FetchDummyPath: " << oram_ -> fetchTook << " To fetch: " << pad_to_ - num_ops_ <<std::endl;
-  oram_->fetchTook = 0;
-  oram_->fetchDummy=false;
-  last_read_ = now;
-  std::clog << "\n\tnum_ops: " << num_ops_ << "\n\tpad_to: " << pad_to_ 
-  << "\n\tFetch Dummies Time(): " << res.count() << std::endl;
-  // Re-position and re-write all cached
-  std::map<ORKey, ORPos> pos_map;
-  for (auto &stash_entry : stash_) {
-    pos_map[stash_entry.first] = oram_->GeneratePos();
-  }
+/*
+  This function is only used in EnigMap (for now).
+  It takes in a prebuilt position map and the prebuilt blocks b_.
+  @b_ is a vector of blocks that are prebuilt and are to be inserted into the
+  ORAM.
+  @bps_ is a map of key to position in the ORAM.
+*/
+void OSM::PrebuildEvict(std::map<ORKey, ORPos> &bps_,
+                        std::vector<internal::Block> &b_) {
+  // Set the root position
+  root_.key_ = (capacity_ - 1) / 2;
 
-  // Update client's state with the new position of the root
-  if (pos_map.find(root_.key_) != pos_map.end())
-    root_.pos_ = pos_map[root_.key_];
+  if (bps_.find(root_.key_) != bps_.end())
+    root_.pos_ = bps_[root_.key_];
 
-  for (auto &stash_entry : stash_) {
-    auto ok = stash_entry.first;
-    auto op = pos_map[ok];
-    auto bl = std::move(stash_entry.second);
-    if (pos_map.find(bl.meta_.l_.key_) != pos_map.end())
-      bl.meta_.l_.pos_ = pos_map[bl.meta_.l_.key_];
-    if (pos_map.find(bl.meta_.r_.key_) != pos_map.end())
-      bl.meta_.r_.pos_ = pos_map[bl.meta_.r_.key_];
+  for (int ok = 0; ok < b_.size(); ok++) {
+    auto op = bps_[ok];
+    auto bl = std::move(b_[ok]);
     auto ov = bl.ToBytes(val_len_);
+
     oram_->AddToStash(op, ok, std::move(ov));
   }
-  now = klock::now();
-  res = now - last_read_;
-  std::clog << "\n\tGen positions & add to oram stash: " << res.count() << std::endl;
-  last_read_ = now;
 
-  pad_to_ = 0;
-  num_ops_ = 0;
-  num_stashed_nodes_ = 0;
-  stash_.clear();
-  EvictORam();
-  now = klock::now();
-  res = now - last_read_;
-  std::clog << "\n\tEvict ORam: " << res.count() << std::endl;
-  std::clog << "--------------------" << std::endl;
-
+  root_.valid_ = true;
+  oram_->EvictAll();
 }
 
 void OSM::EvictAll() {
   // Pad reads
-  std::clog << "\tEvictAll" << std::endl;
-  std::clog << "--------------------" << std::endl;
-  std::clog << "\n\tReadAll -> FetchFromStash: " << fetch_node_from_stash_ << std::endl;
-  fetch_node_from_stash_ = 0;
-  auto last_read_ = klock::now();
-  oram_ -> fetchDummy = true;
-  for (auto cnt = num_ops_; cnt < pad_to_; ++cnt) {
-    oram_->FetchDummyPath();
-    // EvictORam();
+  if (prebuild_phase_ == false) {
+    for (auto cnt = num_ops_; cnt < pad_to_; ++cnt) {
+      oram_->FetchDummyPath();
+    }
   }
-  auto now = klock::now();
-  std::chrono::duration<double> res = now - last_read_;
-  std::clog << "\tNumber of skipped fetches due to path already existing in the stash: " << num_stashed_nodes_;
-  std::clog << "\n\tAsyncFetch in FetchDummyPath: " << oram_ -> fetchTook << " To fetch: " << pad_to_ - num_ops_ <<std::endl;
-  oram_->fetchTook = 0;
-  oram_->fetchDummy=false;
-  last_read_ = now;
-  std::clog << "\n\tnum_ops: " << num_ops_ << "\n\tpad_to: " << pad_to_ 
-  << "\n\tFetch Dummies Time(): " << res.count() << std::endl;
+
   // Re-position and re-write all cached
   std::map<ORKey, ORPos> pos_map;
   for (auto &stash_entry : stash_) {
@@ -244,26 +205,16 @@ void OSM::EvictAll() {
     auto ov = bl.ToBytes(val_len_);
     oram_->AddToStash(op, ok, std::move(ov));
   }
-  now = klock::now();
-  res = now - last_read_;
-  std::clog << "\n\tGen positions & add to oram stash: " << res.count() << std::endl;
-  last_read_ = now;
 
   pad_to_ = 0;
   num_ops_ = 0;
-  num_stashed_nodes_ = 0;
   stash_.clear();
   EvictORam();
-  now = klock::now();
-  res = now - last_read_;
-  std::clog << "\n\tEvict ORam: " << res.count() << std::endl;
-  std::clog << "--------------------" << std::endl;
-
+  prebuild_phase_ =
+      false; // ensure that every operation (after the first one) is padded
 }
 
-void OSM::EvictORam() {
-  oram_->EvictAll();
-}
+void OSM::EvictORam() { oram_->EvictAll(); }
 
 void OSM::DummyOp(bool evict) {
   Read(0);
@@ -281,7 +232,8 @@ BP OSM::Insert(Key k, Val v, BP bp) {
   }
 
   auto &p = FetchOrGetFromStash(bp);
-  if (k < p.meta_.key_ || (k == p.meta_.key_ && IsSmaller(v, p.val_, val_len_))) {
+  if (k < p.meta_.key_ ||
+      (k == p.meta_.key_ && IsSmaller(v, p.val_, val_len_))) {
     if (p.meta_.key_ == k) {
       ++p.meta_.l_count_;
     }
@@ -308,18 +260,8 @@ std::optional<BP> OSM::Read(Key k, BP bp) {
   return Read(k, bl.meta_.r_);
 }
 
-
 void OSM::ReadAll(Key k, internal::BP bp, std::vector<Val> &res) {
-  auto last_read_ = klock::now();
   auto &bl = FetchOrGetFromStash(bp);
-  auto now = klock::now();
-  std::chrono::duration<double> res_tim = now - last_read_;
-  fetch_node_from_stash_ += res_tim.count();
-  // if (!manual_evict_) {
-  //   EvictORam();
-  // }
-  // std::clog << "Searching for " << k << std::endl;
-
   if (k < bl.meta_.key_) {
     ReadAll(k, bl.meta_.l_, res);
     return;
@@ -413,7 +355,6 @@ Block &OSM::FetchOrGetFromStash(BP bp) {
     return empty; // TODO: Hack; Fix!
   }
   if (stash_.find(bp.key_) != stash_.end()) {
-    num_stashed_nodes_++;
     return stash_[bp.key_];
   }
 
@@ -434,7 +375,7 @@ BP OSM::Balance(BP bp) {
   auto &p = FetchOrGetFromStash(bp);
   if (bf < -1) { // left-heavy
     auto l_bf = BalanceFactor(p.meta_.l_);
-    if (l_bf > 0)  // left-right
+    if (l_bf > 0) // left-right
       p.meta_.l_ = LRotate(p.meta_.l_);
     return RRotate(bp);
   }

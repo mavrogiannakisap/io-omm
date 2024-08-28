@@ -59,58 +59,79 @@ int main(int argc, char **argv) {
 
     auto prev_bytes = osm.BytesMoved();
     size_t inserted = 0;
-    for (const auto &k : AppendValueSizes()) {
-      if (k > c.capacity_) {
-        break;
+    if (c.full_init_) {
+      for (uint64_t k = 1; k < size_t(c.capacity_); k <<= 1) {
+        run.Took();
+        //1024
+        for (uint32_t i = 1; i <= k; ++i) {
+          //128
+          auto v = std::make_unique<char[]>(c.base_block_size_);
+          *v.get() = char(k);
+          osm.Insert(k, std::move(v));
+        }
+        my_assert(osm.BytesMoved() >= prev_bytes);
+        auto bytes = osm.BytesMoved() - prev_bytes;
+        inserted += k;
+        run.numbers_[{"insert", k}] = run.Took();
+        run.numbers_[{"insert_bytes", k}] = double(bytes);
+        std::clog << "Inserted " << k << " ( total: " << inserted << ")" << "time: " << run.numbers_[{"insert", k}] << std::endl;
+        run.numbers_[{"vl", k}] = double(k);
+        prev_bytes = osm.BytesMoved();
       }
-      run.Took();
-      //1024
-      for (uint32_t i = 1; i <= k; ++i) {
-        //128
-        auto v = std::make_unique<char[]>(c.base_block_size_);
-        *v.get() = char(k);
-        osm.Insert(k, std::move(v));
-      }
-      my_assert(osm.BytesMoved() >= prev_bytes);
-      auto bytes = osm.BytesMoved() - prev_bytes;
-      inserted += k;
-      run.numbers_[{"insert", k}] = run.Took();
-      run.numbers_[{"insert_bytes", k}] = double(bytes);
-      std::clog << "Inserted " << k << " ( total: " << inserted << ")" << "time: " << run.numbers_[{"insert", k}] << std::endl;
-      run.numbers_[{"vl", k}] = double(k);
-      prev_bytes = osm.BytesMoved();
+      osm.prebuild_phase_ = false;
+      std::clog << "Evicting.." << std::endl;
+      osm.EvictAll();
     }
-    std::clog << "Evicting.." << std::endl;
-    osm.EvictAll();
-
+    else {
+      if(c.capacity_ == 1 << 22) {
+        osm.prebuild_phase_ = false;
+        for (const auto &k : InsertValueSizes()) {
+          if (k > c.capacity_) {
+            break;
+          }
+          run.Took();
+          //1024
+          for (uint32_t i = 1; i <= k; ++i) {
+            //128
+            auto v = std::make_unique<char[]>(c.base_block_size_);
+            *v.get() = char(k);
+            osm.Insert(k, std::move(v));
+          }
+          my_assert(osm.BytesMoved() >= prev_bytes);
+          osm.EvictAll();
+          auto bytes = osm.BytesMoved() - prev_bytes;
+          inserted += k;
+          run.numbers_[{"insert", k}] = run.Took();
+          run.numbers_[{"insert_bytes", k}] = double(bytes);
+          std::clog << "Inserted " << k << " ( total: " << inserted << ")" << "time: " << run.numbers_[{"insert", k}] << std::endl;
+          run.numbers_[{"vl", k}] = double(k);
+          prev_bytes = osm.BytesMoved();
+        }
+      }
+      else {
+          for (const auto &k : AppendValueSizes()) {
+              for (uint32_t i = 1; i <= k; ++i) {
+                  //128
+                  auto v = std::make_unique<char[]>(c.base_block_size_);
+                  *v.get() = char(k);
+                  osm.Insert(k, std::move(v));
+              }
+              my_assert(osm.BytesMoved() >= prev_bytes);
+          }
+          osm.EvictAll(); 
+      }
+    }
     prev_bytes = osm.BytesMoved();
+    osm.ReadAll(1); // One dummy access
+    osm.EvictAll();
     size_t append = 0;
     for (const auto &k : AppendValueSizes()) {
       run.Took();
       auto v = std::make_unique<char[]>(c.base_block_size_);
       *v.get() = char(k);
       osm.Insert(k, std::move(v));
-      // my_assert(vals.has_value());
-      // my_assert(osm.BytesMoved() >= prev_bytes);
-    //   auto bytes = osm.BytesMoved() - prev_bytes;
-    //   auto transferred = bytes / c.base_block_size_;
-    //   auto res_size = k;
-    //   append += res_size;
-      // std::clog << "k=" << k << std::endl;
-      // std::clog << "len=" << k << std::endl;
-      // std::clog << "vals.size()=" << vals.size() << std::endl;
-      // for (uint32_t i = 1; i <= k; ++i) {
-      //   //for (uint32_t i = len; i >= 1; --i) {
-      //   auto &v = vals[i - 1];
-      //   std::cout << i <<" value:" << (int) *v.get() << " -- expected: " << (int) char((k + i) % 128) << std::endl;
-      //   // my_assert(*v.get() == char((k + i) % 128));
-      // }
-      std::clog << "Done." <<std::endl;
+      osm.EvictAll();
       run.numbers_[{"append", k}] = run.Took();
-    //   run.numbers_[{"append_bytes", k}] = double(bytes);
-    //   run.numbers_[{"append_false_pos", k}] = double(transferred - res_size);
-      std::clog << "append " << k << " (" << append << ")" << "time: " << run.numbers_[{"append", k}] << std::endl;
-      // my_assert((run.numbers_[{"vl", k}] == double(res_size)));
       prev_bytes = osm.BytesMoved();
     }
 

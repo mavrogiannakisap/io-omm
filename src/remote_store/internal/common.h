@@ -115,7 +115,7 @@ static inline FileCheckRes CheckFile(
 }
 
 static void FlushCaches() {
-#if defined(__linux__)
+/*#if defined(__linux__)
  if (::getuid()) {
    ::printf("Not root, flush failed.\n");
    ::exit(1);
@@ -133,6 +133,7 @@ static void FlushCaches() {
   ::printf("Could not flush; not linux or mac!\n");
   ::exit(1);
 #endif
+*/
 }
 
 } // namespace file_oram::storage::internal

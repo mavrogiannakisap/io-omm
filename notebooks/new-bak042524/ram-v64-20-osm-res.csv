@@ -1,0 +1,19 @@
+Inserted 1 ( total: 1)time: 0.105094
+Inserted 2 ( total: 3)time: 0.153307
+Inserted 4 ( total: 7)time: 0.276005
+Inserted 8 ( total: 15)time: 0.516542
+Inserted 16 ( total: 31)time: 0.985069
+Inserted 32 ( total: 63)time: 1.91908
+Inserted 64 ( total: 127)time: 3.29711
+Inserted 128 ( total: 255)time: 5.99399
+Inserted 256 ( total: 511)time: 10.6629
+Inserted 512 ( total: 1023)time: 18.2276
+Inserted 1024 ( total: 2047)time: 30.5199
+Inserted 2048 ( total: 4095)time: 48.0434
+Inserted 4096 ( total: 8191)time: 74.322
+Inserted 8192 ( total: 16383)time: 94.8723
+        Evicting, i = 10000
+Inserted 16384 ( total: 32767)time: 195.988
+        Evicting, i = 10000
+        Evicting, i = 20000
+        Evicting, i = 30000

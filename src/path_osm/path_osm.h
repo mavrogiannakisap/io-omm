@@ -41,18 +41,19 @@ using ORKey = path_oram::Key;
 using ORVal = path_oram::Val;
 
 class BlockPointer {
- public:
+public:
   ORKey key_;
   ORPos pos_;
   bool valid_ = false;
 
   BlockPointer() = default;
   explicit BlockPointer(ORKey k);
+  explicit BlockPointer(ORKey k, ORPos p);
 };
 using BP = BlockPointer;
 
 class BlockMetadata {
- public:
+public:
   Key key_;
   BP l_, r_;
   uint8_t height_;
@@ -65,7 +66,7 @@ class BlockMetadata {
 };
 
 class Block {
- public:
+public:
   BlockMetadata meta_;
   Val val_;
 
@@ -80,12 +81,12 @@ class Block {
 } // namespace internal
 
 class OSM {
- public:
+public:
+  bool prebuild_phase_ = true;
   static std::optional<OSM> Construct(size_t n, size_t val_len,
                                       utils::Key enc_key,
                                       std::shared_ptr<grpc::Channel> channel,
-                                      storage::InitializeRequest_StoreType st,
-                                      std::string store_path);
+                                      storage::InitializeRequest_StoreType st);
   void Destroy();
 
   void Insert(Key k, Val v);
@@ -95,39 +96,43 @@ class OSM {
   uint32_t Count(Key k);
   OptVal ReadAndRemove(Key k);
   void EvictAll();
-  void BatchEvict();
+  void PrebuildEvict(std::map<internal::ORKey, internal::ORPos> &bps_,
+                     std::vector<internal::Block> &b_);
   void EvictORam();
   void DummyOp(bool evict = false);
+  void SetNextKey(internal::ORKey k) { next_key_ = k; }
+  internal::ORPos GeneratePos() { return oram_->GeneratePos(); }
   [[nodiscard]] size_t Capacity() const;
-  [[nodiscard]] size_t TotalSizeOfStore() const { return oram_->TotalSizeOfStore(); }
+  [[nodiscard]] size_t TotalSizeOfStore() const {
+    return oram_->TotalSizeOfStore();
+  }
   void FillWithDummies();
   [[nodiscard]] size_t BytesMoved() const { return oram_->BytesMoved(); }
 
- private:
-  OSM(size_t n, size_t val_len,
-      utils::Key enc_key, std::shared_ptr<grpc::Channel> channel,
-      storage::InitializeRequest_StoreType st, std::string store_path);
+private:
+  OSM(size_t n, size_t val_len, utils::Key enc_key,
+      std::shared_ptr<grpc::Channel> channel,
+      storage::InitializeRequest_StoreType st);
   std::unique_ptr<path_oram::ORam> oram_;
   const size_t capacity_;
   const size_t val_len_;
   const uint32_t pad_per_op_;
   size_t pad_to_ = 0;
   size_t num_ops_ = 0;
-  size_t num_stashed_nodes_ = 0;
-  double fetch_node_from_stash_ = 0;
   bool manual_evict_ = false;
   internal::BP root_;
   std::map<internal::ORKey, internal::Block> stash_;
   bool setup_successful_ = false;
-  // This limits the number of possible insertions to (2^64 - 1); Need an additional
-  // stack for freed `ORKey`s to increase the limit.
+  // This limits the number of possible insertions to (2^64 - 1); Need an
+  // additional stack for freed `ORKey`s to increase the limit.
   internal::ORKey next_key_ = 0;
   std::optional<Val> delete_res_;
 
   internal::BP Insert(Key k, Val v, internal::BP bp);
   std::optional<internal::BP> Read(Key k, internal::BP bp);
   void ReadAll(Key k, internal::BP bp, std::vector<Val> &res);
-  // void OSM::ReadAllPadded(Key k, internal::BP bp, std::vector<Val> &res, bool found);
+  // void OSM::ReadAllPadded(Key k, internal::BP bp, std::vector<Val> &res, bool
+  // found);
   uint32_t Count(Key k, internal::BP bp);
   internal::BP ReadAndRemove(Key k, internal::BP bp);
   internal::Block &FetchOrGetFromStash(internal::BP bp);
@@ -140,4 +145,4 @@ class OSM {
 };
 } // namespace file_oram::path_osm
 
-#endif //FILEORAM_PATH_OSM_PATH_OSM_H_
+#endif // FILEORAM_PATH_OSM_PATH_OSM_H_

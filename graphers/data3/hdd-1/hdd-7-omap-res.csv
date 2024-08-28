@@ -1,4 +1,0 @@
-test,data_mem,aux_mem,ssd,cached,bbs,n,s,lf,id,insert,insert_bytes,load_data,search,search_bytes,search_false_pos,setup,setup_bytes,total_time
-omap,0,0,0,1,4,128,8,1,0,0.002228,35025.600000,0.000000,0.002228,35200.800000,8799.200000,0.000296,0.000000,0.892484
-test,data_mem,aux_mem,ssd,cached,bbs,n,s,lf,id,insert,insert_bytes,load_data,search,search_bytes,search_false_pos,setup,setup_bytes,total_time
-omap,0,0,0,1,4,128,8,1,0,0.002804,34993.200000,0.000000,0.002808,35438.400000,8858.600000,0.000467,0.000000,1.131924
