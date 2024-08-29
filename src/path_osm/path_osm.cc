@@ -178,8 +178,8 @@ void OSM::PrebuildEvict(std::map<ORKey, ORPos> &bps_,
 
 void OSM::EvictAll() {
   // Pad reads
-  std::cout << "{ Already fetched: " << oram_->GetAlreadyFetched()
-            << ", number of opers: " << num_ops_ << " }" << std::endl;
+  // std::cout << "{ Already fetched: " << oram_->GetAlreadyFetched()
+  // << ", number of opers: " << num_ops_ << " }" << std::endl;
   if (prebuild_phase_ == false) {
     for (auto cnt = num_ops_; cnt < pad_to_; ++cnt) {
       oram_->FetchDummyPath();

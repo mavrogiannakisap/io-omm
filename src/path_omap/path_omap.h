@@ -25,7 +25,7 @@ using ORKey = path_oram::Key;
 using ORVal = path_oram::Val;
 
 class BlockPointer {
- public:
+public:
   ORKey key_;
   ORPos pos_;
   bool valid_ = false;
@@ -36,7 +36,7 @@ class BlockPointer {
 using BP = BlockPointer;
 
 class BlockMetadata {
- public:
+public:
   Key key_;
   BP l_, r_;
   uint8_t height_;
@@ -47,7 +47,7 @@ class BlockMetadata {
 };
 
 class Block {
- public:
+public:
   BlockMetadata meta_;
   Val val_;
 
@@ -61,15 +61,14 @@ class Block {
 } // namespace internal
 
 class OMap {
- public:
-  static std::optional<OMap> Construct(
-      size_t n, size_t val_len,
-      utils::Key enc_key,
-      std::shared_ptr<grpc::Channel> channel,
-      storage::InitializeRequest_StoreType data_st,
-      storage::InitializeRequest_StoreType aux_st,
-      bool upload_stash = false,
-      bool first_build = false);
+public:
+  bool prebuild_phase_ = true;
+  static std::optional<OMap>
+  Construct(size_t n, size_t val_len, utils::Key enc_key,
+            std::shared_ptr<grpc::Channel> channel,
+            storage::InitializeRequest_StoreType data_st,
+            storage::InitializeRequest_StoreType aux_st,
+            bool upload_stash = false, bool first_build = false);
   void Destroy();
 
   void Insert(Key k, Val v);
@@ -79,17 +78,18 @@ class OMap {
   void EvictORam();
   void DummyOp(bool evict = false, size_t extra_fetches = 0);
   [[nodiscard]] size_t Capacity() const;
-  [[nodiscard]] size_t TotalSizeOfStore() const { return oram_->TotalSizeOfStore(); }
+  [[nodiscard]] size_t TotalSizeOfStore() const {
+    return oram_->TotalSizeOfStore();
+  }
   void FillWithDummies();
   [[nodiscard]] size_t BytesMoved() const { return oram_->BytesMoved(); }
   [[nodiscard]] bool WasPrebuilt() const { return oram_->WasPrebuilt(); }
 
- private:
-  OMap(size_t n, size_t val_len,
-       utils::Key enc_key, const std::shared_ptr<grpc::Channel>& channel,
+private:
+  OMap(size_t n, size_t val_len, utils::Key enc_key,
+       const std::shared_ptr<grpc::Channel> &channel,
        storage::InitializeRequest_StoreType data_st,
-       storage::InitializeRequest_StoreType aux_st,
-       bool upload_stash = false,
+       storage::InitializeRequest_StoreType aux_st, bool upload_stash = false,
        bool first_build = false);
   std::unique_ptr<path_oram::ORam> oram_;
   const size_t capacity_;
@@ -101,8 +101,8 @@ class OMap {
   internal::BP root_;
   std::map<internal::ORKey, internal::Block> stash_;
   bool setup_successful_ = false;
-  // This limits the number of possible insertions to (2^64 - 1); Need an additional
-  // stack for freed `ORKey`s to increase the limit.
+  // This limits the number of possible insertions to (2^64 - 1); Need an
+  // additional stack for freed `ORKey`s to increase the limit.
   internal::ORKey next_key_ = 0;
   std::optional<Val> delete_res_;
 
@@ -118,4 +118,4 @@ class OMap {
 };
 } // namespace file_oram::path_omap
 
-#endif //FILEORAM_PATH_OMAP_PATH_OMAP_H_
+#endif // FILEORAM_PATH_OMAP_PATH_OMAP_H_

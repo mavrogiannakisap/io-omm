@@ -26,10 +26,11 @@ int main(int argc, char **argv) {
   Measurement total{"osm", c};
   auto start = klock::now();
 
-  const std::string server_addr = "unix:///tmp/"
-      + std::to_string(klock::now().time_since_epoch().count())
-      + ".sock";
-  auto server = MakeServer(server_addr, {new RemoteStoreImpl(c.store_path_, true)});
+  const std::string server_addr =
+      "unix:///tmp/" + std::to_string(klock::now().time_since_epoch().count()) +
+      ".sock";
+  auto server =
+      MakeServer(server_addr, {new RemoteStoreImpl(c.store_path_, true)});
   auto data_store = c.is_data_mem_ ? kRamStore : kFileStore;
   auto aux_store = c.is_aux_mem_ ? kRamStore : kFileStore;
   auto ek = DumbKey();
@@ -44,7 +45,7 @@ int main(int argc, char **argv) {
     Measurement run;
     std::clog << "Constructing OSM" << std::endl;
     auto opt_osm =
-      OSM::Construct(c.capacity_, c.base_block_size_, ek, chan, data_store);
+        OSM::Construct(c.capacity_, c.base_block_size_, ek, chan, data_store);
     if (!opt_osm.has_value()) {
       std::clog << "Benchmark OSM failed" << std::endl;
       std::clog << "Config: " << c << std::endl;
@@ -62,9 +63,9 @@ int main(int argc, char **argv) {
     if (c.full_init_) {
       for (uint64_t k = 1; k < size_t(c.capacity_); k <<= 1) {
         run.Took();
-        //1024
+        // 1024
         for (uint32_t i = 1; i <= k; ++i) {
-          //128
+          // 128
           auto v = std::make_unique<char[]>(c.base_block_size_);
           *v.get() = char(k);
           osm.Insert(k, std::move(v));
@@ -74,25 +75,25 @@ int main(int argc, char **argv) {
         inserted += k;
         run.numbers_[{"insert", k}] = run.Took();
         run.numbers_[{"insert_bytes", k}] = double(bytes);
-        std::clog << "Inserted " << k << " ( total: " << inserted << ")" << "time: " << run.numbers_[{"insert", k}] << std::endl;
+        std::clog << "Inserted " << k << " ( total: " << inserted << ")"
+                  << "time: " << run.numbers_[{"insert", k}] << std::endl;
         run.numbers_[{"vl", k}] = double(k);
         prev_bytes = osm.BytesMoved();
       }
       osm.prebuild_phase_ = false;
       std::clog << "Evicting.." << std::endl;
       osm.EvictAll();
-    }
-    else {
-      if(c.capacity_ == 1 << 22) {
+    } else {
+      if (c.capacity_ == 1 << 22) {
         osm.prebuild_phase_ = false;
         for (const auto &k : InsertValueSizes()) {
           if (k > c.capacity_) {
             break;
           }
           run.Took();
-          //1024
+          // 1024
           for (uint32_t i = 1; i <= k; ++i) {
-            //128
+            // 128
             auto v = std::make_unique<char[]>(c.base_block_size_);
             *v.get() = char(k);
             osm.Insert(k, std::move(v));
@@ -103,25 +104,26 @@ int main(int argc, char **argv) {
           inserted += k;
           run.numbers_[{"insert", k}] = run.Took();
           run.numbers_[{"insert_bytes", k}] = double(bytes);
-          std::clog << "Inserted " << k << " ( total: " << inserted << ")" << "time: " << run.numbers_[{"insert", k}] << std::endl;
+          std::clog << "Inserted " << k << " ( total: " << inserted << ")"
+                    << "time: " << run.numbers_[{"insert", k}] << std::endl;
           run.numbers_[{"vl", k}] = double(k);
           prev_bytes = osm.BytesMoved();
         }
-      }
-      else {
-          for (const auto &k : AppendValueSizes()) {
-              for (uint32_t i = 1; i <= k; ++i) {
-                  //128
-                  auto v = std::make_unique<char[]>(c.base_block_size_);
-                  *v.get() = char(k);
-                  osm.Insert(k, std::move(v));
-              }
-              my_assert(osm.BytesMoved() >= prev_bytes);
+      } else {
+        for (const auto &k : AppendValueSizes()) {
+          for (uint32_t i = 1; i <= k; ++i) {
+            // 128
+            auto v = std::make_unique<char[]>(c.base_block_size_);
+            *v.get() = char(k);
+            osm.Insert(k, std::move(v));
           }
-          osm.EvictAll(); 
+          my_assert(osm.BytesMoved() >= prev_bytes);
+        }
+        osm.EvictAll();
       }
     }
     prev_bytes = osm.BytesMoved();
+    osm.prebuild_phase_ = false;
     osm.ReadAll(1); // One dummy access
     osm.EvictAll();
     size_t append = 0;
@@ -139,7 +141,6 @@ int main(int argc, char **argv) {
     if (r != c.num_runs_)
       osm.Destroy(); // Last one gets cleaned anyway.
   }
-
 
   total /= c.num_runs_;
 

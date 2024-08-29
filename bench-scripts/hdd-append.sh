@@ -8,6 +8,9 @@ for append_n in ${append_ns[@]}; do
     rm -fr ${hdd_base_path}
     mkdir -p ${hdd_base_path}
     out="hdd-ad-v${v}-n${append_n}-ofs-append-res.csv"
-    test -s ${out} || ${append_ofs_bench_ex} --print_csv_headers -r ${num_runs} -v ${v} -N ${append_n} -s ${append_s} -L ${append_lf} -i ${lvl} -p ${hdd_base_path} -d >${out}
+    if [ "$append_s" -eq 1 ]; then
+        test -s ${out} || ${append_ofs_bench_ex} --print_csv_headers -r ${num_runs} -v ${v} -N ${append_n} -s ${append_s} -L ${append_lf} -i ${lvl} -p ${hdd_base_path} -d >${out}
+    else
+        test -s ${out} || ${append_ofs_multi_bench_ex} --print_csv_headers -r ${num_runs} -v ${v} -N ${append_n} -s ${append_s} -L ${append_lf} -i ${lvl} -p ${hdd_base_path} -d >${out}
   done
 done

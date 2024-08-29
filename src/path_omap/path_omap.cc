@@ -128,8 +128,10 @@ OptVal OMap::ReadAndRemove(Key k) {
 
 void OMap::EvictAll() {
   // Pad reads
-  for (auto cnt = num_ops_; cnt < pad_to_; ++cnt)
-    oram_->FetchDummyPath();
+  if (prebuild_phase_) {
+    for (auto cnt = num_ops_; cnt < pad_to_; ++cnt)
+      oram_->FetchDummyPath();
+  }
 
   // Re-position and re-write all cached
   std::map<internal::ORKey, internal::ORPos> pos_map;
@@ -157,6 +159,8 @@ void OMap::EvictAll() {
   num_ops_ = 0;
   stash_.clear();
   EvictORam();
+  prebuild_phase_ =
+      false; // assert that any future insertions are not optimized.
 }
 
 void OMap::EvictORam() { oram_->EvictAll(); }
