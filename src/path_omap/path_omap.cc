@@ -19,7 +19,7 @@
 #include "utils/namegen.h"
 #include "utils/trace.h"
 
-#define max(a, b) ((a)>(b)?(a):(b))
+#define max(a, b) ((a) > (b) ? (a) : (b))
 
 namespace file_oram::path_omap {
 
@@ -42,13 +42,12 @@ Block::Block(char *data, size_t val_len) {
   utils::FromBytes(data, meta_);
   val_ = std::make_unique<char[]>(val_len);
   std::copy(data + sizeof(BlockMetadata),
-            data + sizeof(BlockMetadata) + val_len,
-            val_.get());
+            data + sizeof(BlockMetadata) + val_len, val_.get());
 }
 
 ORVal Block::ToBytes(size_t val_len) {
   ORVal res = std::make_unique<char[]>(BlockSize(val_len));
-  const auto meta_f = reinterpret_cast<const char *> (std::addressof(meta_));
+  const auto meta_f = reinterpret_cast<const char *>(std::addressof(meta_));
   const auto meta_l = meta_f + sizeof(BlockMetadata);
   std::copy(meta_f, meta_l, res.get());
   if (val_)
@@ -57,19 +56,20 @@ ORVal Block::ToBytes(size_t val_len) {
   return std::move(res);
 }
 
-static internal::Block empty(0, nullptr, 0);// TODO: Hack; fix!
-}
+static internal::Block empty(0, nullptr, 0); // TODO: Hack; fix!
+} // namespace internal
 
-std::optional<OMap> OMap::Construct(
-    const size_t n, const size_t val_len,
-    const utils::Key enc_key, std::shared_ptr<grpc::Channel> channel,
-    storage::InitializeRequest_StoreType data_st,
-    storage::InitializeRequest_StoreType aux_st,
-    bool upload_stash,
-    bool first_build) {
-  auto o = OMap(n, val_len, enc_key, std::move(channel),
-                data_st, aux_st, upload_stash, first_build);
-  if (o.setup_successful_) { return o; }
+std::optional<OMap>
+OMap::Construct(const size_t n, const size_t val_len, const utils::Key enc_key,
+                std::shared_ptr<grpc::Channel> channel,
+                storage::InitializeRequest_StoreType data_st,
+                storage::InitializeRequest_StoreType aux_st, bool upload_stash,
+                bool first_build) {
+  auto o = OMap(n, val_len, enc_key, std::move(channel), data_st, aux_st,
+                upload_stash, first_build);
+  if (o.setup_successful_) {
+    return o;
+  }
   return std::nullopt;
 }
 
@@ -77,25 +77,27 @@ void OMap::Destroy() { oram_->Destroy(); }
 size_t OMap::Capacity() const { return capacity_; }
 void OMap::FillWithDummies() { oram_->FillWithDummies(); }
 
-OMap::OMap(size_t n, size_t val_len,
-           utils::Key enc_key, const std::shared_ptr<grpc::Channel> &channel,
+OMap::OMap(size_t n, size_t val_len, utils::Key enc_key,
+           const std::shared_ptr<grpc::Channel> &channel,
            storage::InitializeRequest_StoreType data_st,
-           storage::InitializeRequest_StoreType aux_st,
-           bool upload_stash,
+           storage::InitializeRequest_StoreType aux_st, bool upload_stash,
            bool first_build)
     : capacity_(n), val_len_(val_len), pad_per_op_(ceil(1.44 * 3.0 * log2(n))) {
   if (n & (n - 1)) { // Not a power of 2.
     return;
   }
-  auto opt_oram = path_oram::ORam::Construct(
-      n, internal::BlockSize(val_len), enc_key,
-      std::move(channel),
-      data_st, aux_st, upload_stash,
-      utils::GenName({
-                         "omap", "",
-                         "n", std::to_string(n),
-                         "v", std::to_string(val_len),
-                     }), first_build);
+  auto opt_oram = path_oram::ORam::Construct(n, internal::BlockSize(val_len),
+                                             enc_key, std::move(channel),
+                                             data_st, aux_st, upload_stash,
+                                             utils::GenName({
+                                                 "omap",
+                                                 "",
+                                                 "n",
+                                                 std::to_string(n),
+                                                 "v",
+                                                 std::to_string(val_len),
+                                             }),
+                                             first_build);
   if (!opt_oram.has_value()) {
     return;
   }
@@ -111,7 +113,8 @@ void OMap::Insert(Key k, Val v) {
 OptVal OMap::Read(Key k) {
   pad_to_ += pad_per_op_;
   auto bp = Read(k, root_);
-  if (!bp.has_value()) return std::nullopt;
+  if (!bp.has_value())
+    return std::nullopt;
   return stash_[bp->key_].val_;
 }
 
@@ -156,9 +159,7 @@ void OMap::EvictAll() {
   EvictORam();
 }
 
-void OMap::EvictORam() {
-  oram_->EvictAll();
-}
+void OMap::EvictORam() { oram_->EvictAll(); }
 
 void OMap::DummyOp(bool evict, size_t extra_fetches) {
   Read(0);
@@ -170,8 +171,7 @@ void OMap::DummyOp(bool evict, size_t extra_fetches) {
   }
 }
 
-internal::BP OMap::Insert(Key k, Val v,
-                          internal::BP bp) {
+internal::BP OMap::Insert(Key k, Val v, internal::BP bp) {
   if (!bp.valid_) {
     bp = internal::BP(next_key_++);
     stash_[bp.key_] = internal::Block(k, std::move(v), 1);
@@ -265,8 +265,10 @@ internal::Block &OMap::FetchOrGetFromStash(internal::BP bp) {
     return stash_[bp.key_];
   }
 
-  ++num_ops_;
-  oram_->FetchPath(bp.pos_);
+  bool suc = oram_->FetchPath(bp.pos_);
+  if (suc)
+    num_ops_++;
+
   auto opt_bl_bytes = oram_->ReadAndRemoveFromStash(bp.key_);
   my_assert(opt_bl_bytes.has_value()); // As `bp` is valid.
   internal::Block res(opt_bl_bytes.value().get(), val_len_);
@@ -282,7 +284,7 @@ internal::BP OMap::Balance(internal::BP bp) {
   auto &p = FetchOrGetFromStash(bp);
   if (bf < -1) { // left-heavy
     auto l_bf = BalanceFactor(p.meta_.l_);
-    if (l_bf > 0)  // left-right
+    if (l_bf > 0) // left-right
       p.meta_.l_ = LRotate(p.meta_.l_);
     return RRotate(bp);
   }
@@ -316,13 +318,13 @@ internal::BP OMap::LRotate(internal::BP bp) {
   auto &r_r = FetchOrGetFromStash(r.meta_.r_);
 
   auto res = p.meta_.r_;
-  auto new_l = internal::Block(
-      p.meta_.key_, std::move(p.val_), p.meta_.l_, r.meta_.l_, 1
-          + max(l.meta_.height_, r_l.meta_.height_));
+  auto new_l =
+      internal::Block(p.meta_.key_, std::move(p.val_), p.meta_.l_, r.meta_.l_,
+                      1 + max(l.meta_.height_, r_l.meta_.height_));
   auto new_r = r_r;
-  auto new_p = internal::Block(
-      r.meta_.key_, std::move(r.val_), bp, r.meta_.r_, 1
-          + max(new_l.meta_.height_, new_r.meta_.height_));
+  auto new_p =
+      internal::Block(r.meta_.key_, std::move(r.val_), bp, r.meta_.r_,
+                      1 + max(new_l.meta_.height_, new_r.meta_.height_));
 
   stash_[p.meta_.r_.key_] = std::move(new_p);
   stash_[bp.key_] = std::move(new_l);
@@ -338,12 +340,12 @@ internal::BP OMap::RRotate(internal::BP bp) {
 
   auto res = p.meta_.l_;
   auto new_l = l_l;
-  auto new_r = internal::Block(
-      p.meta_.key_, std::move(p.val_), l.meta_.r_, p.meta_.r_, 1
-          + max(l_r.meta_.height_, r.meta_.height_));
-  auto new_p = internal::Block(
-      l.meta_.key_, std::move(l.val_), l.meta_.l_, bp, 1
-          + max(new_l.meta_.height_, new_r.meta_.height_));
+  auto new_r =
+      internal::Block(p.meta_.key_, std::move(p.val_), l.meta_.r_, p.meta_.r_,
+                      1 + max(l_r.meta_.height_, r.meta_.height_));
+  auto new_p =
+      internal::Block(l.meta_.key_, std::move(l.val_), l.meta_.l_, bp,
+                      1 + max(new_l.meta_.height_, new_r.meta_.height_));
 
   stash_[p.meta_.l_.key_] = std::move(new_p);
   stash_[bp.key_] = std::move(new_r);
