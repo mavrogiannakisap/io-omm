@@ -8,5 +8,9 @@ lf=$2
 for lvl in ${lvls[@]}; do
     rm -fr ${ssd_base_path}/*
     out="ssd-ad-n${n}-v${v}-s${s}-lf${lf}-ofs-res.csv"
-    test -s ${out} || ${ofs_bench_ex} --print_csv_headers -r ${num_runs} -v ${v} -N ${n} -s ${s} -L ${lf} -i ${lvl} >${out}
+    if [ "$s" -eq 1 ]; then
+        test -s ${out} || ${ofs_bench_ex} --print_csv_headers -r ${num_runs} -v ${v} -N ${n} -s ${s} -L ${lf} -i ${lvl} -p ${ssd_base_path} >${out}
+    else
+        test -s ${out} || ${ofs_multi_bench_ex} --print_csv_headers -r ${num_runs} -v ${v} -N ${n} -s ${s} -L ${lf} -i ${lvl} -p ${ssd_base_path} >${out}
+    fi
 done

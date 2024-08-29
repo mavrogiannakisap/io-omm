@@ -90,7 +90,7 @@ int main(int argc, char **argv) {
       run.Took();
       auto v = Val(k * c.base_block_size_); // lists of size k
       my_assert(v.l_ == c.base_block_size_ * k);
-      ofs.AppendSingleLevel(k, std::move(v));
+      ofs.Append(k, std::move(v));
       my_assert(ofs.BytesMoved() >= prev_bytes);
       auto bytes = ofs.BytesMoved() - prev_bytes;
       inserted += k;
@@ -112,8 +112,7 @@ int main(int argc, char **argv) {
     for (uint64_t k = 1; k < size_t(c.capacity_) / 4; k <<= 1) {
       run.Took();
       OptVal opt_v;
-      // ofs.ReadUpdate(k, OFileStore::MakeReader(opt_v));
-      ofs.Search(k, OFileStore::MakeReader(opt_v));
+      ofs.ReadUpdate(k, OFileStore::MakeReader(opt_v));
       ofs.EvictAll();
       my_assert(opt_v.has_value());
       my_assert(ofs.BytesMoved() >= prev_bytes);

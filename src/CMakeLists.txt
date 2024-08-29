@@ -8,6 +8,5 @@ add_subdirectory(path_osm)
 add_subdirectory(proto)
 add_subdirectory(remote_store)
 add_subdirectory(utils)
-add_subdirectory(enigmap)
 
 add_executable(store_bench remote_store/internal/bench.cpp)

@@ -7,18 +7,15 @@
 
 #include "utils/assert.h"
 
-const auto data_st =
-    file_oram::storage::InitializeRequest_StoreType_MMAP_FILE;
-const auto aux_st =
-    file_oram::storage::InitializeRequest_StoreType_MMAP_FILE;
+const auto data_st = file_oram::storage::InitializeRequest_StoreType_MMAP_FILE;
+const auto aux_st = file_oram::storage::InitializeRequest_StoreType_MMAP_FILE;
 
 int main() {
   auto args = grpc::ChannelArguments();
   args.SetMaxReceiveMessageSize(INT_MAX);
   args.SetMaxSendMessageSize(INT_MAX);
-  auto channel = grpc::CreateCustomChannel("localhost:50052",
-                                           grpc::InsecureChannelCredentials(),
-                                           args);
+  auto channel = grpc::CreateCustomChannel(
+      "localhost:50052", grpc::InsecureChannelCredentials(), args);
   const size_t val_len = 1UL << 10;
   const size_t n = 8;
   auto enc_key = file_oram::utils::GenerateKey();
@@ -38,7 +35,8 @@ int main() {
     oram->FetchPath(to_fetch);
     std::clog << "Adding key " << k << " to stash" << std::endl;
     auto v = std::make_unique<char[]>(val_len);
-    for (int j = 0; j < val_len; ++j) v[j] = static_cast<char>(k);
+    for (int j = 0; j < val_len; ++j)
+      v[j] = static_cast<char>(k);
     auto p = oram->AddToStash(k, std::move(v));
     std::clog << "Got pos " << p << " for key " << k << std::endl;
     pos_map[k] = p;

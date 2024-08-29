@@ -121,13 +121,14 @@ public:
 
   // Read: FetchPath -> ReadAndRemoveFromStash
   // Write: FetchPath ->  AddToStash -> Evict
-  void FetchPath(Pos p);
+  bool FetchPath(Pos p);
   void FetchDummyPath();
   OptVal ReadAndRemoveFromStash(Key k);
   Pos AddToStash(Key k, Val v);
   void AddToStash(Pos p, Key k, Val v);
   void EvictAll();
   void BatchSetupEvictAll();
+  uint32_t GetAlreadyFetched() { return already_fetched_; }
 
   [[nodiscard]] size_t TotalSizeOfStore() const {
     return store_size_ * store_entry_size_;
@@ -147,6 +148,9 @@ private:
        storage::InitializeRequest_StoreType data_st,
        storage::InitializeRequest_StoreType aux_st, bool upload_stash = false,
        std::string name = "", bool first_build = false);
+
+  // delete me
+  uint32_t already_fetched_ = 0;
 
   const size_t capacity_;
   const size_t val_len_;

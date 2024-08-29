@@ -178,6 +178,8 @@ void OSM::PrebuildEvict(std::map<ORKey, ORPos> &bps_,
 
 void OSM::EvictAll() {
   // Pad reads
+  std::cout << "{ Already fetched: " << oram_->GetAlreadyFetched()
+            << ", number of opers: " << num_ops_ << " }" << std::endl;
   if (prebuild_phase_ == false) {
     for (auto cnt = num_ops_; cnt < pad_to_; ++cnt) {
       oram_->FetchDummyPath();
@@ -358,8 +360,10 @@ Block &OSM::FetchOrGetFromStash(BP bp) {
     return stash_[bp.key_];
   }
 
-  ++num_ops_;
-  oram_->FetchPath(bp.pos_);
+  bool suc = oram_->FetchPath(bp.pos_);
+  if (suc)
+    ++num_ops_;
+
   auto opt_bl_bytes = oram_->ReadAndRemoveFromStash(bp.key_);
   my_assert(opt_bl_bytes.has_value()); // As `bp` is valid.
   Block res(opt_bl_bytes.value().get(), val_len_);

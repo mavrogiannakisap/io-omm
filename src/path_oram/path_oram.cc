@@ -229,17 +229,18 @@ inline Pos ORam::Parent(Pos p) { return p > 0 ? ((p - 1) / 2) : 0; }
 inline Pos ORam::LChild(Pos p) { return (2 * p) + 1; }
 inline Pos ORam::RChild(Pos p) { return (2 * p) + 2; }
 
-void ORam::FetchPath(Pos p) {
+bool ORam::FetchPath(Pos p) {
   // my_assert(node_valid_[0]); // Fill with dummies or batch setup.
   my_assert(p >= min_pos_ && p <= max_pos_); // a leaf index.
   if (cached_nodes_.find(Parent(p)) != cached_nodes_.end()) {
-    return; // path already fetched.
+    already_fetched_++;
+    return false; // path already fetched.
   }
 
   auto path = Path(p);
   if (!node_valid_[0]) { // root invalid.
     cached_nodes_.insert(path.begin(), path.end());
-    return;
+    return false;
   }
   std::vector<Pos> to_fetch;
   for (auto it = path.crbegin(); it < path.crend(); ++it) {
@@ -251,10 +252,11 @@ void ORam::FetchPath(Pos p) {
     cached_nodes_.insert(idx);
   }
   if (!node_valid_[to_fetch[0]]) {
-    return; // first node invalid.
+    return false; // first node invalid.
   }
   bytes_moved_ += to_fetch.size() * EncryptedBucketSize(val_len_);
   AsyncFetch(to_fetch);
+  return true;
 }
 
 void ORam::DecryptAndAddBucket(Pos p, const std::vector<std::string *> &data) {
@@ -366,6 +368,7 @@ void ORam::EvictAll() {
     }
     if (level == 0)
       root_done = true;
+    already_fetched_ = 0;
   }
 
   UploadStash();

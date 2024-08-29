@@ -28,9 +28,10 @@ using namespace file_oram::path_em;
 
 std::optional<EM> EM::Construct(size_t n, size_t val_len, utils::Key enc_key,
                                 std::shared_ptr<grpc::Channel> channel,
-                                storage::InitializeRequest_StoreType st) {
+                                storage::InitializeRequest_StoreType st,
+                                std::string store_path) {
 
-  auto em = EM(n, val_len, enc_key, channel, st);
+  auto em = EM(n, val_len, enc_key, channel, st, store_path);
   if (em.setup_successful_) {
     return em;
   }
@@ -44,37 +45,34 @@ void EM::Initialization(
     std::cerr << "EM Initialization failed" << std::endl;
     return;
   }
-  osm_->SetNextKey(next_key); // sync the next key in enigmap and osm
 }
 
 void EM::Destroy() { osm_->Destroy(); }
 
+void EM::Placing(std::vector<path_osm::internal::Block> b_,
+                 std::map<ORKey, ORPos> bps_) {
+  /* TBA */
+  // osm->Placing(b_, bps_);
+  return;
+}
+
 void EM::InOrderTraversal(std::vector<path_osm::internal::Block> &b_,
-                          std::map<ORKey, ORPos> &bps_, size_t l, size_t r) {
-  if (l > r || l < 0 || r >= n) {
+                          std::map<ORKey, ORPos> &bps_, size_t idx, size_t l,
+                          size_t r) {
+  if (l >= r || l < 0 || r >= n) {
     return;
   }
 
-  size_t m = (l + r) / 2;
-  size_t new_l = (l + m - 1) / 2;
-  size_t new_r = (m + r + 1) / 2;
+  size_t m = l + (r - l) / 2;
 
-  InOrderTraversal(b_, bps_, l, m - 1);
-  InOrderTraversal(b_, bps_, m + 1, r);
-  if (m > l) {
-    b_[m].meta_.l_ = BlockPointer(new_l, bps_[new_l]);
-    if (b_[new_l].meta_.key_ == b_[m].meta_.key_) {
-      b_[m].meta_.l_count_ =
-          1 + b_[new_l].meta_.l_count_ + b_[new_l].meta_.r_count_;
-    }
-  }
-  if (m < r) {
-    b_[m].meta_.r_ = BlockPointer(new_r, bps_[new_r]);
-    if (b_[new_r].meta_.key_ == b_[m].meta_.key_) {
-      b_[m].meta_.r_count_ =
-          1 + b_[new_r].meta_.l_count_ + b_[new_r].meta_.r_count_;
-    }
-  }
+  InOrderTraversal(b_, bps_, b_[idx].meta_.l_.key_, l, m - 1);
+
+  b_[idx].meta_.l_ = BlockPointer((l + m - 1) / 2, bps_[(l + m - 1) / 2]);
+  b_[idx].meta_.r_ = BlockPointer((m + r) / 2), bps_[(m + r) / 2];
+  assert(b_[idx].meta_.l_.key_ < idx && b_[idx].meta_.l_.key_ >= 0);
+  assert(b_[idx].meta_.r_.key_ > idx && b_[idx].meta_.r_.key_ <= r);
+
+  InOrderTraversal(b_, bps_, b_[idx].meta_.r_.key_, m, r);
 }
 
 bool EM::Initialize(std::vector<std::pair<path_osm::Key, path_osm::Val>> arr_) {
@@ -83,8 +81,9 @@ bool EM::Initialize(std::vector<std::pair<path_osm::Key, path_osm::Val>> arr_) {
   }
 
   assert(arr_.size() == n);
-  std::vector<path_osm::internal::Block> b_(n);
+  std::vector<path_osm::internal::Block> b_;
   std::map<ORKey, ORPos> bps_; // block pointers, BP = { ORKey, ORPos }
+  ORKey next_key_ = 0;
 
   /* We can skip this since the experiments are on synthesized data, i.e., input
    * is already sorted. */
@@ -92,31 +91,31 @@ bool EM::Initialize(std::vector<std::pair<path_osm::Key, path_osm::Val>> arr_) {
      path_osm::Val>& a, const std::pair<path_osm::Key, path_osm::Val>& b) {
       return a.first < b.first;
       }); */
-  for (int i = 0; i < n; i++) {
-    b_[i] = path_osm::internal::Block();
-  }
 
   for (auto &elem : arr_) {
     auto &[k, v] = elem;
     path_osm::internal::Block block(k, v, 1);
-    // b_.push_back(block);
-    b_[next_key] = block;
+    b_.push_back(block);
     auto pos = osm_->GeneratePos();
-    bps_[next_key++] = pos;
+    bps_[next_key_++] = pos;
   }
 
-  InOrderTraversal(b_, bps_, 0, n - 1);
+  InOrderTraversal(b_, bps_, n / 2, 0, n - 1);
 
-  osm_->PrebuildEvict(bps_, b_);
-
+  for (auto bl : b_) {
+    std::cout << bl.meta_.key_ << " " << bl.val_ << " " << bl.meta_.l_.key_
+              << " " << bl.meta_.r_.key_ << std::endl;
+  }
   return true;
 }
 
-EM::EM(size_t n, size_t val_len, utils::Key enc_key,
-       std::shared_ptr<grpc::Channel> channel,
-       storage::InitializeRequest_StoreType st)
-    : n(n), val_len(val_len), enc_key(enc_key), channel(channel), st(st) {
-  auto opt_osm = path_osm::OSM::Construct(n, val_len, enc_key, channel, st);
+EM::EM(size_t n, size_t val_len,
+            utils::Key enc_key,
+            std::shared_ptr<grpc::Channel> channel,
+            storage::InitializeRequest_StoreType st)
+            : n(n), val_len(val_len), enc_key(enc_key), channel(channel), st(st)){
+  auto opt_osm =
+      path_osm::OSM::Construct(n, val_len, enc_key, channel, st, store_path);
   if (!opt_osm.has_value()) {
     setup_successful_ = false;
     return;
