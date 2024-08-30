@@ -26,10 +26,11 @@ int main(int argc, char **argv) {
   Measurement total{"osm", c};
   auto start = klock::now();
 
-  const std::string server_addr = "unix:///tmp/"
-      + std::to_string(klock::now().time_since_epoch().count())
-      + ".sock";
-  auto server = MakeServer(server_addr, {new RemoteStoreImpl(c.store_path_, true)});
+  const std::string server_addr =
+      "unix:///tmp/" + std::to_string(klock::now().time_since_epoch().count()) +
+      ".sock";
+  auto server =
+      MakeServer(server_addr, {new RemoteStoreImpl(c.store_path_, true)});
 
   auto data_store = c.is_data_mem_ ? kRamStore : kFileStore;
   auto aux_store = c.is_aux_mem_ ? kRamStore : kFileStore;
@@ -46,7 +47,7 @@ int main(int argc, char **argv) {
     Measurement run;
     std::clog << "Constructing OSM" << std::endl;
     auto opt_osm =
-      OSM::Construct(c.capacity_, c.base_block_size_, ek, chan, data_store);
+        OSM::Construct(c.capacity_, c.base_block_size_, ek, chan, data_store);
     if (!opt_osm.has_value()) {
       std::clog << "Benchmark OSM failed" << std::endl;
       std::clog << "Config: " << c << std::endl;
@@ -63,9 +64,9 @@ int main(int argc, char **argv) {
     size_t inserted = 0;
     for (uint64_t k = 1; k < size_t(c.capacity_); k <<= 1) {
       run.Took();
-      //1024
+      // 1024
       for (uint32_t i = 1; i <= k; ++i) {
-        //128
+        // 128
         auto v = std::make_unique<char[]>(c.base_block_size_);
         *v.get() = char(k);
         osm.Insert(k, std::move(v));
@@ -75,7 +76,8 @@ int main(int argc, char **argv) {
       inserted += k;
       run.numbers_[{"insert", k}] = run.Took();
       run.numbers_[{"insert_bytes", k}] = double(bytes);
-      std::clog << "Inserted " << k << " ( total: " << inserted << ")" << "time: " << run.numbers_[{"insert", k}] << std::endl;
+      std::clog << "Inserted " << k << " ( total: " << inserted << ")"
+                << "time: " << run.numbers_[{"insert", k}] << std::endl;
       run.numbers_[{"vl", k}] = double(k);
       prev_bytes = osm.BytesMoved();
     }
@@ -86,7 +88,7 @@ int main(int argc, char **argv) {
     osm.EvictAll();
     prev_bytes = osm.BytesMoved();
     size_t searched = 0;
-    for (uint64_t k = 1; k < size_t(c.capacity_)/4; k<<=1) {
+    for (uint64_t k = 1; k < size_t(c.capacity_) / 4; k <<= 1) {
 
       // std::clog << "Searching for " << k << std::endl;
       run.Took();
@@ -95,17 +97,20 @@ int main(int argc, char **argv) {
       // my_assert(osm.BytesMoved() >= prev_bytes);
       auto bytes = osm.BytesMoved() - prev_bytes;
       auto transferred = bytes / c.base_block_size_;
-      auto res_size = k;  
+      auto res_size = k;
       searched += res_size;
       osm.EvictAll();
-      // std::clog << "\tRead: " << read << "\n\tEviction: " << evict << std::endl;
+      // std::clog << "\tRead: " << read << "\n\tEviction: " << evict <<
+      // std::endl;
 
       run.numbers_[{"search", k}] = run.Took();
       run.numbers_[{"search_bytes", k}] = double(bytes);
       run.numbers_[{"search_false_pos", k}] = double(transferred - res_size);
-      std::clog << "Searched " << k << " (" << searched << ")" << "time: " << run.numbers_[{"search", k}] << std::endl;
+      std::clog << "Searched " << k << " (" << searched << ")"
+                << "time: " << run.numbers_[{"search", k}] << std::endl;
       // my_assert((run.numbers_[{"vl", k}] == double(res_size)));
       prev_bytes = osm.BytesMoved();
+      osm.ResetAvailablePaths();
     }
 
     total += run;

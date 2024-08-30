@@ -60,6 +60,15 @@ add_executable(ofs ofs.cc
         ../remote_store/server.cc
         ) # The rel paths are a hack. TODO: fix.
 
+add_executable(ofs-multi ofs-multi.cc
+        ../o_file_store/o_file_store.cc
+        ../path_osegtree/path_osegtree.cc
+        ../path_omap/path_omap.cc
+        ../path_oram/path_oram.cc
+        ../remote_store/async_server.cc
+        ../remote_store/server.cc
+        ) # The rel paths are a hack. TODO: fix.
+
 add_executable(osm osm.cc
         ../path_osm/path_osm.cc
         ../path_omap/path_omap.cc
@@ -75,5 +84,3 @@ add_executable(append-osm osm-update.cc
 	../remote_store/async_server.cc
 	../remote_store/server.cc
 ) # The rel paths are a hack. TODO: fix.
-
-

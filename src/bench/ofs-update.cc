@@ -27,11 +27,12 @@ int main(int argc, char **argv) {
   Measurement total{"ofs-update", c};
   auto start = klock::now();
 
-  const std::string server_addr = "unix:///tmp/"
-      + std::to_string(klock::now().time_since_epoch().count())
-      + ".sock";
+  const std::string server_addr =
+      "unix:///tmp/" + std::to_string(klock::now().time_since_epoch().count()) +
+      ".sock";
   std::clog << "Making server at: " << server_addr << std::endl;
-  auto server = MakeServer(server_addr, {new RemoteStoreImpl(c.store_path_, true)});
+  auto server =
+      MakeServer(server_addr, {new RemoteStoreImpl(c.store_path_, true)});
   std::clog << "Made server" << std::endl;
   auto data_store = c.is_data_mem_ ? kRamStore : kFileStore;
   auto aux_store = c.is_aux_mem_ ? kRamStore : kFileStore;
@@ -49,10 +50,12 @@ int main(int argc, char **argv) {
     std::clog << "Starting run " << r << " of " << c.num_runs_ << std::endl;
     Measurement run;
     size_t lf = c.locality_factor_;
-    std::clog << "Creating OFileStore with lf=" << lf << ", s=" << int(c.num_levels_) << std::endl;
+    std::clog << "Creating OFileStore with lf=" << lf
+              << ", s=" << int(c.num_levels_) << std::endl;
     auto opt_ofs = OFileStore::SConstruct(
-        c.capacity_, c.num_levels_, lf, c.base_block_size_,
-        ek, chan, data_store, aux_store, true, true, c.storage_type_, c.num_runs_, c.initial_level_);
+        c.capacity_, c.num_levels_, lf, c.base_block_size_, ek, chan,
+        data_store, aux_store, true, true, c.storage_type_, c.num_runs_,
+        c.initial_level_);
     if (!opt_ofs.has_value()) {
       std::clog << "Benchmark OFS-Update failed" << std::endl;
       std::clog << "Config: " << c << std::endl;
@@ -61,7 +64,8 @@ int main(int argc, char **argv) {
     }
     auto &ofs = opt_ofs.value();
     auto setup_took = run.Took();
-    std::clog << "OFileStore created with lf=" << lf << ", s=" << int(c.num_levels_) << ", levels=[";
+    std::clog << "OFileStore created with lf=" << lf
+              << ", s=" << int(c.num_levels_) << ", levels=[";
     for (auto &l : ofs.levels_) {
       std::clog << int(l) << " ";
     }
@@ -83,16 +87,16 @@ int main(int argc, char **argv) {
         inserted += k;
         run.numbers_[{"insert", k}] = run.Took();
         run.numbers_[{"insert_bytes", k}] = double(bytes);
-        std::clog << "Inserted " << k << " (" << inserted << ") took " << run.numbers_[{"insert", k}] << std::endl;
+        std::clog << "Inserted " << k << " (" << inserted << ") took "
+                  << run.numbers_[{"insert", k}] << std::endl;
         run.numbers_[{"vl", k}] = double(k);
         prev_bytes = ofs.BytesMoved();
       }
       std::clog << "Evicting.." << std::endl;
-
       ofs.EvictAll();
-    }
-    else {
-      if(c.capacity_ == 1 << 22) {
+      ofs.ResetAvailablePaths();
+    } else {
+      if (c.capacity_ == 1 << 22) {
         for (const auto &k : InsertValueSizes()) {
           run.Took();
           auto v = Val(k * c.base_block_size_); // lists of size k
@@ -103,13 +107,14 @@ int main(int argc, char **argv) {
           auto bytes = ofs.BytesMoved() - prev_bytes;
           inserted += k;
           run.numbers_[{"insert", k}] = run.Took();
+          ofs.ResetAvailablePaths();
           run.numbers_[{"insert_bytes", k}] = double(bytes);
-          std::clog << "Inserted " << k << " (" << inserted << ") took " << run.numbers_[{"insert", k}] << std::endl;
+          std::clog << "Inserted " << k << " (" << inserted << ") took "
+                    << run.numbers_[{"insert", k}] << std::endl;
           run.numbers_[{"vl", k}] = double(k);
           prev_bytes = ofs.BytesMoved();
-        } 
-      } 
-      else {
+        }
+      } else {
         for (const auto &k : AppendValueSizes()) {
           run.Took();
           auto append_val = Val(k * c.base_block_size_);
@@ -139,6 +144,7 @@ int main(int argc, char **argv) {
       run.numbers_[{"append", k}] = run.Took();
       run.numbers_[{"append_bytes", k}] = double(bytes);
       std::clog << "Appended to " << k << std::endl;
+      ofs.ResetAvailablePaths();
       prev_bytes = ofs.BytesMoved();
     }
 

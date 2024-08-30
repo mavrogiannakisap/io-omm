@@ -8,6 +8,7 @@
 #include <map>
 #include <memory>
 #include <optional>
+#include <random>
 #include <string>
 #include <vector>
 
@@ -221,6 +222,7 @@ ORam::ORam(size_t n, size_t val_len, utils::Key enc_key,
     local_stash_valid_ = false;
     FetchStash();
   }
+  ResetAvailablePaths();
   setup_successful_ = true;
 }
 
@@ -237,6 +239,7 @@ bool ORam::FetchPath(Pos p) {
     return false; // path already fetched.
   }
 
+  available_paths_.erase(p);
   auto path = Path(p);
   if (!node_valid_[0]) { // root invalid.
     cached_nodes_.insert(path.begin(), path.end());
@@ -280,7 +283,30 @@ void ORam::AddBucket(Pos p, Bucket &bu) {
   }
 }
 
-void ORam::FetchDummyPath() { FetchPath(GeneratePos()); }
+void ORam::FetchDummyPath() {
+  Pos rd_idx_;
+  std::random_device rd;
+  std::mt19937 gen(rd());
+
+  std::uniform_int_distribution<> distrib(0, available_paths_.size() - 1);
+
+  rd_idx_ = distrib(gen);
+  assert(!available_paths_.empty());
+  auto it = available_paths_.begin();
+  std::cout << "Random position chosen: " << rd_idx_ << "that correlates to "
+            << *it << std::endl;
+  std::advance(it, rd_idx_);
+  FetchPath(*it);
+}
+
+// Called after eviction.
+void ORam::ResetAvailablePaths() {
+  if (available_paths_.size() == capacity_)
+    return;
+  for (Pos p = min_pos_; p <= max_pos_; ++p) {
+    available_paths_.insert(p);
+  }
+}
 
 OptVal ORam::ReadAndRemoveFromStash(Key k) {
   FetchStash();

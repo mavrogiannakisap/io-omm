@@ -953,7 +953,6 @@ void OFileStore::InsertPart(Key k, uint32_t i, Part part, uint8_t l,
   auto sb_byte_size = SuperBlockSizeWithMetaInBytes(l);
 
   if (!prebuild) {
-    std::clog << "In insert part prebuild = false\n";
     orams_[l]->FetchPath(pp.old_);
     auto opt_sb = orams_[l]->ReadAndRemoveFromStash(ok);
 

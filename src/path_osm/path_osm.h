@@ -107,6 +107,7 @@ public:
     return oram_->TotalSizeOfStore();
   }
   void FillWithDummies();
+  void ResetAvailablePaths() { oram_->ResetAvailablePaths(); }
   [[nodiscard]] size_t BytesMoved() const { return oram_->BytesMoved(); }
 
 private:

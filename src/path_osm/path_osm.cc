@@ -178,14 +178,17 @@ void OSM::PrebuildEvict(std::map<ORKey, ORPos> &bps_,
 
 void OSM::EvictAll() {
   // Pad reads
-  // std::cout << "{ Already fetched: " << oram_->GetAlreadyFetched()
-  // << ", number of opers: " << num_ops_ << " }" << std::endl;
+  std::clog << "{ Already fetched: " << oram_->GetAlreadyFetched()
+            << ", number of opers: " << num_ops_ << ", ";
+  oram_->ResetAlreadyFetched();
   if (prebuild_phase_ == false) {
     for (auto cnt = num_ops_; cnt < pad_to_; ++cnt) {
       oram_->FetchDummyPath();
     }
   }
-
+  std::clog << "dummy paths actually fetched: " << oram_->GetAlreadyFetched()
+            << " }\n";
+  oram_->ResetAlreadyFetched();
   // Re-position and re-write all cached
   std::map<ORKey, ORPos> pos_map;
   for (auto &stash_entry : stash_) {

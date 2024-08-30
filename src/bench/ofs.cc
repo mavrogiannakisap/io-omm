@@ -129,6 +129,7 @@ int main(int argc, char **argv) {
                 << run.numbers_[{"search", k}] << std::endl;
       my_assert((run.numbers_[{"vl", k}] == double(res_size)));
       prev_bytes = ofs.BytesMoved();
+      ofs.ResetAvailablePaths();
     }
     total += run;
     if (r != c.num_runs_)

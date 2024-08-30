@@ -79,6 +79,7 @@ int main(int argc, char **argv) {
                   << "time: " << run.numbers_[{"insert", k}] << std::endl;
         run.numbers_[{"vl", k}] = double(k);
         prev_bytes = osm.BytesMoved();
+        osm.ResetAvailablePaths();
       }
       osm.prebuild_phase_ = false;
       std::clog << "Evicting.." << std::endl;
@@ -108,6 +109,7 @@ int main(int argc, char **argv) {
                     << "time: " << run.numbers_[{"insert", k}] << std::endl;
           run.numbers_[{"vl", k}] = double(k);
           prev_bytes = osm.BytesMoved();
+          osm.ResetAvailablePaths();
         }
       } else {
         for (const auto &k : AppendValueSizes()) {
@@ -135,6 +137,7 @@ int main(int argc, char **argv) {
       osm.EvictAll();
       run.numbers_[{"append", k}] = run.Took();
       prev_bytes = osm.BytesMoved();
+      osm.ResetAvailablePaths();
     }
 
     total += run;

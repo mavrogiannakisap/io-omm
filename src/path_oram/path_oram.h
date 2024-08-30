@@ -129,6 +129,8 @@ public:
   void EvictAll();
   void BatchSetupEvictAll();
   uint32_t GetAlreadyFetched() { return already_fetched_; }
+  void ResetAlreadyFetched() { already_fetched_ = 0; }
+  void ResetAvailablePaths();
 
   [[nodiscard]] size_t TotalSizeOfStore() const {
     return store_size_ * store_entry_size_;
@@ -163,7 +165,7 @@ private:
   bool was_prebuilt_ = false;
   std::map<Key, internal::Block> stash_;
   bool local_stash_valid_ = true;
-  std::set<Pos> cached_nodes_;
+  std::set<Pos> cached_nodes_, available_paths_;
   std::map<Pos, bool> node_valid_{{0, false}};
   std::unique_ptr<storage::RemoteStore::Stub> stub_;
   storage::InitializeRequest_StoreType data_store_type_;
