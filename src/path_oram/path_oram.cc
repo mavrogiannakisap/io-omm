@@ -293,8 +293,6 @@ void ORam::FetchDummyPath() {
   rd_idx_ = distrib(gen);
   assert(!available_paths_.empty());
   auto it = available_paths_.begin();
-  std::cout << "Random position chosen: " << rd_idx_ << "that correlates to "
-            << *it << std::endl;
   std::advance(it, rd_idx_);
   FetchPath(*it);
 }
