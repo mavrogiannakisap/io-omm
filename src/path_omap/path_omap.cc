@@ -128,7 +128,7 @@ OptVal OMap::ReadAndRemove(Key k) {
 
 void OMap::EvictAll() {
   // Pad reads
-  if (prebuild_phase_) {
+  if (!prebuild_phase_) {
     for (auto cnt = num_ops_; cnt < pad_to_; ++cnt)
       oram_->FetchDummyPath();
   }
