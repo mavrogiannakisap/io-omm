@@ -107,13 +107,16 @@ int main(int argc, char **argv) {
     OptVal opt_v_temp;
     ofs.ReadUpdate(1, OFileStore::MakeReader(opt_v_temp));
     ofs.EvictAll();
+    ofs.ResetAvailablePaths();
     prev_bytes = ofs.BytesMoved();
     size_t searched = 0;
     for (uint64_t k = 1; k < size_t(c.capacity_) / 4; k <<= 1) {
       run.Took();
       OptVal opt_v;
-      // ofs.ReadUpdate(k, OFileStore::MakeReader(opt_v));
-      ofs.Search(k, OFileStore::MakeReader(opt_v));
+      ofs.ReadUpdate(k, OFileStore::MakeReader(opt_v));
+      //ofs.Search(k, OFileStore::MakeReader(opt_v));
+      //std::clog << "Number of already fetched paths " << ofs.already_fetched_ << std::endl;
+      //std::clog << "Number of actually fetched paths " << ofs.actually_fetched_ << std::endl;
       ofs.EvictAll();
       my_assert(opt_v.has_value());
       my_assert(ofs.BytesMoved() >= prev_bytes);

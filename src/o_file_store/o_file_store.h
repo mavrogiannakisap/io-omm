@@ -261,6 +261,8 @@ public:
   [[nodiscard]] bool WasPrebuilt() const { return was_prebuilt_; }
 
   const std::vector<uint8_t> levels_{};
+  uint32_t already_fetched_ = 0; // Used for debugging. ignore. 
+  uint32_t actually_fetched_ = 0;
 
 private:
   OFileStore(uint32_t n, uint8_t s, size_t &lf, uint32_t base_block_size,

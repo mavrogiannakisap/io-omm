@@ -284,24 +284,26 @@ void ORam::AddBucket(Pos p, Bucket &bu) {
 }
 
 void ORam::FetchDummyPath() {
+  assert(!available_paths_.empty());
+
   Pos rd_idx_;
   std::random_device rd;
   std::mt19937 gen(rd());
 
   std::uniform_int_distribution<> distrib(0, available_paths_.size() - 1);
-
   rd_idx_ = distrib(gen);
-  assert(!available_paths_.empty());
   auto it = available_paths_.begin();
   std::advance(it, rd_idx_);
-  FetchPath(*it);
+  assert(FetchPath(*it));
+  available_paths_.erase(rd_idx_);
 }
 
 // Called after eviction.
 void ORam::ResetAvailablePaths() {
-  if (available_paths_.size() == capacity_)
+  auto num_paths_ = (max_pos_ - min_pos_ + 1) - available_paths_.size();
+  if (available_paths_.size() == max_pos_ - min_pos_ + 1)
     return;
-  for (Pos p = min_pos_; p <= max_pos_; ++p) {
+  for (Pos p = min_pos_; p < max_pos_; ++p) {
     available_paths_.insert(p);
   }
 }
@@ -370,6 +372,7 @@ void ORam::EvictAll() {
       bu.blocks_[bu.meta_.flags_].meta_ = (*it).second.meta_;
       bu.blocks_[bu.meta_.flags_].val_ = std::move(v);
       ++bu.meta_.flags_;
+      assert(it);
       it = stash_.erase(it);
     }
 
