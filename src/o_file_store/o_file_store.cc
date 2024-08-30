@@ -1451,11 +1451,9 @@ void OFileStore::Search(Key k, const ValUpdateFunc &val_updater) {
   for (uint32_t i = 0; i < curr_num_parts; ++i) {
     // Step 3a: Retrieve list's bin ID (oram block ID)
     auto ok = ReadAndRemoveOramKeyOrFail(k, i);
-    binom_time = binom_time + (now - last_read);
 
     // Step 3b: Retrieve path for the specific bin Id
     auto pp = GetOldPosAndReposition(ok, curr_level, true);
-    pm_time = pm_time + (now - last_read);
 
     // Step 3c: Retrieve the actual block from the ORAM
     orams_[curr_level]->FetchPath(pp.old_);
@@ -1475,8 +1473,6 @@ void OFileStore::Search(Key k, const ValUpdateFunc &val_updater) {
     my_assert(write_ptr + part.meta_.l_ <= last);
     std::copy_n(part.data_.get(), part.meta_.l_, write_ptr);
     write_ptr += part.meta_.l_;
-
-    oram_time = oram_time + (now - last_read);
   }
 
   // std::clog << "\tStep 3a (BINOM): " << binom_time.count() << std::endl
