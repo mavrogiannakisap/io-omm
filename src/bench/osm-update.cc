@@ -81,9 +81,9 @@ int main(int argc, char **argv) {
         prev_bytes = osm.BytesMoved();
         osm.ResetAvailablePaths();
       }
-      osm.prebuild_phase_ = false;
       std::clog << "Evicting.." << std::endl;
       osm.EvictAll();
+      osm.prebuild_phase_ = false;
     } else {
       if (c.capacity_ == 1 << 22) {
         osm.prebuild_phase_ = false;

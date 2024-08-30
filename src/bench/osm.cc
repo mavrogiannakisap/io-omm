@@ -81,9 +81,9 @@ int main(int argc, char **argv) {
       run.numbers_[{"vl", k}] = double(k);
       prev_bytes = osm.BytesMoved();
     }
-    osm.prebuild_phase_ = false;
     std::clog << "Evicting.." << std::endl;
     osm.EvictAll();
+    osm.prebuild_phase_ = false;
     osm.ReadAll(1); // One dummy access
     osm.EvictAll();
     prev_bytes = osm.BytesMoved();
