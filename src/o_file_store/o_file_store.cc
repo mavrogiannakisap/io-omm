@@ -1426,19 +1426,13 @@ void OFileStore::ReadUpdate(Key k, const ValUpdateFunc &val_updater) {
 
 // Only for Single level OMM
 void OFileStore::Search(Key k, const ValUpdateFunc &val_updater) {
-  // manual_evict_ = true;
-  // std::clog << "Searching for " << k << std::endl;
-  std::chrono::time_point<klock> start = klock::now();
-  std::chrono::time_point<klock> last_read = start;
+  manual_evict_ = true;
   // Step 1: Read the size of the list
 
   auto opt_curr_size = size_map_->Read(k);
   if (!manual_evict_) {
     size_map_->EvictAll();
   }
-  auto now = klock::now();
-  std::chrono::duration<double> res = now - last_read;
-  last_read = now;
   // std::clog << "\tStep 1: " << res.count() << std::endl;
 
   // Step 2: Calculate partitions
@@ -1454,22 +1448,14 @@ void OFileStore::Search(Key k, const ValUpdateFunc &val_updater) {
   OptVal curr_v = Val(curr_size * base_block_size_);
   auto write_ptr = curr_v->data_.get();
   const auto last = write_ptr + curr_v->l_;
-  std::chrono::duration<double> pm_time(0);
-  std::chrono::duration<double> binom_time(0);
-  std::chrono::duration<double> oram_time(0);
   for (uint32_t i = 0; i < curr_num_parts; ++i) {
     // Step 3a: Retrieve list's bin ID (oram block ID)
-    last_read = klock::now();
     auto ok = ReadAndRemoveOramKeyOrFail(k, i);
-    now = klock::now();
     binom_time = binom_time + (now - last_read);
-    last_read = now;
 
     // Step 3b: Retrieve path for the specific bin Id
     auto pp = GetOldPosAndReposition(ok, curr_level, true);
-    now = klock::now();
     pm_time = pm_time + (now - last_read);
-    last_read = now;
 
     // Step 3c: Retrieve the actual block from the ORAM
     orams_[curr_level]->FetchPath(pp.old_);
@@ -1490,9 +1476,7 @@ void OFileStore::Search(Key k, const ValUpdateFunc &val_updater) {
     std::copy_n(part.data_.get(), part.meta_.l_, write_ptr);
     write_ptr += part.meta_.l_;
 
-    now = klock::now();
     oram_time = oram_time + (now - last_read);
-    // last_read = now;
   }
 
   // std::clog << "\tStep 3a (BINOM): " << binom_time.count() << std::endl
@@ -1511,18 +1495,12 @@ void OFileStore::Search(Key k, const ValUpdateFunc &val_updater) {
     new_val_ptr += new_part_size;
     InsertPart(k, i, std::move(new_part), curr_level, false);
   }
-  // EvictAll();
-  last_read = klock::now();
   if (!manual_evict_) {
     size_map_->EvictAll();
     orams_[curr_level]->EvictAll();
     pos_maps_[curr_level]->EvictAll();
     part_oram_key_map_->EvictAll();
   }
-  now = klock::now();
-  res = now - last_read;
-  // std::clog << "Time to evict all auxiliary data structures: " << res.count()
-  // << std::endl;
 }
 
 void OFileStore::AllLevelsReadUpdate(Key k, const ValUpdateFunc &val_updater) {
