@@ -883,10 +883,10 @@ Part OFileStore::ExtractPartOrFail(Key k, uint32_t i, uint8_t l) {
   auto ok = ReadAndRemoveOramKeyOrFail(k, i);
   auto pp = GetOldPosAndReposition(ok, l, true);
   bool suc = orams_[l]->FetchPath(pp.old_);
-  if (!suc) 
-      already_fetched_++;
-  else 
-      actually_fetched_++;
+  if (!suc)
+    already_fetched_++;
+  else
+    actually_fetched_++;
 
   auto opt_sb = orams_[l]->ReadAndRemoveFromStash(ok);
   my_assert(opt_sb.has_value());
@@ -937,11 +937,11 @@ void OFileStore::InsertPart(Key k, uint32_t i, Part part, uint8_t l,
 
   if (!prebuild) {
     bool suc = orams_[l]->FetchPath(pp.old_);
-    if(!suc) 
+    if (!suc)
       already_fetched_++;
     else
       actually_fetched_++;
-    
+
     auto opt_sb = orams_[l]->ReadAndRemoveFromStash(ok);
 
     auto sb = opt_sb.has_value() ? SuperBlock(opt_sb->release(), sb_byte_size)
@@ -1383,7 +1383,7 @@ void OFileStore::ReadUpdate(Key k, const ValUpdateFunc &val_updater) {
       write_ptr += part.meta_.l_;
     }
   }
-  
+
   auto new_val = val_updater(std::move(curr_v));
   if (new_val.l_ == 0) {
     return;
@@ -1645,17 +1645,15 @@ void OFileStore::EvictAll() {
     size_key_pos_map_->EvictAll();
   if (naive_oram_)
     naive_oram_->Evict();
-  for (auto &o : pos_maps_)
-    if (o)
-      o->EvictAll();
   for (auto &o : orams_) {
     if (o) {
-      for (int i = 0; i < already_fetched_; i++) {
-        o->FetchDummyPath();
-      }
       o->EvictAll();
     }
   }
+  for (auto &o : pos_maps_)
+    if (o)
+      o->EvictAll();
+
   already_fetched_ = 0;
   actually_fetched_ = 0;
 }

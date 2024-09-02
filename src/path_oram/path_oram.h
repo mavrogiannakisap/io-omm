@@ -8,6 +8,7 @@
 #include <optional>
 #include <semaphore>
 #include <set>
+#include <queue>
 #include <vector>
 
 #include <grpcpp/channel.h>
@@ -165,7 +166,8 @@ private:
   bool was_prebuilt_ = false;
   std::map<Key, internal::Block> stash_;
   bool local_stash_valid_ = true;
-  std::set<Pos> cached_nodes_, available_paths_;
+  std::set<Pos> cached_nodes_;
+  std::set<Pos> available_paths_;
   std::map<Pos, bool> node_valid_{{0, false}};
   std::unique_ptr<storage::RemoteStore::Stub> stub_;
   storage::InitializeRequest_StoreType data_store_type_;

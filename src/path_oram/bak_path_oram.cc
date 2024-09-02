@@ -8,7 +8,6 @@
 #include <map>
 #include <memory>
 #include <optional>
-#include <random>
 #include <string>
 #include <vector>
 
@@ -25,8 +24,8 @@
 #include "utils/namegen.h"
 #include "utils/trace.h"
 
-#define min(a, b) ((a) < (b) ? (a) : (b))
-#define max(a, b) ((a) > (b) ? (a) : (b))
+#define min(a, b) ((a)<(b)?(a):(b))
+#define max(a, b) ((a)>(b)?(a):(b))
 
 using namespace file_oram;
 using namespace file_oram::path_oram;
@@ -56,11 +55,12 @@ Block::Block(char *data, size_t val_len) {
   utils::FromBytes(data, meta_);
   val_ = std::make_unique<char[]>(val_len);
   std::copy(data + sizeof(BlockMetadata),
-            data + sizeof(BlockMetadata) + val_len, val_.get());
+            data + sizeof(BlockMetadata) + val_len,
+            val_.get());
 }
 
 void Block::ToBytes(size_t val_len, char *out) {
-  const auto meta_f = reinterpret_cast<const char *>(std::addressof(meta_));
+  const auto meta_f = reinterpret_cast<const char *> (std::addressof(meta_));
   const auto meta_l = meta_f + sizeof(BlockMetadata);
   std::copy(meta_f, meta_l, out);
   if (val_)
@@ -86,7 +86,7 @@ Bucket::Bucket(char *data, size_t val_len) {
 
 std::unique_ptr<char[]> Bucket::ToBytes(size_t val_len) {
   auto res = std::make_unique<char[]>(BucketSize(val_len));
-  const auto meta_f = reinterpret_cast<const char *>(std::addressof(meta_));
+  const auto meta_f = reinterpret_cast<const char *> (std::addressof(meta_));
   size_t offset = sizeof(BucketMetadata);
   const auto meta_l = meta_f + offset;
   std::copy(meta_f, meta_l, res.get());
@@ -101,20 +101,19 @@ const google::protobuf::Empty empty_req;
 google::protobuf::Empty empty_res;
 
 // Assumes power-of-two sizes.
-std::optional<ORam *>
-ORam::Construct(size_t n, size_t val_len, utils::Key enc_key,
-                std::shared_ptr<grpc::Channel> channel,
-                storage::InitializeRequest_StoreType data_st,
-                storage::InitializeRequest_StoreType aux_st, bool upload_stash,
-                const std::string &name, bool first_build) {
-  if (n & (n - 1)) {     // Not a power of 2.
+std::optional<ORam *> ORam::Construct(
+    size_t n, size_t val_len,
+    utils::Key enc_key, std::shared_ptr<grpc::Channel> channel,
+    storage::InitializeRequest_StoreType data_st,
+    storage::InitializeRequest_StoreType aux_st,
+    bool upload_stash,
+    const std::string &name, bool first_build) {
+  if (n & (n - 1)) { // Not a power of 2.
     return std::nullopt; // Checked here to avoid initializing stub_.
   }
   auto o = new ORam(n, val_len, enc_key, std::move(channel), data_st, aux_st,
                     upload_stash, name, first_build);
-  if (o->setup_successful_) {
-    return o;
-  }
+  if (o->setup_successful_) { return o; }
   return std::nullopt;
 }
 
@@ -136,39 +135,41 @@ void ORam::Destroy() {
 
 static const size_t kRemoteStashMaxBlocks = 150;
 
-ORam::ORam(size_t n, size_t val_len, utils::Key enc_key,
-           std::shared_ptr<grpc::Channel> channel,
+ORam::ORam(size_t n, size_t val_len,
+           utils::Key enc_key, std::shared_ptr<grpc::Channel> channel,
            storage::InitializeRequest_StoreType data_st,
-           storage::InitializeRequest_StoreType aux_st, bool upload_stash,
+           storage::InitializeRequest_StoreType aux_st,
+           bool upload_stash,
            std::string name, bool first_build)
-    : capacity_(n), val_len_(val_len), min_pos_(n - 1), max_pos_((2 * n) - 2),
+    : capacity_(n),
+      val_len_(val_len),
+      min_pos_(n - 1),
+      max_pos_((2 * n) - 2),
       store_size_(max(1, n - 1)),
       store_entry_size_(EncryptedBucketSize(val_len)),
-      depth_(max(0, ceil(log2(n)) - 1)), enc_key_(enc_key),
+      depth_(max(0, ceil(log2(n)) - 1)),
+      enc_key_(enc_key),
       stub_(storage::RemoteStore::NewStub(std::move(channel))),
-      data_store_type_(data_st), aux_store_type_(aux_st),
+      data_store_type_(data_st),
+      aux_store_type_(aux_st),
       upload_stash_(upload_stash),
       remote_stash_max_blocks_(min(n, kRemoteStashMaxBlocks)),
       remote_stash_entry_size_(
-          min(sizeof(blocks_in_remote_stash_) +
-                  utils::CiphertextLen(remote_stash_max_blocks_ *
-                                       BlockSize(val_len)),
+          min(sizeof(blocks_in_remote_stash_) + utils::CiphertextLen(
+              remote_stash_max_blocks_ * BlockSize(val_len)),
               storage::kMaxEntryPartSize)),
       remote_stash_entry_count_(
-          ((sizeof(blocks_in_remote_stash_) +
-            utils::CiphertextLen(remote_stash_max_blocks_ *
-                                 BlockSize(val_len))) +
-           remote_stash_entry_size_ - 1) /
-          remote_stash_entry_size_),
-      name_(!name.empty() ? name
-                          : utils::GenName({
-                                "oram",
-                                "",
-                                "n",
-                                std::to_string(n),
-                                "v",
-                                std::to_string(val_len),
-                            })) {
+          ((sizeof(blocks_in_remote_stash_) + utils::CiphertextLen(
+              remote_stash_max_blocks_ * BlockSize(val_len))
+          ) + remote_stash_entry_size_ - 1
+          ) / remote_stash_entry_size_),
+      name_(!name.empty()
+            ? name
+            : utils::GenName({
+                                 "oram", "",
+                                 "n", std::to_string(n),
+                                 "v", std::to_string(val_len),
+                             })) {
 
   // Data store
   grpc::ClientContext ctx;
@@ -188,8 +189,7 @@ ORam::ORam(size_t n, size_t val_len, utils::Key enc_key,
   }
   auto it = ctx.GetServerInitialMetadata().find(kIdKey);
   if (it != ctx.GetServerInitialMetadata().end()) {
-    data_store_id_ =
-        std::stoul(std::string(it->second.begin(), it->second.end()));
+    data_store_id_ = std::stoul(std::string(it->second.begin(), it->second.end()));
   }
 
   // Stash store
@@ -210,8 +210,7 @@ ORam::ORam(size_t n, size_t val_len, utils::Key enc_key,
   }
   it = ctx2.GetServerInitialMetadata().find(kIdKey);
   if (it != ctx2.GetServerInitialMetadata().end()) {
-    aux_store_id_ =
-        std::stoul(std::string(it->second.begin(), it->second.end()));
+    aux_store_id_ = std::stoul(std::string(it->second.begin(), it->second.end()));
   }
 
   if (res.found_prebuilt()) {
@@ -222,7 +221,6 @@ ORam::ORam(size_t n, size_t val_len, utils::Key enc_key,
     local_stash_valid_ = false;
     FetchStash();
   }
-  ResetAvailablePaths();
   setup_successful_ = true;
 }
 
@@ -235,12 +233,9 @@ bool ORam::FetchPath(Pos p) {
   // my_assert(node_valid_[0]); // Fill with dummies or batch setup.
   my_assert(p >= min_pos_ && p <= max_pos_); // a leaf index.
   if (cached_nodes_.find(Parent(p)) != cached_nodes_.end()) {
-    already_fetched_++;
     return false; // path already fetched.
   }
 
-  assert(!available_paths_.empty());
-  available_paths_.erase(p);
   auto path = Path(p);
   if (!node_valid_[0]) { // root invalid.
     cached_nodes_.insert(path.begin(), path.end());
@@ -267,8 +262,8 @@ void ORam::DecryptAndAddBucket(Pos p, const std::vector<std::string *> &data) {
   my_assert(!data.empty());
   FetchStash();
   auto ptext = std::make_unique<char[]>(store_entry_size_);
-  auto plen =
-      utils::DecryptStrArray(data, 0, store_entry_size_, enc_key_, ptext.get());
+  auto plen = utils::DecryptStrArray(
+      data, 0, store_entry_size_, enc_key_, ptext.get());
   my_assert(plen == BucketSize(val_len_));
   auto bu = Bucket(ptext.get(), val_len_);
   std::lock_guard<std::mutex> l{mux_};
@@ -286,22 +281,10 @@ void ORam::AddBucket(Pos p, Bucket &bu) {
 
 void ORam::FetchDummyPath() {
   FetchPath(GeneratePos());
-  // if(available_paths_.empty())
-  //   return;
-  // Pos rd_pos_ = *available_paths_.begin();
-  // assert(rd_pos_ >= min_pos_ && rd_pos_ <= max_pos_);
-  // FetchPath(rd_pos_);
 }
 
-// Called after eviction.
-void ORam::ResetAvailablePaths() {
-  auto num_paths_ = (max_pos_ - min_pos_ + 1) - available_paths_.size();
-  if (available_paths_.size() == max_pos_ - min_pos_ + 1)
-    return;
-  for (Pos p = min_pos_; p <= max_pos_; p++) {
-    available_paths_.insert(p);
-  }
-}
+void ORam::ResetAvailablePaths() {}
+
 
 OptVal ORam::ReadAndRemoveFromStash(Key k) {
   FetchStash();
@@ -367,7 +350,6 @@ void ORam::EvictAll() {
       bu.blocks_[bu.meta_.flags_].meta_ = (*it).second.meta_;
       bu.blocks_[bu.meta_.flags_].val_ = std::move(v);
       ++bu.meta_.flags_;
-      assert(it);
       it = stash_.erase(it);
     }
 
@@ -375,11 +357,11 @@ void ORam::EvictAll() {
       auto &[p, bu] = item;
       int num_real_blocks = bu.meta_.flags_;
       bu.meta_.flags_ = 0;
-      if (node_valid_[LChild(p)] ||
-          (cached_nodes_.find(LChild(p)) != cached_nodes_.end()))
+      if (node_valid_[LChild(p)]
+          || (cached_nodes_.find(LChild(p)) != cached_nodes_.end()))
         bu.meta_.flags_ |= kLeftChildValid;
-      if (node_valid_[RChild(p)] ||
-          (cached_nodes_.find(RChild(p)) != cached_nodes_.end()))
+      if (node_valid_[RChild(p)]
+          || (cached_nodes_.find(RChild(p)) != cached_nodes_.end()))
         bu.meta_.flags_ |= kRightChildValid;
       for (int i = 0; i < num_real_blocks; ++i) {
         bu.meta_.flags_ |= (1 << (2 + i));
@@ -390,7 +372,6 @@ void ORam::EvictAll() {
     }
     if (level == 0)
       root_done = true;
-    already_fetched_ = 0;
   }
 
   UploadStash();
@@ -399,6 +380,7 @@ void ORam::EvictAll() {
   cached_nodes_.clear();
   node_valid_.clear();
   node_valid_[0] = true;
+
 }
 
 void ORam::BatchSetupEvictAll() {
@@ -481,7 +463,7 @@ Pos ORam::GeneratePos() const {
 
 Pos ORam::PathAtLevel(Pos p, uint32_t level) const {
   my_assert(p >= min_pos_ && p <= max_pos_); // a leaf index.
-  p = Parent(p);                             // Skip last level
+  p = Parent(p); // Skip last level
   uint32_t level_diff = depth_ - level;
   uint64_t divider = 1UL << level_diff;
   return ((p - divider + 1UL) / divider);
@@ -505,8 +487,8 @@ void ORam::UploadStash() {
   }
   local_stash_valid_ = false;
   blocks_in_remote_stash_ = min(stash_.size(), remote_stash_max_blocks_);
-  most_blocks_in_remote_stash_yet_ =
-      max(most_blocks_in_remote_stash_yet_, blocks_in_remote_stash_);
+  most_blocks_in_remote_stash_yet_ = max(
+      most_blocks_in_remote_stash_yet_, blocks_in_remote_stash_);
 
   size_t ptext_size = blocks_in_remote_stash_ * BlockSize(val_len_);
   if (!ptext_size) {
@@ -514,15 +496,14 @@ void ORam::UploadStash() {
   }
   auto ptext = new char[ptext_size];
   size_t ptext_offset = 0;
-  size_t ctext_size =
-      (sizeof(blocks_in_remote_stash_) + utils::CiphertextLen(ptext_size) +
-       remote_stash_entry_size_ - 1) /
-      remote_stash_entry_size_ * remote_stash_entry_size_; // pad to entry
+  size_t ctext_size = (sizeof(blocks_in_remote_stash_)
+      + utils::CiphertextLen(ptext_size) + remote_stash_entry_size_ - 1)
+      / remote_stash_entry_size_ * remote_stash_entry_size_; // pad to entry
   auto ctext = new char[ctext_size];
   auto it = stash_.begin();
   for (size_t i = 0; i < blocks_in_remote_stash_; ++i) {
-    const auto meta_f =
-        reinterpret_cast<const char *>(std::addressof(it->second.meta_));
+    const auto meta_f = reinterpret_cast<const char *> (
+        std::addressof(it->second.meta_));
     size_t to_copy = sizeof(BlockMetadata);
     std::copy_n(meta_f, to_copy, ptext + ptext_offset);
     ptext_offset += to_copy;
@@ -531,7 +512,6 @@ void ORam::UploadStash() {
       std::copy_n(it->second.val_.get(), to_copy, ptext + ptext_offset);
     }
     ptext_offset += to_copy;
-    assert(it);
     ++it;
   }
   stash_.erase(stash_.begin(), it);
@@ -589,17 +569,17 @@ void ORam::FetchStash() {
 
   // First fetch after constructing prebuild
   size_t blocks_to_fetch = was_prebuilt_ && !setup_successful_
-                               ? remote_stash_max_blocks_
-                               : blocks_in_remote_stash_;
+                           ? remote_stash_max_blocks_
+                           : blocks_in_remote_stash_;
   if (!blocks_to_fetch) {
     return;
   }
 
   size_t ptext_size = blocks_to_fetch * BlockSize(val_len_);
-  size_t ctext_size =
-      sizeof(blocks_in_remote_stash_) + utils::CiphertextLen(ptext_size);
-  size_t entries_to_fetch =
-      (ctext_size + remote_stash_entry_size_ - 1) / remote_stash_entry_size_;
+  size_t ctext_size = sizeof(blocks_in_remote_stash_)
+      + utils::CiphertextLen(ptext_size);
+  size_t entries_to_fetch = (ctext_size + remote_stash_entry_size_ - 1)
+      / remote_stash_entry_size_;
 
   storage::ReadManyRequest req;
   for (size_t i = 0; i < entries_to_fetch; ++i) {
@@ -620,10 +600,10 @@ void ORam::FetchStash() {
     if (idx == 0) {
       utils::FromBytes(se.data().data(), blocks_in_remote_stash_);
       ptext_size = blocks_in_remote_stash_ * BlockSize(val_len_);
-      ctext_size =
-          sizeof(blocks_in_remote_stash_) + utils::CiphertextLen(ptext_size);
-      entries_to_fetch = (ctext_size + remote_stash_entry_size_ - 1) /
-                         remote_stash_entry_size_;
+      ctext_size = sizeof(blocks_in_remote_stash_)
+          + utils::CiphertextLen(ptext_size);
+      entries_to_fetch = (ctext_size + remote_stash_entry_size_ - 1)
+          / remote_stash_entry_size_;
     }
 
     if (idx >= entries_to_fetch) {
@@ -648,12 +628,13 @@ void ORam::FetchStash() {
   }
 
   auto ptext = new char[ptext_size];
-  auto plen =
-      utils::DecryptStrArray(ctext_parts, sizeof(blocks_in_remote_stash_),
-                             utils::CiphertextLen(ptext_size), enc_key_, ptext);
+  auto plen = utils::DecryptStrArray(ctext_parts,
+                                     sizeof(blocks_in_remote_stash_),
+                                     utils::CiphertextLen(ptext_size),
+                                     enc_key_,
+                                     ptext);
   my_assert(plen == ptext_size);
-  for (auto ctext_part : ctext_parts)
-    delete ctext_part;
+  for (auto ctext_part : ctext_parts) delete ctext_part;
   for (size_t i = 0; i < blocks_in_remote_stash_; ++i) {
     Block bl(ptext + (i * BlockSize(val_len_)), val_len_);
     stash_[bl.meta_.key_] = std::move(bl);
@@ -663,10 +644,9 @@ void ORam::FetchStash() {
 
 void ORam::AsyncFetch(const std::vector<Pos> &nodes) {
   class Reader : public grpc::ClientReadReactor<storage::EntryPart> {
-  public:
+   public:
     Reader(storage::RemoteStore::Stub *stub, uint32_t data_store_id, Pos p,
-           ORam *oram)
-        : p_(p), oram_(oram) {
+           ORam *oram) : p_(p), oram_(oram) {
       ctx_.AddMetadata(kIdKey, std::to_string(data_store_id));
       req_.add_indexes(p);
       stub->async()->ReadMany(&ctx_, &req_, this);
@@ -694,8 +674,7 @@ void ORam::AsyncFetch(const std::vector<Pos> &nodes) {
       {
         std::unique_lock<std::mutex> l{mux_};
         oram_->DecryptAndAddBucket(p_, ctext_parts_);
-        for (auto &sp : ctext_parts_)
-          delete sp;
+        for (auto &sp : ctext_parts_) delete sp;
         done_ = true;
         // oram_->running_workers_semaphore_->release();
         cv_.notify_one();
@@ -704,11 +683,10 @@ void ORam::AsyncFetch(const std::vector<Pos> &nodes) {
 
     void Await() {
       std::unique_lock<std::mutex> l{mux_};
-      while (!done_)
-        cv_.wait(l);
+      while (!done_) cv_.wait(l);
     }
 
-  private:
+   private:
     storage::ReadManyRequest req_;
     Pos p_;
     grpc::ClientContext ctx_;
@@ -741,12 +719,16 @@ void ORam::AsyncFetch(const std::vector<Pos> &nodes) {
   FlushReaders();
 }
 
-BucketUploader::BucketUploader(storage::RemoteStore::Stub *stub,
-                               uint32_t store_id, file_oram::path_oram::Pos p,
-                               std::unique_ptr<char[]> val, size_t len,
-                               std::shared_ptr<AsyncSem> done_sem)
-    : p_(p), val_(std::move(val)), store_id_(store_id), len_(len),
-      ctx_(std::make_unique<grpc::ClientContext>()), stub_(stub),
+BucketUploader::BucketUploader(
+    storage::RemoteStore::Stub *stub, uint32_t store_id,
+    file_oram::path_oram::Pos p, std::unique_ptr<char[]> val, size_t len,
+    std::shared_ptr<AsyncSem> done_sem)
+    : p_(p),
+      val_(std::move(val)),
+      store_id_(store_id),
+      len_(len),
+      ctx_(std::make_unique<grpc::ClientContext>()),
+      stub_(stub),
       done_sem_(std::move(done_sem)) {
 
   Start();
@@ -781,8 +763,7 @@ void BucketUploader::OnDone(const grpc::Status &s) {
 
 grpc::Status BucketUploader::Await() {
   std::unique_lock<std::mutex> l{mux_};
-  while (!done_)
-    cv_.wait(l);
+  while (!done_) cv_.wait(l);
   return std::move(status_);
 }
 
@@ -817,8 +798,8 @@ std::unique_ptr<BucketUploader> ORam::AsyncUpload(Pos p, Bucket bu) {
   running_workers_semaphore_->acquire();
   auto ptext = bu.ToBytes(val_len_);
   auto ctext = std::make_unique<char[]>(EncryptedBucketSize(val_len_));
-  bool enc_success =
-      utils::Encrypt(ptext.get(), BucketSize(val_len_), enc_key_, ctext.get());
+  bool enc_success = utils::Encrypt(
+      ptext.get(), BucketSize(val_len_), enc_key_, ctext.get());
   my_assert(enc_success);
   bytes_moved_ += EncryptedBucketSize(val_len_);
   return std::make_unique<BucketUploader>(

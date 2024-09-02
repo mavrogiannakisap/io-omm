@@ -270,8 +270,7 @@ internal::Block &OMap::FetchOrGetFromStash(internal::BP bp) {
   }
 
   bool suc = oram_->FetchPath(bp.pos_);
-  if (suc)
-    num_ops_++;
+  num_ops_++;
 
   auto opt_bl_bytes = oram_->ReadAndRemoveFromStash(bp.key_);
   my_assert(opt_bl_bytes.has_value()); // As `bp` is valid.

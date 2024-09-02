@@ -8,6 +8,8 @@
 #include <optional>
 
 #include <grpcpp/channel.h>
+#include <sys/_types/_u_int32_t.h>
+#include <utility>
 
 #include "path_oram/path_oram.h"
 #include "path_osm/path_osm.h"
@@ -36,13 +38,16 @@ private:
 
   EM(size_t n, size_t val_len, utils::Key enc_key,
      std::shared_ptr<grpc::Channel> channel,
-     storage::InitializeRequest_StoreType st);
+     storage::InitializeRequest_StoreType st, std::string store_path);
 
   bool Initialize(std::vector<std::pair<path_osm::Key, path_osm::Val>> arr_);
   void InOrderTraversal(
       std::vector<path_osm::internal::Block> &b_,
       std::map<path_osm::internal::ORKey, path_osm::internal::ORPos> &bps_,
-      size_t l, size_t r);
+      size_t idx, size_t l, size_t r);
+  void Placing(std::vector<path_osm::internal::Block> b_,
+               std::map<path_osm::internal::ORKey, path_osm::internal::ORPos>
+                   bps_); // Stage two of Enigmap initialization
 
 public:
   static std::optional<EM> Construct(size_t n, size_t val_len,
