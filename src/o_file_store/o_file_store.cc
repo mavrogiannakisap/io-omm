@@ -545,7 +545,6 @@ OFileStore::OFileStore(uint32_t n, uint8_t s, size_t &lf,
   part_oram_key_map_ =
       std::make_unique<OMap>(std::move(opt_omap2.value())); // block id omap
 
-  // Added by TOLIS:
   auto opt_omap3 =
       OMap::Construct(capacity_, sizeof(uint32_t), enc_key, channel, aux_st,
                       aux_st, upload_stash, first_build);
